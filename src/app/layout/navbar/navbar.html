@@ -1,0 +1,63 @@
+<nav class="w-full bg-background">
+  <div class="app-container">
+    <div class="flex items-center justify-between h-16">
+      <a href="/" class=" text-2xl  -tracking-tight">
+        Methran
+      </a>
+
+      <div class="flex items-center gap-4">
+        <button class="hover:text-accent transition-colors" (click)="toggleTheme()">
+          @if (isDarkTheme) {
+            <lucide-angular [img]="sunIcon" class="my-icon"></lucide-angular>
+          } @else {
+            <lucide-angular [img]="moonIcon" class="my-icon"></lucide-angular>
+          }
+        </button>
+
+        <button
+          class="btn-icon md:hidden"
+          aria-label="Open menu"
+          [attr.aria-expanded]="menuOpen"
+          (click)="toggleMenu()"
+        >
+          <span class="block w-5 h-0.5 bg-current mb-1"></span>
+          <span class="block w-5 h-0.5 bg-current mb-1"></span>
+          <span class="block w-5 h-0.5 bg-current"></span>
+        </button>
+
+        <ul class="hidden md:flex items-center gap-8 ms-2 text-lg">
+          @for (item of navItems; track item.href) {
+            <li>
+              <a
+                [routerLink]="item.href"
+                routerLinkActive="active"
+                class="link-underline"
+                >{{ item.label }}</a
+              >
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile dropdown -->
+  @if (menuOpen) {
+    <div class="md:hidden border-t border-borders bg-background/95">
+      <div class="app-container py-3">
+        <ul class="flex flex-col gap-2">
+          @for (item of navItems; track item.href) {
+            <li>
+              <a
+                [routerLink]="item.href"
+                (click)="closeMenu()"
+                class="block py-2"
+                >{{ item.label }}</a
+              >
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
+  }
+</nav>

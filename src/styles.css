@@ -1,1 +1,167 @@
 /* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
+
+@theme {
+     /* colors */
+    --color-background: #0a0a0a;
+    --color-primary: #e0e0e0;
+    --color-secondary: #9ca3af;
+    --color-accent: #00ffb2;
+    --color-borders: #424242;
+    --color-code: #121212;
+    --color-error: #ff5555;
+    --color-success: #32cd32;
+    --color-selection: #009973;
+
+    /* Social colors */
+    --color-linkedin: #2466C2;
+    --color-mail: #EA4336;
+
+      /* spacing/size tokens for layout */
+    --spacing-container-x: 16px;   /* base x padding */
+    --size-nav-h: 64px;            /* 64px nav height */
+    --size-footer-h: 80px;         /* default footer min-height */
+    --size-main-content-max: 1000px;     
+    --size-container-max: 1200px;     
+    --breakpoint-custom: 900px;
+}
+
+/* Light theme overrides (scoped under .light) */
+:root.light {
+  --color-background: #ffffff;
+  --color-primary: #111111;
+  --color-secondary: #4b5563;
+  --color-accent: #00cc8f;
+  --color-borders: #d1d5db;
+  --color-code: #f5f5f5;
+  --color-error: #cc0000;
+  --color-success: #228b22;
+  --color-selection: #adf1e0;
+}
+
+@layer components {
+  /* centered content container, responsive paddings */
+  .app-container {
+    @apply mx-auto px-4 sm:px-6 lg:px-8;
+    max-width: var(--size-container-max);
+  }
+
+  .app-main-content {
+    @apply mx-auto px-4 sm:px-6 lg:px-8;
+    max-width: var(--size-main-content-max);
+  }
+
+  /* sticky bar shell (nav or any top bar) */
+  .bar-sticky {
+    @apply sticky top-0 z-50 border-b bg-background border-borders backdrop-blur;
+  }
+
+  /* footer shell (full-bleed bar; put .app-container inside) */
+  .bar-footer {
+    @apply border-t bg-background border-borders;
+  }
+
+  /* underline-on-hover/active nav link */
+  .link-underline {
+    @apply relative font-medium text-primary hover:text-accent transition-colors;
+  }
+  .link-underline::after {
+    content: "";
+    position: absolute;
+    left: 0; bottom: -0.25rem;   /* -4px */
+    height: 2px;
+    width: 0;
+    background: var(--color-accent);
+    border-radius: 9999px;
+    transition: width 200ms ease;
+  }
+  .link-underline:hover::after,
+  .link-underline[aria-current="page"]::after,
+  .link-underline.active::after {
+    width: 100%;
+  }
+
+  /* small icon-ish button (theme/hamburger) */
+  .btn-icon {
+    @apply p-2 rounded-md text-primary hover:bg-borders/20 transition-colors;
+  }
+
+  /* link with chevron on hover */
+  .link-chevron {
+    @apply relative font-medium text-primary hover:text-accent transition-all duration-300 ease-in-out;
+  }
+  
+  .link-chevron::before {
+    content: "";
+    position: absolute;
+    left: -1rem; /* -20px */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+    transition: all 100ms ease-in-out;
+    opacity: 0;
+  }
+  
+  .link-chevron:hover::before {
+    content: "›";
+    left: -1rem; /* -16px */
+    width: auto;
+    height: auto;
+    border: none;
+    font-weight: bold;
+    color: var(--color-accent);
+    opacity: 1;
+  }
+
+  .link-chevron-linkedin:hover::before {
+    content: "›";
+    left: -1rem; /* -16px */
+    width: auto;
+    height: auto;
+    border: none;
+    font-weight: bold;
+    color: var(--color-linkedin);
+    opacity: 1;
+  }
+
+  .link-chevron-mail:hover::before {
+    content: "›";
+    left: -1rem; /* -16px */
+    width: auto;
+    height: auto;
+    border: none;
+    font-weight: bold;
+    color: var(--color-mail);
+    opacity: 1;
+  }
+
+  .link-chevron-primary:hover::before {
+    content: "›";
+    left: -1rem; /* -16px */
+    width: auto;
+    height: auto;
+    border: none;
+    font-weight: bold;
+    color: var(--color-primary);
+    opacity: 1;
+  }
+}
+
+::selection {
+  background:var(--color-selection);
+  color:#000
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-primary);
+}
+
+html {
+  font-family: "Roboto Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}

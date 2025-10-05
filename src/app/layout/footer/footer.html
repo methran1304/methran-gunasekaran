@@ -1,0 +1,52 @@
+<footer class="w-full bg-background">
+  <div class="app-container my-4">
+    <!-- name & desc -->
+    <div class="flex flex-col mb-2">
+      <div class="flex flex-col">
+        <span class="mb-1">Methran Gunasekaran</span>
+        <span class="text-sm text-secondary">Full-Stack Software Engineer | .NET & Angular</span>
+      </div>
+    </div>
+
+    <!-- contact & site Links -->
+    <div class="flex flex-col mb-2 md:flex-row md:justify-between gap-8 md:gap-0">
+      <!-- contact-->
+      <div class="flex flex-col">
+        <span class="text-sm font-medium mb-4"><span class="mr-1 font-extrabold text-accent">$</span>./connect.sh</span>
+        
+        <div class="flex ms-3 gap-8">
+          <a href="https://www.linkedin.com/in/methran/" target="_blank" class="link-chevron link-chevron-linkedin">
+            <lucide-angular [img]="linkedInIcon" class="text-linkedin"></lucide-angular>
+          </a>
+
+          <a href="https://github.com/methran1304" target="_blank" class="link-chevron link-chevron-primary">
+            <lucide-angular [img]="githubIcon" class="text-primary"></lucide-angular>
+          </a>
+
+          <a href="mailto:methran2003@gmail.com?subject=Portfolio%20Inquiry" class="link-chevron link-chevron-mail">
+          <lucide-angular [img]="mailIcon" class="text-mail" ></lucide-angular>
+          </a>
+        </div>
+      </div>
+
+      <!-- site links -->
+      <div class="flex flex-col">
+        <span class="text-sm font-medium mb-3"> <span class="mr-1 font-extrabold text-accent">$</span>./site-links.sh</span>
+        <div class="grid grid-cols-2 ms-4 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-2">
+            @for (item of navItems; track item.href) {
+                <a
+                  [routerLink]="item.href"
+                  routerLinkActive="active"
+                  class="link-chevron text-sm"
+                  >{{ item.label }}</a
+                >
+              }
+        </div>
+      </div>
+    </div>
+
+    <span class="text-[12px] text-secondary">
+      Copyright © 2025 methran.dev
+    </span>
+  </div>
+</footer>
