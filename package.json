@@ -32,6 +32,7 @@
     "@omnedia/ngx-gradient-text": "^3.0.0",
     "@omnedia/ngx-lamp": "^3.0.0",
     "@omnedia/ngx-marquee": "^3.0.0",
+    "@omnedia/ngx-orb": "^3.0.0",
     "@omnedia/ngx-typewriter": "^3.1.1",
     "@tailwindcss/postcss": "^4.1.14",
     "lucide-angular": "^0.544.0",

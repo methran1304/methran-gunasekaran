@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { NavigationEnd, Route, Router, RouterLink } from '@angular/router';
 import { LucideAngularModule, Github, Linkedin, Mail } from 'lucide-angular';
 
 @Component({
@@ -12,6 +12,7 @@ export class FooterComponent {
   readonly githubIcon = Github;
   readonly linkedInIcon = Linkedin;
   readonly mailIcon = Mail;
+  showTitle: boolean = true;
 
   navItems = [
     { href: '/home', label: 'Home'},
@@ -20,4 +21,12 @@ export class FooterComponent {
     { href: '/about', label: 'About'},
     { href: '/contact', label: 'Contact'},
   ]
+
+  constructor(private router: Router) {
+    router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.showTitle = event.urlAfterRedirects !== '/home'
+      }
+    });
+  }
 }
