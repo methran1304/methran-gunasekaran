@@ -51,7 +51,7 @@ export class ProjectsComponent {
       title: "Methran-Gunasekaran",
       description: "A modern, responsive personal website with Unix terminal shell-inspired design where I share my thoughts and showcase my work.",
       githubLink: "https://github.com/methran1304/methran-gunasekaran",
-      liveLink: 'http://localhost:4200', // will be deployed
+      liveLink: 'https://methran-gunasekaran.vercel.app',
       status: ProjectStatus.InProgress,
       techStack: [
         "Angular v20",
