@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NgxTypewriterComponent } from '@omnedia/ngx-typewriter';
 import { NgxMarqueeComponent } from '@omnedia/ngx-marquee';
-import { NgxGradientTextComponent } from '@omnedia/ngx-gradient-text';
+import { NgxFadeComponent } from '@omnedia/ngx-fade';
 import { NgxCrypticTextComponent } from '@omnedia/ngx-cryptic-text';
 import { LucideAngularModule, Download, FolderOpen } from 'lucide-angular';
 
@@ -10,9 +10,9 @@ import { LucideAngularModule, Download, FolderOpen } from 'lucide-angular';
   imports: [
     NgxTypewriterComponent,
     NgxMarqueeComponent,
-    NgxGradientTextComponent,
     NgxCrypticTextComponent,
     LucideAngularModule,
+    NgxFadeComponent
   ],
   templateUrl: './home.html',
   styleUrl: './home.css',

@@ -28,6 +28,7 @@
     "@angular/router": "^20.1.0",
     "@omnedia/ngx-border-beam": "^3.0.1",
     "@omnedia/ngx-cryptic-text": "^3.0.0",
+    "@omnedia/ngx-fade": "^3.0.0",
     "@omnedia/ngx-faulty-terminal": "^3.0.0",
     "@omnedia/ngx-gradient-text": "^3.0.0",
     "@omnedia/ngx-lamp": "^3.0.0",
