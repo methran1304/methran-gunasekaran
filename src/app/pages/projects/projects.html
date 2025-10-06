@@ -1,1 +1,63 @@
-Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptas earum tempore quod! Reiciendis quisquam quae ipsam similique tempore libero nihil eaque et excepturi, maiores error laboriosam, iste cumque nemo beatae nulla recusandae odit vitae adipisci alias dignissimos. Eos et voluptates culpa, voluptatibus fugit cum officiis harum aliquam neque consequuntur dicta natus veniam. Explicabo neque vitae, ut, beatae tempora, quos ipsa exercitationem nisi asperiores odio porro. Sit non sed ipsum corporis tempore. Voluptates soluta molestias omnis dicta praesentium obcaecati hic, ipsum explicabo quae, tenetur at officiis vel architecto blanditiis tempora eligendi modi labore, asperiores eius. Suscipit, dolorem impedit unde nihil reprehenderit rerum illo fuga recusandae iure? Exercitationem et numquam ipsum saepe est nihil itaque doloribus sapiente. Repudiandae voluptate dolor doloremque modi. Eius fugit eum nostrum corrupti, inventore, rerum reprehenderit est provident ut ipsum nulla mollitia doloribus, perferendis accusamus. Voluptatibus sequi sed culpa, ex dolorem odio tempore repudiandae, quis asperiores deserunt doloremque animi nostrum corporis! Incidunt maiores, corporis odio omnis nesciunt exercitationem blanditiis quibusdam eius dolor! Amet numquam vitae optio dignissimos repellendus ratione mollitia quam, sunt, unde ab laudantium a officiis? Fugiat obcaecati accusantium pariatur alias officiis ad ducimus optio voluptatibus recusandae qui aliquam ipsam dolores, perferendis fugit magni? Labore ab at quam fugiat voluptate maiores doloribus sunt non, molestiae adipisci fugit, eligendi doloremque numquam perspiciatis accusantium quos vel ipsa amet nihil vitae ipsum? Dolore officiis culpa at mollitia laborum inventore, odit, laboriosam voluptas molestiae nobis, fugit sint eius distinctio iure! Corporis incidunt totam atque facere tempora, accusamus iure iste unde magni optio dignissimos esse tenetur aliquam ea saepe ipsam eligendi nobis vel nostrum est hic? Voluptate explicabo magnam atque unde totam placeat reprehenderit ut similique excepturi odio, minus voluptatibus sapiente inventore aliquid vero, veritatis, optio sequi doloremque quo illo iste eveniet? Sapiente, placeat. Suscipit sint nihil recusandae cupiditate molestias ut reiciendis itaque non voluptas sed aliquam quis voluptatem exercitationem, mollitia minus, sequi magnam veniam libero corporis, dolores odio ea voluptatibus soluta. Voluptate, illum praesentium nulla sed alias dicta velit dolore magni molestias! Error, ut alias enim dolore veniam quis nam officiis. Quo minus sed excepturi doloremque unde distinctio veritatis laborum fuga dolorum quisquam quas optio voluptate harum, id, iusto sint qui reiciendis quae voluptas suscipit magnam modi facere ex nesciunt. Alias enim, mollitia iure nulla omnis vel unde, excepturi voluptatibus accusamus culpa doloremque doloribus voluptates deserunt numquam nisi sit quidem nobis, reprehenderit quod dolorum. Voluptates porro dolores odio reiciendis. Deserunt quia unde, eveniet ullam excepturi necessitatibus molestias maiores obcaecati totam nesciunt neque eius eos. Provident repudiandae voluptatem architecto in praesentium, numquam, voluptas facere repellendus reiciendis quia eos iusto cupiditate nemo? Nulla at mollitia facilis corporis nesciunt eos delectus dolorum odit saepe eum velit voluptates, exercitationem quo culpa deleniti repudiandae accusantium ut. Labore adipisci quo qui voluptatibus illo esse nihil fuga deleniti, at beatae eligendi! Earum distinctio exercitationem ad voluptates recusandae, sequi, harum doloribus odio tenetur eius quaerat, ipsam accusamus? Quod, nulla? Similique, saepe impedit iusto maiores mollitia incidunt corrupti! Dicta inventore quasi, sequi sunt cum minima sint dolores sapiente! Ipsam, maiores.
+<div class="flex flex-col w-full h-full space-y-8">
+  <!-- title & sub-->
+  <div class="flex flex-col space-y-2">
+    <div class="font-mono text-xl sm:text-2xl md:text-3xl">Projects</div>
+    <div class="font-mono text-secondary text-sm sm:text-lg md:text-xl">
+      My creations and experiments!
+    </div>
+  </div>
+
+  <div class="flex flex-wrap justify-center gap-6">
+    @for (project of projects; track project.title) {
+    <div class="group cursor-default transition-all duration-200">
+      <div
+        class="flex flex-col p-6 h-65 w-96 border-1 border-b-0 rounded-b-none border-borders rounded-md group-hover:border-accent/50 transition-colors duration-200"
+      >
+        <div class="font-mono group-hover:text-accent font-extrabold text-lg mb-2 line-clamp-2">
+          {{project.title}}
+        </div>
+        <div class="font-mono text-secondary text-sm mb-4 flex-1">
+          {{project.description}}
+        </div>
+        <div class="flex flex-wrap gap-2 mt-auto">
+          @for(tech of project.techStack; track $index) {
+            <span
+              class="px-2 py-1 text-xs rounded bg-borders/20 text-secondary font-mono hover:bg-accent/10 hover:text-accent transition-all"
+              >{{tech}}</span
+            >
+          }
+        </div>
+      </div>
+
+      <div
+        class="flex p-4 h-12 border-1 rounded-b-md bg-borders/5 border-borders group-hover:border-accent/50 transition-all duration-200"
+        [ngClass]="project.liveLink ? 'items-center justify-between' : 'items-center justify-end'"
+      >
+      @if (project.liveLink) {
+        <a
+          [href]="project.liveLink"
+          target="_blank"
+          class="flex items-center gap-2 text-xs text-secondary hover:text-accent/80 transition-colors focus:outline-none rounded px-2 py-1"
+          aria-label="View live site"
+        >
+          <lucide-angular [img]="liveSiteIcon" class="size-4"></lucide-angular>
+          <span>Live Site</span>
+        </a>
+      }
+
+      @if (project.githubLink) {
+        <a
+          [href]="project.githubLink"
+          target="_blank"
+          class="flex items-center gap-2 text-xs text-secondary hover:text-accent transition-colors focus:outline-none rounded px-2 py-1"
+          aria-label="View source code"
+        >
+          <lucide-angular [img]="githubIcon" class="size-4"></lucide-angular>
+          <span>Repo</span>
+        </a>
+      }
+      </div>
+    </div>
+    }
+  </div>
+</div>

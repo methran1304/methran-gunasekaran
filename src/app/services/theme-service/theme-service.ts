@@ -1,5 +1,5 @@
 import { Injectable, Renderer2, RendererFactory2 } from '@angular/core';
-import { Theme } from '../../enum/theme-enum';
+import { Theme } from '../../enums/theme-enum';
 
 interface UserPreference {
   theme: Theme;

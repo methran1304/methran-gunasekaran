@@ -2,7 +2,7 @@ import { NgForOf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { ThemeService } from '../../services/theme-service/theme-service';
-import { Theme } from '../../enum/theme-enum';
+import { Theme } from '../../enums/theme-enum';
 import { LucideAngularModule, SunMedium, Moon } from 'lucide-angular';
 
 @Component({
