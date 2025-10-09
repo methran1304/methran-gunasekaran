@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 @theme {
      /* colors */
@@ -164,4 +165,24 @@ body {
 
 html {
   font-family: "Roboto Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+.prose-theme {
+  /* base text colors */
+  --tw-prose-body: var(--color-primary);
+  --tw-prose-headings: var(--color-accent);
+  --tw-prose-lead: var(--color-secondary);
+  --tw-prose-links: var(--color-accent);
+  --tw-prose-bold: var(--color-accent);
+  --tw-prose-counters: var(--color-secondary);
+  --tw-prose-bullets: var(--color-secondary);
+  --tw-prose-hr: var(--color-borders);
+  --tw-prose-quotes: var(--color-secondary);
+  --tw-prose-quote-borders: var(--color-borders);
+  --tw-prose-captions: var(--color-secondary);
+  --tw-prose-code: var(--color-primary);
+  --tw-prose-pre-code: var(--color-primary);
+  --tw-prose-pre-bg: var(--color-code);
+  --tw-prose-th-borders: var(--color-borders);
+  --tw-prose-td-borders: var(--color-borders);
 }
