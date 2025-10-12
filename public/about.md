@@ -10,13 +10,11 @@ In high school, that curiosity turned into exploration. I spent hours experiment
 
 Toward the end of school, programming became more than a hobby. Learning algorithms made me appreciate the elegance behind the logic, and seeing them power real-world features like map navigation and text autocorrection pushed me deeper into computer science.
 
-Around this time, I also worked part-time as a **C/C++ Teaching Assistant** at [Internshala](https://internshala.com/), helping students understand core programming concepts — an experience that strengthened my fundamentals and communication skills.
+Around this time, I also worked part-time as a **C/C++ Teaching Assistant** at [Internshala](https://internshala.com/), helping students understand the language and object oriented programming.
 
-During my undergraduate studies, I earned an internship at [Kovai.co](https://www.kovai.co/) as a **Software Engineer**. I discovered my love for web development in the .NET and Angular ecosystem, contributing to [Document360](https://document360.com/) with a focus on backend performance and authentication. Following my internship, I was converted to a full-time Software Engineer at Kovai.co, where I continued improving large-scale systems and security workflows.
+During my undergraduate studies, I secured an internship at [Kovai.co](https://www.kovai.co/) as a **Software Engineer**, where I later received a full-time offer upon graduation. It was there that I got into the .NET and Angular ecosystem, discovering my passion for web development while contributing to [Document360](https://document360.com/) with a focus on backend performance and authentication.
 
-Today, I am completing my **Masters in Advanced Computer Science** at the **University of Liverpool**, where I have explored advanced algorithms, high-performance computing, cloud, and machine learning.
-
-As I prepare to graduate with **Distinction**, I am looking forward to opportunities that challenge me to apply this foundation — building software that is efficient, scalable, and thoughtfully engineered.
+Today, I am completing my **Masters in Advanced Computer Science** with **Distinction** at the **University of Liverpool**, where I have explored advanced algorithms, high-performance computing, cloud, machine learning and a lot more.
 
 ### Tools
 
@@ -41,14 +39,14 @@ Here’s what I’m currently focused on:
 - Preparing for the [UKIEPC](https://ukiepc.info/) Programming Contest 2025 with my university team  
 - Implementing blogging functionality in this web application  
 - Fixing minor bugs and refining user experience on the **Verbatim** platform  
-- Developing a CLI-based **Regex Engine** to deepen my understanding of state machines  
+- Developing a CLI-based **Regex Engine** to deepen my understanding of state machines
 
 ### Beyond the Code
 
 Outside of programming, I try to stay grounded and balanced through the things I love.  
-You’ll often find me laughing, staying positive, and spending quality time with my family and friends.
+You’ll often find me laughing and spending quality time with my family and friends.
 
-I’m a huge admirer of **astronomy** — I can talk about the universe, space, and the cosmos endlessly.  
+I’m a huge admirer of **astronomy**! I can talk about the universe, space, and the cosmos endlessly.  
 The scale and mystery of it all constantly remind me how much there is to learn.
 
 I also enjoy playing **video games**, which often inspire my creativity and problem-solving mindset.  
