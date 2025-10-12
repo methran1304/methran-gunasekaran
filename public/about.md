@@ -12,7 +12,7 @@ Toward the end of school, programming became more than a hobby. Learning algorit
 
 Around this time, I also worked part-time as a **C/C++ Teaching Assistant** at [Internshala](https://internshala.com/), helping students understand core programming concepts — an experience that strengthened my fundamentals and communication skills.
 
-During my undergraduate studies, I earned an internship at [Kovai.co](https://www.kovai.co/) as a **Software Engineer**. I discovered my love for web development ([Testimonial](https://www.kovai.co/blog/making-software-grads-industry-ready/)) in the .NET and Angular ecosystem, contributing to [Document360](https://document360.com/) with a focus on backend performance and authentication. Following my internship, I was converted to a full-time Software Engineer at Kovai.co, where I continued improving large-scale systems and security workflows.
+During my undergraduate studies, I earned an internship at [Kovai.co](https://www.kovai.co/) as a **Software Engineer**. I discovered my love for web development in the .NET and Angular ecosystem, contributing to [Document360](https://document360.com/) with a focus on backend performance and authentication. Following my internship, I was converted to a full-time Software Engineer at Kovai.co, where I continued improving large-scale systems and security workflows.
 
 Today, I am completing my **Masters in Advanced Computer Science** at the **University of Liverpool**, where I have explored advanced algorithms, high-performance computing, cloud, and machine learning.
 
