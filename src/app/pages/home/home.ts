@@ -1,19 +1,17 @@
 import { Component } from '@angular/core';
 import { NgxTypewriterComponent } from '@omnedia/ngx-typewriter';
-import { NgxMarqueeComponent } from '@omnedia/ngx-marquee';
-import { NgxFadeComponent } from '@omnedia/ngx-fade';
 import { NgxCrypticTextComponent } from '@omnedia/ngx-cryptic-text';
 import { LucideAngularModule, Download, FolderOpen } from 'lucide-angular';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   imports: [
     NgxTypewriterComponent,
-    NgxMarqueeComponent,
     NgxCrypticTextComponent,
     LucideAngularModule,
-    NgxFadeComponent
-  ],
+    RouterLink
+],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })

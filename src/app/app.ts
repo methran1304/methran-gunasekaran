@@ -15,13 +15,7 @@ import { NgxFaultyTerminalComponent } from "@omnedia/ngx-faulty-terminal";
   imports: [
     RouterOutlet,
     NavbarComponent,
-    FooterComponent,
-    HomeComponent,
-    BlogComponent,
-    ProjectsComponent,
-    AboutComponent,
-    ContactComponent,
-    NgxFaultyTerminalComponent
+    FooterComponent
   ],
   templateUrl: './app.html',
   styleUrl: './app.css',
