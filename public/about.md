@@ -16,6 +16,8 @@ During my undergraduate studies, I secured an internship at [Kovai.co](https://w
 
 Today, I am completing my **Masters in Advanced Computer Science** with **Distinction** at the **University of Liverpool**, where I have explored advanced algorithms, high-performance computing, cloud, machine learning and a lot more.
 
+<img src="https://www.hubspot.com/hs-fs/hubfs/assets/hubspot.com/web-team/WBZ/Feature%20Pages/free-blog-maker/free-blog-maker-hero-en.webp?width=2060&name=free-blog-maker-hero-en.webp"> 
+
 ### Tools
 
 Over the years, I have developed a workflow that balances performance, simplicity, and clarity.  
