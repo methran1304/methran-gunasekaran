@@ -14,9 +14,7 @@ Around this time, I also worked part-time as a **C/C++ Teaching Assistant** at [
 
 During my undergraduate studies, I secured an internship at [Kovai.co](https://www.kovai.co/) as a **Software Engineer**, where I later received a full-time offer upon graduation. It was there that I got into the .NET and Angular ecosystem, discovering my passion for web development while contributing to [Document360](https://document360.com/) with a focus on backend performance and authentication.
 
-Today, I am completing my **Masters in Advanced Computer Science** with **Distinction** at the **University of Liverpool**, where I have explored advanced algorithms, high-performance computing, cloud, machine learning and a lot more.
-
-<img src="https://www.hubspot.com/hs-fs/hubfs/assets/hubspot.com/web-team/WBZ/Feature%20Pages/free-blog-maker/free-blog-maker-hero-en.webp?width=2060&name=free-blog-maker-hero-en.webp"> 
+Today, I am completing my **Masters in Advanced Computer Science** with **Distinction** at the **University of Liverpool**, where I have explored advanced algorithms, high-performance computing, cloud, machine learning and a lot more. 
 
 ### Tools
 
