@@ -1,7 +1,7 @@
 import { NgForOf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { ThemeService } from '../../services/theme-service/theme-service';
+import { ThemeService } from '../../services/theme-service';
 import { Theme } from '../../enums/theme-enum';
 import { LucideAngularModule, SunMedium, Moon } from 'lucide-angular';
 
@@ -19,22 +19,22 @@ export class NavbarComponent implements OnInit {
   isDarkTheme: boolean = false;
   navItems = [
     { href: '/home', label: 'Home'},
-    { href: '/blog', label: 'Blogs'},
+    { href: '/blogs', label: 'Blogs'},
     { href: '/projects', label: 'Projects'},
     { href: '/about', label: 'About'},
     { href: '/contact', label: 'Contact'},
   ]
 
-  constructor(private themeService: ThemeService) { }
+  constructor(private _themeService: ThemeService) { }
 
   ngOnInit(): void {
-    const currentTheme = this.themeService.getTheme();
+    const currentTheme = this._themeService.getTheme();
     this.isDarkTheme = currentTheme === Theme.Dark;
   }
 
   toggleTheme(): void {
-    this.themeService.toggleTheme();
-    this.isDarkTheme = this.themeService.getTheme() === Theme.Dark;
+    this._themeService.toggleTheme();
+    this.isDarkTheme = this._themeService.getTheme() === Theme.Dark;
   }
 
   toggleMenu() {

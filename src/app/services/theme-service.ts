@@ -1,5 +1,5 @@
 import { Injectable, Renderer2, RendererFactory2 } from '@angular/core';
-import { Theme } from '../../enums/theme-enum';
+import { Theme } from '../enums/theme-enum';
 
 interface UserPreference {
   theme: Theme;
@@ -10,10 +10,10 @@ interface UserPreference {
 })
 export class ThemeService {
   currentTheme!: Theme;
-  private renderer: Renderer2;
+  private _renderer: Renderer2;
 
   constructor(rendererFactory: RendererFactory2) {
-    this.renderer = rendererFactory.createRenderer(null, null);
+    this._renderer = rendererFactory.createRenderer(null, null);
   }
 
   public initializeTheme() {
@@ -46,9 +46,9 @@ export class ThemeService {
 
   private applyTheme() {
     if (this.currentTheme === Theme.Light) {
-      this.renderer.addClass(document.documentElement, 'light');
+      this._renderer.addClass(document.documentElement, 'light');
     } else {
-      this.renderer.removeClass(document.documentElement, 'light');
+      this._renderer.removeClass(document.documentElement, 'light');
     }
   }
 

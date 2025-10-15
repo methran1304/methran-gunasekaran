@@ -16,7 +16,7 @@ export const routes: Routes = [
         component: HomeComponent,
     },
     {
-        path: 'blog',
+        path: 'blogs',
         component: BlogComponent
     },
     {

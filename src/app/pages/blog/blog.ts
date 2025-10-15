@@ -1,14 +1,29 @@
-import { Component } from '@angular/core';
-import { LucideAngularModule, TrafficCone } from 'lucide-angular';
-
+import { Component, OnInit } from '@angular/core';
+import { LucideAngularModule, CornerDownRight, Share2, Calendar } from 'lucide-angular';
+import { BlogService } from '../../services/blog-service';
+import { GithubContentResponse } from '../../models/github-content-response';
+import { HttpErrorResponse } from '@angular/common/http';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-blog',
-  imports: [LucideAngularModule],
+  imports: [LucideAngularModule, RouterLink],
   templateUrl: './blog.html',
-  styleUrl: './blog.css'
+  styleUrl: './blog.css',
 })
-export class BlogComponent {
-  readonly coneIcon = TrafficCone;  
-  readonly filePath = '/test.md';
+export class BlogComponent implements OnInit {
+  readonly arrowIcon = CornerDownRight;
+  readonly shareIcon = Share2;
+  readonly calendarIcon = Calendar;
+  
+  constructor(private _blogService: BlogService) {}
+
+  ngOnInit(): void {
+    // this._blogService.getBlogContent('abou.t').subscribe(
+    //   (result: GithubContentResponse) => {},
+    //   (error: HttpErrorResponse) => {
+        
+    //   }
+    // );
+  }
 }

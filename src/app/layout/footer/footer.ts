@@ -16,14 +16,14 @@ export class FooterComponent {
 
   navItems = [
     { href: '/home', label: 'Home'},
-    { href: '/blog', label: 'Blogs'},
+    { href: '/blogs', label: 'Blogs'},
     { href: '/projects', label: 'Projects'},
     { href: '/about', label: 'About'},
     { href: '/contact', label: 'Contact'},
   ]
 
-  constructor(private router: Router) {
-    router.events.subscribe((event) => {
+  constructor(private _router: Router) {
+    _router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.showTitle = event.urlAfterRedirects !== '/home'
       }

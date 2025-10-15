@@ -1,7 +1,75 @@
 <!-- blog.html -->
-<div class="flex p-0 min-h-full justify-center items-start">
-  <!-- <markdown
-    class="prose prose-lg prose-theme max-w-5xl w-full"
-    [src]="filePath">
-  </markdown> -->
+<div
+  class="flex flex-col items-start w-full h-full space-y-8 px-4 mb-12 lg:mb-0 lg:px-0"
+>
+  <!-- title & sub-->
+  <div class="flex flex-col items-start space-y-3 w-full">
+    <div class="font-mono text-2xl text-accent font-bold">Blogs</div>
+    <div class="font-mono text-secondary text-lg">
+      My thoughts and writings!
+    </div>
+  </div>
+
+  <!-- blog list container -->
+  <div class="flex flex-col min-w-full space-y-6">
+    @for (_ of [1, 2, 3, 4, 5]; track $index) {
+    <div class="flex flex-col group cursor-default transition-all duration-800">
+      <div
+        class="p-6 space-y-2 border-1 border-b-0 rounded-b-none border-borders rounded-md group-hover:border-accent/50 transition-colors duration-200"
+      >
+        <!-- title and date -->
+        <div class="flex justify-between">
+          <div
+            class="font-mono group-hover:text-accent font-extrabold text-lg mb-2"
+          >
+            <span class="text-accent">$</span>
+            {{`Quantum Computing: Change of an era.`}}
+          </div>
+
+          <div class="flex items-center gap-2 font-extrabold mb-2">
+            <lucide-angular
+              [img]="calendarIcon"
+              class="size-4"
+            ></lucide-angular>
+            <span>15th September 2025</span>
+          </div>
+        </div>
+
+        <!-- Description -->
+        <div class="font-mono text-secondary line-clamp-5">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia numquam
+          laboriosam aperiam, deleniti similique tenetur excepturi perspiciatis
+          blanditiis? Fugiat distinctio totam repellendus illum inventore
+          expedita quo? Aut quod quae voluptate accusamus repudiandae architecto
+          nisi corrupti quam illum minima optio eligendi nobis animi ratione
+          inventore veniam dolores blanditiis exercitationem dicta, laborum
+          nostrum aspernatur vitae, vel consequatur. Temporibus adipisci
+          consequatur qui ab voluptas quisquam inventore natus quam.
+        </div>
+      </div>
+
+      <div
+        class="flex items-center justify-between p-4 h-12 border-1 rounded-b-md bg-borders/5 border-borders group-hover:border-accent/50 transition-all duration-200"
+      >
+        <a
+          [routerLink]="['/']"
+          class="flex items-center gap-2 text-xs text-secondary hover:text-accent transition-colors focus:outline-none rounded px-2 py-1"
+          aria-label="View source code"
+        >
+          <lucide-angular [img]="arrowIcon" class="size-4"></lucide-angular>
+          <span>Read More</span>
+        </a>
+
+        <a
+          [routerLink]="['/']"
+          class="flex items-center gap-2 text-xs text-secondary hover:text-accent transition-colors focus:outline-none rounded px-2 py-1"
+          aria-label="View source code"
+        >
+          <lucide-angular [img]="shareIcon" class="size-4"></lucide-angular>
+          <span>Share</span>
+        </a>
+      </div>
+    </div>
+    }
+  </div>
 </div>
