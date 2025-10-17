@@ -1,4 +1,3 @@
-import { BlogConstants } from '../api/constants/blog-constants';
 
 export async function GET(request: Request) {
   const githubToken = process.env.GITHUB_TOKEN;
