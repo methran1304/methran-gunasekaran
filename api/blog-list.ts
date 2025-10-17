@@ -32,7 +32,7 @@ export async function GET(request: Request) {
       }
     });
   } catch (error) {
-    return new Response(JSON.stringify({ message: 'Internal Server Error'}), {
+    return new Response(JSON.stringify({ message: error}), {
       status: 500
     });
   }
