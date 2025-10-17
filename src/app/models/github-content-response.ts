@@ -4,7 +4,7 @@ export interface GithubLinks {
   self: string;
 }
 
-export interface GithubContentEntry {
+export interface Entry {
   _links: GithubLinks;
   git_url: string | null;
   html_url: string | null;
@@ -17,7 +17,7 @@ export interface GithubContentEntry {
   url: string;
 }
 
-export interface GithubContentResponse {
+export interface GithubContentEntry {
   _links: GithubLinks;
   git_url: string | null;
   html_url: string | null;
@@ -29,6 +29,10 @@ export interface GithubContentResponse {
   type: string;
   url: string;
   content?: string;
-  entries?: GithubContentEntry[];
+  entries?: Entry[];
   encoding?: string;
+}
+
+export interface GithubContentResponse {
+  githubContentEntries: GithubContentEntry[];
 }

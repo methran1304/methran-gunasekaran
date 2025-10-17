@@ -12,7 +12,7 @@
 
   <!-- blog list container -->
   <div class="flex flex-col min-w-full space-y-6">
-    @for (_ of [1, 2, 3, 4, 5]; track $index) {
+    @for (blog of blogs; track $index) {
     <div class="flex flex-col group cursor-default transition-all duration-800">
       <div
         class="p-6 space-y-2 border-1 border-b-0 rounded-b-none border-borders rounded-md group-hover:border-accent/50 transition-colors duration-200"
@@ -23,7 +23,7 @@
             class="font-mono group-hover:text-accent font-extrabold text-lg mb-2"
           >
             <span class="text-accent">$</span>
-            {{`Quantum Computing: Change of an era.`}}
+            {{blog.title}}
           </div>
 
           <div class="flex items-center gap-2 font-extrabold mb-2">
@@ -31,7 +31,7 @@
               [img]="calendarIcon"
               class="size-4"
             ></lucide-angular>
-            <span>15th September 2025</span>
+            <span>{{blog.publishedDate}}</span>
           </div>
         </div>
 
