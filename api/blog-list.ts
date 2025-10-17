@@ -2,6 +2,9 @@ import { BlogConstants } from '../api/constants/blog-constants';
 
 export async function GET(request: Request) {
   const githubToken = process.env.GITHUB_TOKEN;
+  const repoOwner = "methran1304";
+  const repoName = "mg-blog-source";
+  const blogListUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/`;
 
   const abortController = new AbortController();
 
@@ -12,7 +15,7 @@ export async function GET(request: Request) {
 
   try
   {
-    const response = await fetch('https://api.github.com/repos/methran1304/mg-blog-source/contents/', {
+    const response = await fetch(blogListUrl, {
       headers: {
         Authorization: `Bearer ${githubToken}`,
       },
