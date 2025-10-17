@@ -36,12 +36,6 @@ export async function GET(request: Request) {
 
     const fileMetadata = await fileResponse.json();
 
-    return new Response(JSON.stringify({
-      content: fileMetadata.download_url
-    }), {
-      status: 200
-    });
-
     const fileContent = await fetch(fileMetadata.download_url);
     if (!fileContent.ok) {
       throw new Error(
