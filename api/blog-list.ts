@@ -12,7 +12,7 @@ export async function GET(request: Request) {
 
   try
   {
-    const response = await fetch(`${BlogConstants.GetContentUrl}`, {
+    const response = await fetch('https://api.github.com/repos/methran1304/mg-blog-source/contents/', {
       headers: {
         Authorization: `Bearer ${githubToken}`,
       },
