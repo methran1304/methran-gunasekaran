@@ -18,7 +18,7 @@
       class="flex flex-col items-center justify-center min-h-78 animate-pulse"
     >
       <div class="h-4 text-gray-100 rounded-full dark:text-gray-600 text-lg">
-        Loading blogs...
+        <span class="text-accent">></span> Loading content...
       </div>
     </div>
   </div>
@@ -83,7 +83,7 @@
         class="flex flex-col items-center justify-center min-h-78"
       >
         <div class="h-4 text-lg text-secondary">
-          {{ blogs === null ? 'Something went wrong!' : 'No published blogs available at the moment.'}}
+         <span class="text-accent">></span> {{ blogs === null ? 'Something went wrong!' : 'No published blogs available at the moment.'}}
         </div>
       </div>
     </div>
