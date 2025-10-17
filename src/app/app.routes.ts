@@ -21,7 +21,7 @@ export const routes: Routes = [
         component: BlogComponent
     },
     {
-        path: 'blog',
+        path: 'blog/:slug',
         component: BlogContentComponent
     },
     {

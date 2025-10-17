@@ -76,14 +76,14 @@
         </a>
       </div>
     </div>
-    } @if (blogs.length === 0) {
+    } @if (blogs === null || blogs.length === 0) {
     <div class="gap-4 min-w-full">
       <div
         role="status"
         class="flex flex-col items-center justify-center min-h-78"
       >
         <div class="h-4 text-lg text-secondary">
-          No published blogs available at the moment.
+          {{ blogs === null ? 'Something went wrong!' : 'No published blogs available at the moment.'}}
         </div>
       </div>
     </div>

@@ -20,7 +20,7 @@ export class BlogComponent implements OnInit {
   readonly shareIcon = Share2;
   readonly calendarIcon = Calendar;
 
-  blogs: BlogPost[] = [];
+  blogs: BlogPost[] | null = [];
   isLoading: boolean = true;
 
   constructor(private _blogService: BlogService) {}
@@ -42,12 +42,13 @@ export class BlogComponent implements OnInit {
             publishedDate: post.publishedDate,
           };
 
-          this.blogs.push(blogPost);
+          this.blogs!.push(blogPost);
         })
-
         this.isLoading = false;
       },
       error: (err) => {
+        this.blogs = null;
+        this.isLoading = false;
         console.error(err);
       },
     });
