@@ -58,9 +58,9 @@
         class="flex items-center justify-between p-4 h-12 border-1 rounded-b-md bg-borders/5 border-borders group-hover:border-accent/50 transition-all duration-200"
       >
         <a
-          [routerLink]="['/']"
+          [routerLink]="[`/blog/${blog.slug}`]"
           class="flex items-center gap-2 text-xs text-secondary hover:text-accent transition-colors focus:outline-none rounded px-2 py-1"
-          aria-label="View source code"
+          aria-label="View blog content"
         >
           <lucide-angular [img]="arrowIcon" class="size-4"></lucide-angular>
           <span>Read More</span>
@@ -69,7 +69,7 @@
         <a
           [routerLink]="['/']"
           class="flex items-center gap-2 text-xs text-secondary hover:text-accent transition-colors focus:outline-none rounded px-2 py-1"
-          aria-label="View source code"
+          aria-label="Share blog"
         >
           <lucide-angular [img]="shareIcon" class="size-4"></lucide-angular>
           <span>Share</span>

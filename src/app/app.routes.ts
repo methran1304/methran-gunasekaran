@@ -4,6 +4,7 @@ import { BlogComponent } from './pages/blog/blog';
 import { ProjectsComponent } from './pages/projects/projects';
 import { AboutComponent } from './pages/about/about';
 import { ContactComponent } from './pages/contact/contact';
+import { BlogContentComponent } from './pages/blog/blog-content/blog-content';
 
 export const routes: Routes = [
     {
@@ -19,6 +20,10 @@ export const routes: Routes = [
         path: 'blogs',
         component: BlogComponent
     },
+    {
+        path: 'blog',
+        component: BlogContentComponent
+    }
     {
         path: 'projects',
         component: ProjectsComponent

@@ -8,8 +8,6 @@ import {
 import { BlogService } from '../../services/blog-service';
 import { RouterLink } from '@angular/router';
 import { BlogPost } from '../../models/blog-entry';
-import { HttpErrorResponse } from '@angular/common/http';
-import { GithubDirectoryResponse } from '../../models/github-content-response';
 
 @Component({
   selector: 'app-blog',
