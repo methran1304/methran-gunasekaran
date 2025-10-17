@@ -17,7 +17,7 @@ export interface Entry {
   url: string;
 }
 
-export interface GithubContentEntry {
+export interface GithubContentResponse {
   _links: GithubLinks;
   git_url: string | null;
   html_url: string | null;
@@ -33,6 +33,6 @@ export interface GithubContentEntry {
   encoding?: string;
 }
 
-export interface GithubContentResponse {
-  githubContentEntries: GithubContentEntry[];
-}
+// export interface GithubContentResponse {
+//   githubContentEntries: GithubContentEntry[];
+// }

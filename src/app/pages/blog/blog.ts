@@ -24,13 +24,14 @@ export class BlogComponent implements OnInit {
   ngOnInit(): void {
     this._blogService.getBlogList().subscribe(
       (res: GithubContentResponse) => {
-        res.githubContentEntries.forEach(entry => {
-          this.blogs.push({
-            title: entry.name,
-            id: 1,
-            publishedDate: 'asd' 
-          });
-        });        
+        console.log(res.name);
+        // res.githubContentEntries.forEach(entry => {
+        //   this.blogs.push({
+        //     title: entry.name,
+        //     id: 1,
+        //     publishedDate: 'asd' 
+        //   });
+        // });        
       },
       (error: HttpErrorResponse) => { 
       }
