@@ -13,7 +13,10 @@
   @if (isLoading) {
   <!-- loader -->
   <div class="gap-4 min-w-full">
-    <div role="status" class="flex flex-col items-center justify-center min-h-78 animate-pulse">
+    <div
+      role="status"
+      class="flex flex-col items-center justify-center min-h-78 animate-pulse"
+    >
       <div class="h-4 text-gray-100 rounded-full dark:text-gray-600 text-lg">
         Loading blogs...
       </div>
@@ -47,14 +50,7 @@
 
         <!-- Description -->
         <div class="font-mono text-secondary line-clamp-5">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia numquam
-          laboriosam aperiam, deleniti similique tenetur excepturi perspiciatis
-          blanditiis? Fugiat distinctio totam repellendus illum inventore
-          expedita quo? Aut quod quae voluptate accusamus repudiandae architecto
-          nisi corrupti quam illum minima optio eligendi nobis animi ratione
-          inventore veniam dolores blanditiis exercitationem dicta, laborum
-          nostrum aspernatur vitae, vel consequatur. Temporibus adipisci
-          consequatur qui ab voluptas quisquam inventore natus quam.
+          {{ blog.description }}
         </div>
       </div>
 
@@ -80,10 +76,12 @@
         </a>
       </div>
     </div>
-    } 
-    @if (blogs.length === 0) {
+    } @if (blogs.length === 0) {
     <div class="gap-4 min-w-full">
-      <div role="status" class="flex flex-col items-center justify-center min-h-78">
+      <div
+        role="status"
+        class="flex flex-col items-center justify-center min-h-78"
+      >
         <div class="h-4 text-lg text-secondary">
           No published blogs available at the moment.
         </div>
