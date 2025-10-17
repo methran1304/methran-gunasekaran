@@ -12,8 +12,8 @@ import { GithubContentResponse } from '../models/github-content-response';
 export class BlogService {
   constructor(private _httpClient: HttpClient) {}
 
-  public getBlogList(path: string = ''): Observable<any> {
+  public getBlogList(path: string = ''): Observable<GithubContentResponse> {
     const url = `/api/blog-list`;
-    return this._httpClient.get<any>(url);
+    return this._httpClient.get<GithubContentResponse>(url);
   }
 }

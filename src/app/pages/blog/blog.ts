@@ -20,8 +20,10 @@ export class BlogComponent implements OnInit {
 
   ngOnInit(): void {
     this._blogService.getBlogList().subscribe(
-      (result: any) => {console.log(result)},
-      (error: HttpErrorResponse) => {
+      (res: GithubContentResponse) => {
+        console.log(`This is the result: ${res}`);
+      },
+      (error: HttpErrorResponse) => { 
       }
     );
   }
