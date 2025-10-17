@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Observer, Subscribable } from 'rxjs';
+import { BlogPost } from '../models/blog-entry';
 // import { SECRETS } from '../../../secrets';
-import { GithubFileResponse, GithubDirectoryResponse } from '../models/github-content-response';
 
 @Injectable({
   providedIn: 'root',
@@ -10,8 +10,8 @@ import { GithubFileResponse, GithubDirectoryResponse } from '../models/github-co
 export class BlogService {
   constructor(private _httpClient: HttpClient) {}
 
-  public getBlogList(path: string = ''): Observable<GithubDirectoryResponse> {
+  public getBlogList(path: string = ''): Observable<BlogPost[]> {
     const url = `/api/blog-list`;
-    return this._httpClient.get<GithubDirectoryResponse>(url);
+    return this._httpClient.get<BlogPost[]>(url);
   }
 }

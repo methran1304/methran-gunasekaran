@@ -37,6 +37,7 @@
     "@omnedia/ngx-typewriter": "^3.1.1",
     "@tailwindcss/postcss": "^4.1.14",
     "@vercel/analytics": "^1.5.0",
+    "gray-matter": "^4.0.3",
     "lucide-angular": "^0.544.0",
     "marked": "^16.4.0",
     "ngx-markdown": "^20.1.0",

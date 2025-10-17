@@ -7,7 +7,7 @@ import {
 } from 'lucide-angular';
 import { BlogService } from '../../services/blog-service';
 import { RouterLink } from '@angular/router';
-import { BlogEntry } from '../../models/blog-entry';
+import { BlogPost } from '../../models/blog-entry';
 import { HttpErrorResponse } from '@angular/common/http';
 import { GithubDirectoryResponse } from '../../models/github-content-response';
 
@@ -22,22 +22,31 @@ export class BlogComponent implements OnInit {
   readonly shareIcon = Share2;
   readonly calendarIcon = Calendar;
 
-  blogs: BlogEntry[] = [];
+  blogs: BlogPost[] = [];
   isLoading: boolean = true;
 
   constructor(private _blogService: BlogService) {}
 
   ngOnInit(): void {
+    this.getBlogList();
+  }
+
+  getBlogList(): void {
     this._blogService.getBlogList().subscribe({
       next: (res) => {
-        res.forEach((entry) => {
-          console.log(entry.name);
-          this.blogs.push({
-            title: entry.name,
-            id: 1,
-            publishedDate: '',
-          });
-        });
+        res.forEach((post, index) => {
+
+          const blogPost: BlogPost = {
+            id: index,
+            title: post.title,
+            slug: post.slug,
+            description: post.description,
+            publishedDate: post.publishedDate,
+          };
+
+          this.blogs.push(blogPost);
+        })
+
         this.isLoading = false;
       },
       error: (err) => {
