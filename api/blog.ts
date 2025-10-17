@@ -21,6 +21,8 @@ export async function GET(request: Request) {
 
     const filePath = `${contentUrl}${slug}`;
 
+    return new Response(filePath);
+
     const fileResponse = await fetch(filePath, {
       headers: {
         Authorization: `Bearer ${githubToken}`,
