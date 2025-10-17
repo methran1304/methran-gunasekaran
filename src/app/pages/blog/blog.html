@@ -10,6 +10,16 @@
     </div>
   </div>
 
+  @if (isLoading) {
+  <!-- loader -->
+  <div class="gap-4 min-w-full">
+    <div role="status" class="flex flex-col items-center justify-center min-h-78 animate-pulse">
+      <div class="h-4 text-gray-100 rounded-full dark:text-gray-600 text-lg">
+        Loading blogs...
+      </div>
+    </div>
+  </div>
+  } @else {
   <!-- blog list container -->
   <div class="flex flex-col min-w-full space-y-6">
     @for (blog of blogs; track $index) {
@@ -23,7 +33,7 @@
             class="font-mono group-hover:text-accent font-extrabold text-lg mb-2"
           >
             <span class="text-accent">$</span>
-            {{blog.title}}
+            {{ blog.title }}
           </div>
 
           <div class="flex items-center gap-2 font-extrabold mb-2">
@@ -31,7 +41,7 @@
               [img]="calendarIcon"
               class="size-4"
             ></lucide-angular>
-            <span>{{blog.publishedDate}}</span>
+            <span>{{ blog.publishedDate }}</span>
           </div>
         </div>
 
@@ -70,6 +80,16 @@
         </a>
       </div>
     </div>
+    } 
+    @if (blogs.length === 0) {
+    <div class="gap-4 min-w-full">
+      <div role="status" class="flex flex-col items-center justify-center min-h-78">
+        <div class="h-4 text-lg text-secondary">
+          No published blogs available at the moment.
+        </div>
+      </div>
+    </div>
     }
   </div>
+  }
 </div>

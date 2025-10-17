@@ -23,6 +23,7 @@ export class BlogComponent implements OnInit {
   readonly calendarIcon = Calendar;
 
   blogs: BlogEntry[] = [];
+  isLoading: boolean = true;
 
   constructor(private _blogService: BlogService) {}
 
@@ -31,13 +32,13 @@ export class BlogComponent implements OnInit {
       next: (res) => {
         res.forEach((entry) => {
           console.log(entry.name);
-
           this.blogs.push({
             title: entry.name,
             id: 1,
             publishedDate: '',
           });
         });
+        this.isLoading = false;
       },
       error: (err) => {
         console.error(err);
