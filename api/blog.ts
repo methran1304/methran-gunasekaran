@@ -22,7 +22,7 @@ export async function GET(request: Request) {
     // });
 
     const urlSearchParams = new URLSearchParams(request.url);
-    const params = Object.fromEntries(urlSearchParams.entries());
+    const params = urlSearchParams.values();
 
     return new Response(JSON.stringify(params), {
       status: 200,
