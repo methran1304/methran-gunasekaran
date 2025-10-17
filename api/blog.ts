@@ -2,7 +2,7 @@ export async function GET(request: Request) {
   const githubToken = process.env.GITHUB_TOKEN;
   const repoOwner = 'methran1304';
   const repoName = 'mg-blog-source';
-  const blogListUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/`;
+  const contentUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/`;
 
   const abortController = new AbortController();
 
@@ -15,22 +15,40 @@ export async function GET(request: Request) {
     const url = new URL(request.url);
     const slug = url.searchParams.get('slug');
 
-    return new Response(JSON.stringify(slug), {
-      status: 200,
-      headers: {'Content-Type': 'application/json'}
+    if (!slug) {
+      throw new Error('Failed to retrieve slug from request');
+    }
+
+    const filePath = `${contentUrl}${slug}`;
+
+    const fileResponse = await fetch(filePath, {
+      headers: {
+        Authorization: `Bearer ${githubToken}`,
+      },
+      signal: abortController.signal,
     });
 
-    // const directoryResponse = await fetch(blogListUrl, {
-    //   headers: {
-    //     Authorization: `Bearer ${githubToken}`,
-    //   },
-    //   signal: abortController.signal,
-    // });
+    if (!fileResponse.ok) {
+      throw new Error(
+        `Unable to retrieve blog content. status code: ${fileResponse.status}`
+      );
+    }
 
-    // return new Response(JSON.stringify('test string'), {
-    //   status: 200,
-    //   headers: { 'Content-Type': 'application/json' },
-    // });
+    const fileMetadata = await fileResponse.json();
+
+    const fileContent = await fetch(fileMetadata.download_url);
+    if (!fileContent.ok) {
+      throw new Error(
+        `Unable to retrieve blog content. status code: ${fileResponse.status}`
+      );
+    }
+
+    const contentAsText = await fileContent.text();
+
+    return new Response(JSON.stringify({ contentAsText }), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' },
+    });
   } catch (error) {
     console.error('Error in blog-list function:', error);
     return new Response(JSON.stringify({ message: 'Internal Server Error' }), {
