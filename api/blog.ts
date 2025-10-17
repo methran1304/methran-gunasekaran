@@ -19,9 +19,7 @@ export async function GET(request: Request) {
       throw new Error('Failed to retrieve slug from request');
     }
 
-    const filePath = `${contentUrl}${slug}`;
-
-    return new Response(filePath);
+    const filePath = `${contentUrl}${slug}.md`;
 
     const fileResponse = await fetch(filePath, {
       headers: {
