@@ -13,7 +13,7 @@ import { MarkdownComponent } from 'ngx-markdown';
 export class BlogContentComponent implements OnInit {
   readonly arrowIcon = ArrowLeft;
   private slug!: string;
-  mdUrl!: string;
+  markdownContent!: string;
 
   constructor(
     private _activatedRoute: ActivatedRoute,
@@ -26,8 +26,9 @@ export class BlogContentComponent implements OnInit {
     });
 
     this._blogService.getBlogContent(this.slug).subscribe({
-      next: (res) => {
-        this.mdUrl = res.content;
+      next: (rawContent) => {
+        const frontMatterRegex = /^---[\s\S]*?---/;
+        this.markdownContent = rawContent.content.replace(frontMatterRegex, '').trim();
       },
       error: (err) => {},
     });
