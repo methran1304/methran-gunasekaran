@@ -12,19 +12,10 @@ export async function GET(request: Request) {
   });
 
   try {
-    const data = {
-      content: request.url,
-    };
+    const url = new URL(request.url);
+    const slug = url.searchParams.get('slug');
 
-    // return new Response(JSON.stringify(data), {
-    //   status: 200,
-    //   headers: { 'Content-Type': 'application/json' },
-    // });
-
-    const urlSearchParams = new URLSearchParams(request.url);
-    const params = urlSearchParams.values();
-
-    return new Response(JSON.stringify(params), {
+    return new Response(JSON.stringify(slug), {
       status: 200,
       headers: {'Content-Type': 'application/json'}
     });
