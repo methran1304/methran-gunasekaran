@@ -13,12 +13,20 @@ export async function GET(request: Request) {
 
   try {
     const data = {
-      content: request.url
+      content: request.url,
     };
 
-    return new Response(JSON.stringify(data), {
-        status: 200,
-        headers: {'Content-Type': 'application/json' }
+    // return new Response(JSON.stringify(data), {
+    //   status: 200,
+    //   headers: { 'Content-Type': 'application/json' },
+    // });
+
+    const urlSearchParams = new URLSearchParams(request.url);
+    const params = Object.fromEntries(urlSearchParams.entries());
+
+    return new Response(JSON.stringify(params), {
+      status: 200,
+      headers: {'Content-Type': 'application/json'}
     });
 
     // const directoryResponse = await fetch(blogListUrl, {
@@ -27,7 +35,6 @@ export async function GET(request: Request) {
     //   },
     //   signal: abortController.signal,
     // });
-
 
     // return new Response(JSON.stringify('test string'), {
     //   status: 200,
