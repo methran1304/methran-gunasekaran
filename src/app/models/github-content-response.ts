@@ -4,7 +4,7 @@ export interface GithubLinks {
   self: string;
 }
 
-export interface Entry {
+export interface GithubEntry {
   _links: GithubLinks;
   git_url: string | null;
   html_url: string | null;
@@ -13,26 +13,23 @@ export interface Entry {
   path: string;
   sha: string;
   size: number;
-  type: string;
+  type: 'file' | 'dir' | 'symlink' | 'submodule';
   url: string;
 }
 
-export interface GithubContentResponse {
-  _links: GithubLinks;
-  git_url: string | null;
-  html_url: string | null;
-  download_url: string | null;
-  name: string;
-  path: string;
-  sha: string;
-  size: number;
-  type: string;
-  url: string;
-  content?: string;
-  entries?: Entry[];
-  encoding?: string;
+/**
+ * Response for a single file (when type === 'file')
+ * 
+ * Includes Base64 content and encoding fields.
+ */
+export interface GithubFileResponse extends GithubEntry {
+  content?: string;     // Base64-encoded content (only for files)
+  encoding?: string;    // e.g. 'base64'
 }
 
-// export interface GithubContentResponse {
-//   githubContentEntries: GithubContentEntry[];
-// }
+/**
+ * Response for a directory listing (when type === 'dir')
+ * 
+ * GitHub returns an *array* of GithubEntry objects, not wrapped.
+ */
+export type GithubDirectoryResponse = GithubEntry[];
