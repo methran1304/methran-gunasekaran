@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Observer, Subscribable } from 'rxjs';
 import { Blog } from '../models/blog';
-import { BlogConstants } from '../constants/blog-constants';
+import { BlogConstants } from '../../../api/constants/blog-constants';
 // import { SECRETS } from '../../../secrets';
 import { GithubContentResponse } from '../models/github-content-response';
 
