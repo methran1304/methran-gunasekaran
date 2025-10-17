@@ -10,19 +10,10 @@ import { GithubContentResponse } from '../models/github-content-response';
   providedIn: 'root',
 })
 export class BlogService {
-  // private githubToken = SECRETS.GithubAPIToken;
+  constructor(private _httpClient: HttpClient) {}
 
-  // constructor(private _httpClient: HttpClient) {}
-
-  // public getBlogContent(path: string = ''): Observable<GithubContentResponse> {
-  //   const url = `${BlogConstants.GetContentUrl}${path}`;
-
-  //   return this._httpClient.get<GithubContentResponse>(url, {
-  //     headers: {
-  //       Accept: 'application/vnd.github.object',
-  //       Authorization: `Bearer ${this.githubToken}`,
-  //       'X-GitHub-Api-Version': '2022-11-28',
-  //     },
-  //   });
-  // }
+  public getBlogList(path: string = ''): Observable<any> {
+    const url = `/api/blog-list`;
+    return this._httpClient.get<any>(url);
+  }
 }

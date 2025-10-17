@@ -19,11 +19,10 @@ export class BlogComponent implements OnInit {
   constructor(private _blogService: BlogService) {}
 
   ngOnInit(): void {
-    // this._blogService.getBlogContent('abou.t').subscribe(
-    //   (result: GithubContentResponse) => {},
-    //   (error: HttpErrorResponse) => {
-        
-    //   }
-    // );
+    this._blogService.getBlogList().subscribe(
+      (result: any) => {console.log(result)},
+      (error: HttpErrorResponse) => {
+      }
+    );
   }
 }
