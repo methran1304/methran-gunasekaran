@@ -31,18 +31,7 @@ export class BlogComponent implements OnInit {
   constructor(private _blogService: BlogService) {}
 
   ngOnInit(): void {
-    // this.getBlogList();
-    const blogPost: BlogPost = {
-      id: 1,
-      title: 'Just a check',
-      slug: 'just-a-check',
-      description: "this is awkward isn't",
-      publishedDate: 'nope',
-    };
-
-    this.blogs?.push(blogPost);
-
-    this.isLoading = false;
+    this.getBlogList();
   }
 
   getBlogList(): void {
