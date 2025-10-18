@@ -26,8 +26,6 @@ export class BlogComponent implements OnInit {
   blogs: BlogPost[] | null = [];
   isLoading: boolean = true;
 
-  isCopied: boolean = false;
-
   constructor(private _blogService: BlogService) {}
 
   ngOnInit(): void {
@@ -44,6 +42,7 @@ export class BlogComponent implements OnInit {
             slug: post.slug,
             description: post.description,
             publishedDate: post.publishedDate,
+            isLinkCopied: false
           };
 
           this.blogs!.push(blogPost);
@@ -63,11 +62,11 @@ export class BlogComponent implements OnInit {
     const post = this.blogs[index];
     const copyText = `https://methran.dev/blog/${post.slug}`;
     copy(copyText);
-    this.isCopied = true;
+    post.isLinkCopied = true;
 
     // reset isCopied to false after 1 second
     setTimeout(() => {
-      this.isCopied = false;
+      post.isLinkCopied = false;
     }, 2000);
   }
 }

@@ -21,6 +21,7 @@
 } @else {
 <div class="flex px-2 md:px-0 min-h-full justify-center items-start">
   <markdown
+    lineNumbers
     class="prose prose-lg prose-theme max-w-5xl w-full"
     [data]="markdownContent"
   >
@@ -28,15 +29,11 @@
 </div>
 
 @if (markdownContent.length === 0) {
-    <div class="gap-4 min-w-full">
-      <div
-        role="status"
-        class="flex flex-col items-center justify-center min-h-78"
-      >
-        <div class="h-4 text-lg text-secondary">
-          <span class="text-accent">></span> Something went wrong!
-        </div>
-      </div>
+<div class="gap-4 min-w-full">
+  <div role="status" class="flex flex-col items-center justify-center min-h-78">
+    <div class="h-4 text-lg text-secondary">
+      <span class="text-accent">></span> Something went wrong!
     </div>
-    }
-}
+  </div>
+</div>
+} }

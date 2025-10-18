@@ -71,8 +71,8 @@
           class="flex items-center gap-2 text-xs text-secondary hover:text-accent hover:cursor-pointer transition-colors focus:outline-none rounded px-2 py-1"
           aria-label="Share blog"
         >
-          <lucide-angular [img]="isCopied ? checkIcon : shareIcon" class="size-4"></lucide-angular>
-          <span>{{isCopied ? 'Copied!' : 'Share'}}</span>
+          <lucide-angular [img]="blog.isLinkCopied ? checkIcon : shareIcon" class="size-4"></lucide-angular>
+          <span>{{blog.isLinkCopied ? 'Copied!' : 'Share'}}</span>
         </a>
       </div>
     </div>
