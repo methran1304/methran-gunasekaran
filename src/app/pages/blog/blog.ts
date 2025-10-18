@@ -4,10 +4,12 @@ import {
   CornerDownRight,
   Share2,
   Calendar,
+  Check
 } from 'lucide-angular';
 import { BlogService } from '../../services/blog-service';
 import { RouterLink } from '@angular/router';
 import { BlogPost } from '../../models/blog-entry';
+import copy from 'copy-to-clipboard';
 
 @Component({
   selector: 'app-blog',
@@ -18,22 +20,35 @@ import { BlogPost } from '../../models/blog-entry';
 export class BlogComponent implements OnInit {
   readonly arrowIcon = CornerDownRight;
   readonly shareIcon = Share2;
+  readonly checkIcon = Check;
   readonly calendarIcon = Calendar;
 
   blogs: BlogPost[] | null = [];
   isLoading: boolean = true;
 
+  isCopied: boolean = false;
+
   constructor(private _blogService: BlogService) {}
 
   ngOnInit(): void {
-    this.getBlogList();
+    // this.getBlogList();
+    const blogPost: BlogPost = {
+      id: 1,
+      title: 'Just a check',
+      slug: 'just-a-check',
+      description: "this is awkward isn't",
+      publishedDate: 'nope',
+    };
+
+    this.blogs?.push(blogPost);
+
+    this.isLoading = false;
   }
 
   getBlogList(): void {
     this._blogService.getBlogList().subscribe({
       next: (res) => {
         res.forEach((post, index) => {
-
           const blogPost: BlogPost = {
             id: index,
             title: post.title,
@@ -43,7 +58,7 @@ export class BlogComponent implements OnInit {
           };
 
           this.blogs!.push(blogPost);
-        })
+        });
         this.isLoading = false;
       },
       error: (err) => {
@@ -52,5 +67,18 @@ export class BlogComponent implements OnInit {
         console.error(err);
       },
     });
+  }
+
+  copyLink(index: number) {
+    if (this.blogs === null) return;
+    const post = this.blogs[index];
+    const copyText = `https://methran.dev/blog/${post.slug}`;
+    copy(copyText);
+    this.isCopied = true;
+
+    // reset isCopied to false after 1 second
+    setTimeout(() => {
+      this.isCopied = false;
+    }, 2000);
   }
 }
