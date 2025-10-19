@@ -32,12 +32,13 @@
       >
         <!-- title and date -->
         <div class="flex flex-col sm:flex-row sm:justify-between">
-          <div
+          <a
+            [routerLink]="[`/blog/${blog.slug}`]"
             class="font-mono group-hover:text-accent font-extrabold text-lg mb-2"
           >
             <span class="text-accent">$</span>
             {{ blog.title }}
-          </div>
+          </a>
 
           <div class="flex items-center gap-2 font-extrabold mb-2">
             <lucide-angular
@@ -71,8 +72,11 @@
           class="flex items-center gap-2 text-xs text-secondary hover:text-accent hover:cursor-pointer transition-colors focus:outline-none rounded px-2 py-1"
           aria-label="Share blog"
         >
-          <lucide-angular [img]="blog.isLinkCopied ? checkIcon : shareIcon" class="size-4"></lucide-angular>
-          <span>{{blog.isLinkCopied ? 'Copied!' : 'Share'}}</span>
+          <lucide-angular
+            [img]="blog.isLinkCopied ? checkIcon : shareIcon"
+            class="size-4"
+          ></lucide-angular>
+          <span>{{ blog.isLinkCopied ? "Copied!" : "Share" }}</span>
         </a>
       </div>
     </div>
@@ -83,7 +87,12 @@
         class="flex flex-col items-center justify-center min-h-78"
       >
         <div class="h-4 text-lg text-secondary">
-         <span class="text-accent">></span> {{ blogs === null ? 'Something went wrong!' : 'No published blogs available at the moment.'}}
+          <span class="text-accent">></span>
+          {{
+            blogs === null
+              ? "Something went wrong!"
+              : "No published blogs available at the moment."
+          }}
         </div>
       </div>
     </div>
