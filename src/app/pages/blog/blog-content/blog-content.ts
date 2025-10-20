@@ -1,5 +1,5 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ArrowLeft, LucideAngularModule } from 'lucide-angular';
 import { BlogService } from '../../../services/blog-service';
 import { MarkdownComponent, MarkdownService } from 'ngx-markdown';
@@ -16,6 +16,8 @@ export class BlogContentComponent implements OnInit {
   readonly arrowIcon = ArrowLeft;
   private slug!: string;
   markdownContent!: string;
+  // readonly testFilePath = './test.md';
+
 
   isLoading: boolean = true;
 
@@ -88,7 +90,7 @@ export class BlogContentComponent implements OnInit {
 
         // Use Angular's ViewportScroller to scroll to the element
         // The 'slice(1)' removes the '#' from the href
-        this._viewportScroller.scrollToAnchor(href.slice(1));
+        this._viewportScroller.scrollToAnchor(href.slice(1), { behavior: 'smooth'});
       }
     }
   }
