@@ -48,7 +48,7 @@ export class ProjectsComponent {
       isFeatured: false
     },
     {
-      title: "Methran-Gunasekaran",
+      title: "methran.dev",
       description: "A modern, responsive personal website with Unix terminal shell-inspired design where I share my thoughts and showcase my work.",
       githubLink: "https://github.com/methran1304/methran-gunasekaran",
       liveLink: 'https://methran.dev',
@@ -57,7 +57,9 @@ export class ProjectsComponent {
         "Angular v20",
         "TypeScript",
         "Tailwind CSS",
-        "NgxUI"
+        "NgxUI",
+        "Serverless Function",
+        "Github as CMS"
       ],
       isFeatured: false
     }
