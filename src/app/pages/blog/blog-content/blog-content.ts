@@ -2,8 +2,9 @@ import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ArrowLeft, LucideAngularModule } from 'lucide-angular';
 import { BlogService } from '../../../services/blog-service';
-import { MarkdownComponent } from 'ngx-markdown';
+import { MarkdownComponent, MarkdownService } from 'ngx-markdown';
 import { ViewportScroller } from '@angular/common';
+import { Parser } from 'marked';
 
 @Component({
   selector: 'app-blog-content',
@@ -19,14 +20,36 @@ export class BlogContentComponent implements OnInit {
   isLoading: boolean = true;
 
   constructor(
+    private _markdownService: MarkdownService,
     private _activatedRoute: ActivatedRoute,
     private _blogService: BlogService,
-    private viewportScroller: ViewportScroller
+    private _viewportScroller: ViewportScroller
   ) {}
 
   ngOnInit(): void {
     this.getSlug();
     this.getBlogContent();
+
+    this._markdownService.renderer.heading = ({ tokens, depth }) => {
+      const text = Parser.parseInline(tokens);
+      const escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
+      return (
+        '<h' +
+        depth +
+        '>' +
+        '<a name="' +
+        escapedText +
+        '" class="anchor" href="#' +
+        escapedText +
+        '">' +
+        '<span class="header-link"></span>' +
+        '</a>' +
+        text +
+        '</h' +
+        depth +
+        '>'
+      );
+    };
   }
 
   getSlug(): void {
@@ -65,7 +88,7 @@ export class BlogContentComponent implements OnInit {
 
         // Use Angular's ViewportScroller to scroll to the element
         // The 'slice(1)' removes the '#' from the href
-        this.viewportScroller.scrollToAnchor(href.slice(1));
+        this._viewportScroller.scrollToAnchor(href.slice(1));
       }
     }
   }
