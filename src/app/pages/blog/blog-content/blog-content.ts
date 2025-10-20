@@ -3,6 +3,7 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ArrowLeft, LucideAngularModule } from 'lucide-angular';
 import { BlogService } from '../../../services/blog-service';
 import { MarkdownComponent } from 'ngx-markdown';
+import { ViewportScroller } from '@angular/common';
 
 @Component({
   selector: 'app-blog-content',
@@ -19,7 +20,8 @@ export class BlogContentComponent implements OnInit {
 
   constructor(
     private _activatedRoute: ActivatedRoute,
-    private _blogService: BlogService
+    private _blogService: BlogService,
+    private viewportScroller: ViewportScroller
   ) {}
 
   ngOnInit(): void {
@@ -37,7 +39,9 @@ export class BlogContentComponent implements OnInit {
     this._blogService.getBlogContent(this.slug).subscribe({
       next: (rawContent) => {
         const frontMatterRegex = /^---[\s\S]*?---/;
-        this.markdownContent = rawContent.content.replace(frontMatterRegex, '').trim();
+        this.markdownContent = rawContent.content
+          .replace(frontMatterRegex, '')
+          .trim();
         this.isLoading = false;
       },
       error: (err) => {
@@ -45,5 +49,24 @@ export class BlogContentComponent implements OnInit {
         this.isLoading = false;
       },
     });
+  }
+
+  onMarkdownClick(event: MouseEvent): void {
+    const target = event.target as HTMLElement;
+
+    // if the clicked element is an anchor tag
+    if (target.tagName === 'A') {
+      const anchor = target as HTMLAnchorElement;
+      const href = anchor.getAttribute('href');
+
+      // internal link (starts with '#')
+      if (href && href.startsWith('#')) {
+        event.preventDefault();
+
+        // Use Angular's ViewportScroller to scroll to the element
+        // The 'slice(1)' removes the '#' from the href
+        this.viewportScroller.scrollToAnchor(href.slice(1));
+      }
+    }
   }
 }

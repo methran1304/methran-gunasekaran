@@ -21,6 +21,7 @@
 } @else {
 <div class="flex px-2 md:px-0 min-h-full justify-center items-start">
   <markdown
+    (click)="onMarkdownClick($event)"
     class="prose prose-lg prose-theme max-w-5xl w-full"
     [data]="markdownContent"
   >
