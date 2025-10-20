@@ -22,11 +22,9 @@
               }
             ],
             "styles": [
-              "src/styles.css",
-              "src/prism-atom-dark.css"
+              "src/styles.css"
             ],
             "scripts": [
-              "node_modules/prismjs/prism.js"
             ]
           },
           "configurations": {
