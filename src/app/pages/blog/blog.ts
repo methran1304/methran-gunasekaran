@@ -47,6 +47,10 @@ export class BlogComponent implements OnInit {
 
           this.blogs!.push(blogPost);
         });
+
+        // sort blog based on date
+        this.blogs?.sort((x, y) => y.publishedDate.localeCompare(x.publishedDate));
+
         this.isLoading = false;
       },
       error: (err) => {
