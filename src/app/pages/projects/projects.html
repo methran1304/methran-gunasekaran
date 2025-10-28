@@ -1,10 +1,10 @@
-<div class="flex flex-col items-start w-full h-full space-y-8 px-4 mb-12 lg:mb-0 lg:px-0">
+<div
+  class="flex flex-col items-start w-full h-full space-y-8 px-4 mb-12 lg:mb-0 lg:px-0"
+>
   <!-- title & sub-->
   <div class="flex flex-col items-start space-y-3">
     <div class="font-mono text-2xl text-accent font-bold">Projects</div>
-    <div class="font-mono text-secondary text-lg">
-      My work and experiments!
-    </div>
+    <div class="font-mono text-secondary text-lg">My work and experiments!</div>
   </div>
 
   <div class="flex flex-wrap justify-center lg:justify-between gap-24 lg:gap-6">
@@ -13,28 +13,42 @@
       <div
         class="flex flex-col p-6 h-full lg:h-65 w-full lg:w-110 border-1 border-b-0 rounded-b-none border-borders rounded-md group-hover:border-accent/50 transition-colors duration-200"
       >
-        <div class="font-mono group-hover:text-accent font-extrabold text-lg mb-2 line-clamp-2">
+        <div
+          class="font-mono group-hover:text-accent font-extrabold text-lg mb-2 line-clamp-2"
+        >
           <span class="text-accent">$</span>
-          {{project.title}}
+          {{ project.title }}
         </div>
         <div class="font-mono text-secondary flex-1">
-          {{project.description}}
+          {{ project.description }}
         </div>
         <div class="flex flex-wrap gap-2 mt-auto">
           @for(tech of project.techStack; track $index) {
-            <span
-              class="px-2 py-1 text-xs rounded bg-borders/20 text-secondary font-mono hover:bg-accent/10 hover:text-accent transition-all"
-              >{{tech}}</span
-            >
+          <span
+            class="px-2 py-1 text-xs rounded bg-borders/20 text-secondary font-mono hover:bg-accent/10 hover:text-accent transition-all"
+            >{{ tech }}</span
+          >
           }
         </div>
       </div>
 
       <div
         class="flex p-4 h-12 border-1 rounded-b-md bg-borders/5 border-borders group-hover:border-accent/50 transition-all duration-200"
-        [ngClass]="project.liveLink ? 'items-center justify-between' : 'items-center justify-end'"
+        [ngClass]="
+          project.liveLink
+            ? 'items-center justify-between'
+            : 'items-center justify-end'
+        "
       >
-      @if (project.liveLink) {
+        @if (project.status === projectStatusEnum.InProgress) {
+        <span
+          class="flex items-center gap-2 text-xs text-secondary hover:text-accent/80 transition-colors focus:outline-none rounded px-2 py-1"
+          aria-label="View live site"
+        >
+          <lucide-angular [img]="coneIcon" class="size-4"></lucide-angular>
+          <span>Under Development</span>
+        </span>
+        } @else { @if (project.liveLink) {
         <a
           [href]="project.liveLink"
           target="_blank"
@@ -44,9 +58,7 @@
           <lucide-angular [img]="liveSiteIcon" class="size-4"></lucide-angular>
           <span>Live Site</span>
         </a>
-      }
-
-      @if (project.githubLink) {
+        } @if (project.githubLink) {
         <a
           [href]="project.githubLink"
           target="_blank"
@@ -56,7 +68,7 @@
           <lucide-angular [img]="githubIcon" class="size-4"></lucide-angular>
           <span>Repo</span>
         </a>
-      }
+        } }
       </div>
     </div>
     }
