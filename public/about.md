@@ -33,7 +33,7 @@ My stack often includes **Azure**, **Vercel**, and **GitHub Actions** for deploy
 
 I like keeping myself engaged with projects and challenges that push me to think differently and refine how I build software.  
 Here’s what I’m currently focused on:
-- Obtaining MongoDB Associate Developer (C#) Certification
+- Obtaining **MongoDB Associate Developer** (C#) Certification
 - Fixing minor bugs and refining user experience on the **Verbatim** platform  
 - Developing a CLI-based **Regex Engine** to deepen my understanding of state machines
 
