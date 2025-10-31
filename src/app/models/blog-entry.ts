@@ -3,6 +3,7 @@ export interface BlogPost {
     title: string;
     description: string;
     slug: string;
+    tags: string[];
     publishedDate: string;
     isLinkCopied: boolean;
 }

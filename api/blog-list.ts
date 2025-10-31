@@ -42,6 +42,7 @@ export async function GET(request: Request) {
           title: data.title || 'Untitled Blog',
           slug: data.slug,
           description: data.description || '',
+          tags: data.tags,
           publishedDate: data.date || new Date().toISOString()
         };
       });

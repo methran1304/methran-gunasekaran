@@ -40,6 +40,7 @@ export class BlogComponent implements OnInit {
             id: index,
             title: post.title,
             slug: post.slug,
+            tags: post.tags,
             description: post.description,
             publishedDate: post.publishedDate,
             isLinkCopied: false
