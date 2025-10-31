@@ -25,7 +25,7 @@
   } @else {
   <!-- blog list container -->
   <div class="flex flex-col min-w-full space-y-6">
-    @for (blog of blogs; track $index) {
+    @for (blog of blogs ?? []; track $index) {
     <div class="flex flex-col group cursor-default transition-all duration-800">
       <div
         class="p-6 space-y-2 border-1 border-b-0 rounded-b-none border-borders rounded-md group-hover:border-accent/50 transition-colors duration-200"
@@ -53,6 +53,16 @@
         <div class="font-mono text-secondary line-clamp-5">
           {{ blog.description }}
         </div>
+      </div>
+
+      <!-- tags -->
+      <div class="flex flex-wrap">
+        @for (tag of blog?.tags ?? []; track $index) {
+        <span
+          class="px-2 py-1 text-xs rounded bg-borders/20 text-secondary font-mono hover:bg-accent/10 hover:text-accent transition-all"
+          >{{ tag }}</span
+        >
+        }
       </div>
 
       <div
