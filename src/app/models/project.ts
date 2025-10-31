@@ -7,5 +7,5 @@ export interface Project {
     liveLink: string | null;
     status: ProjectStatus;
     techStack: string[];
-    isFeatured: boolean;
+    isFeatured: boolean; // doesn't do anything for now
 }

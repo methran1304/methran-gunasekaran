@@ -1,9 +1,13 @@
 import { Component } from '@angular/core';
-import { LucideAngularModule, ExternalLink, Github, TrafficCone } from 'lucide-angular';
+import {
+  LucideAngularModule,
+  ExternalLink,
+  Github,
+  TrafficCone,
+} from 'lucide-angular';
 import { Project } from '../../models/project';
 import { ProjectStatus } from '../../enums/project-status-enum';
 import { NgClass } from '@angular/common';
-
 
 @Component({
   selector: 'app-projects',
@@ -83,6 +87,16 @@ export class ProjectsComponent {
         'Graph Rendering',
         'CLI Tool',
       ],
+      isFeatured: false,
+    },
+    {
+      title: 'CHIP-8 Emulator',
+      description:
+        'A lightweight CHIP-8 emulator in C#. Clean opcode implementation, 60 Hz timers, and a simple renderer. Focus on readability and correctness.',
+      githubLink: 'https://github.com/methran1304/chip8-csharp',
+      liveLink: '',
+      status: ProjectStatus.InProgress,
+      techStack: ['C#', '.NET 9', 'Raylib-cs'],
       isFeatured: false,
     },
   ];
