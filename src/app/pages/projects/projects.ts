@@ -76,7 +76,7 @@ export class ProjectsComponent {
     {
       title: 'GraphForge',
       description:
-        'A Rust-based interpreter for a DSL that converts code into diagrams, built to simplify data structure visualisation - a lightweight take on MermaidJS.',
+        'A Rust-based compiler for a DSL that converts code into diagrams, built to simplify data structure visualisation - a lightweight take on MermaidJS.',
       githubLink: 'https://github.com/methran1304/graph-forge',
       liveLink: '',
       status: ProjectStatus.InProgress,
