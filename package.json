@@ -42,6 +42,7 @@
     "lucide-angular": "^0.544.0",
     "marked": "^16.4.0",
     "ngx-markdown": "^20.1.0",
+    "ngx-pagination": "^6.0.3",
     "ogl": "^1.0.11",
     "postcss": "^8.5.6",
     "prismjs": "^1.30.0",

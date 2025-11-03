@@ -10,10 +10,11 @@ import { BlogService } from '../../services/blog-service';
 import { RouterLink } from '@angular/router';
 import { BlogPost } from '../../models/blog-entry';
 import copy from 'copy-to-clipboard';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @Component({
   selector: 'app-blog',
-  imports: [LucideAngularModule, RouterLink],
+  imports: [LucideAngularModule, RouterLink, NgxPaginationModule],
   templateUrl: './blog.html',
   styleUrl: './blog.css',
 })
@@ -25,6 +26,7 @@ export class BlogComponent implements OnInit {
 
   blogs: BlogPost[] | null = [];
   isLoading: boolean = true;
+  currentPage: number = 1;
 
   constructor(private _blogService: BlogService) {}
 
