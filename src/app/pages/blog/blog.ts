@@ -11,10 +11,11 @@ import { RouterLink } from '@angular/router';
 import { BlogPost } from '../../models/blog-entry';
 import copy from 'copy-to-clipboard';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-blog',
-  imports: [LucideAngularModule, RouterLink, NgxPaginationModule],
+  imports: [LucideAngularModule, RouterLink, NgxPaginationModule, DatePipe],
   templateUrl: './blog.html',
   styleUrl: './blog.css',
 })
@@ -44,7 +45,7 @@ export class BlogComponent implements OnInit {
             slug: post.slug,
             tags: post.tags,
             description: post.description,
-            publishedDate: post.publishedDate,
+            publishedDate: new Date(post.publishedDate),
             isLinkCopied: false
           };
 
@@ -52,7 +53,7 @@ export class BlogComponent implements OnInit {
         });
 
         // sort blog based on date
-        this.blogs?.sort((x, y) => y.publishedDate.localeCompare(x.publishedDate));
+        this.blogs?.sort((x, y) => y.publishedDate.getDate());
 
         this.isLoading = false;
       },

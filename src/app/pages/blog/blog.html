@@ -46,7 +46,7 @@
               [img]="calendarIcon"
               class="size-4"
             ></lucide-angular>
-            <span>{{ blog.publishedDate }}</span>
+            <span>{{ blog.publishedDate | date: "MMM d, y" }}</span>
           </div>
         </div>
 

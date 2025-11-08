@@ -4,6 +4,6 @@ export interface BlogPost {
     description: string;
     slug: string;
     tags: string[];
-    publishedDate: string;
+    publishedDate: Date;
     isLinkCopied: boolean;
 }
