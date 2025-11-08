@@ -4,13 +4,13 @@ import {
   CornerDownRight,
   Share2,
   Calendar,
-  Check
+  Check,
 } from 'lucide-angular';
 import { BlogService } from '../../services/blog-service';
 import { RouterLink } from '@angular/router';
 import { BlogPost } from '../../models/blog-entry';
 import copy from 'copy-to-clipboard';
-import {NgxPaginationModule} from 'ngx-pagination';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { DatePipe } from '@angular/common';
 
 @Component({
@@ -46,14 +46,14 @@ export class BlogComponent implements OnInit {
             tags: post.tags,
             description: post.description,
             publishedDate: new Date(post.publishedDate),
-            isLinkCopied: false
+            isLinkCopied: false,
           };
 
           this.blogs!.push(blogPost);
         });
 
         // sort blog based on date
-        this.blogs?.sort((x, y) => y.publishedDate.getDate());
+        this.blogs?.sort((x, y) => y.publishedDate.getDate() - x.publishedDate.getDate());
 
         this.isLoading = false;
       },
