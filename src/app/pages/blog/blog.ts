@@ -53,7 +53,7 @@ export class BlogComponent implements OnInit {
         });
 
         // sort blog based on date
-        this.blogs?.sort((x, y) => y.publishedDate.getDate() - x.publishedDate.getDate());
+        this.blogs?.sort((x, y) => y.publishedDate.getTime() - x.publishedDate.getTime());
 
         this.isLoading = false;
       },
