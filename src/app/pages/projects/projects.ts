@@ -25,7 +25,7 @@ export class ProjectsComponent {
     {
       title: 'Verbatim',
       description:
-        'An AI-powered typing platform that helps users improve speed and accuracy through adaptive drills, real-time analytics, and personalized feedback.',
+        'An AI-powered typing platform that helps users improve speed and accuracy through adaptive exercises, real-time analytics, and personalized feedback.',
       githubLink: 'https://github.com/methran1304/verbatim-app',
       liveLink: 'https://verbatim.pro',
       status: ProjectStatus.Completed,
@@ -56,9 +56,9 @@ export class ProjectsComponent {
       isFeatured: false,
     },
     {
-      title: 'methran.dev - Portfolio & Blog',
+      title: 'methran.dev',
       description:
-        'A modern, responsive personal site with a Unix shell-inspired design featuring a Git-backed blogging system built with serverless functions.',
+        'A modern and responsive personal site with a Unix shell-inspired design featuring a Git-backed blogging system built with serverless functions.',
       githubLink: 'https://github.com/methran1304/methran-gunasekaran',
       liveLink: 'https://methran.dev',
       status: ProjectStatus.Completed,
@@ -76,7 +76,7 @@ export class ProjectsComponent {
     {
       title: 'GraphForge',
       description:
-        'A Rust-based compiler for a DSL that converts code into diagrams, built to simplify data structure visualisation - a lightweight take on MermaidJS.',
+        'A Rust-based compiler for a DSL that converts code into diagrams, built to simplify data structure visualisation. A lightweight alternative for MermaidJS.',
       githubLink: 'https://github.com/methran1304/graph-forge',
       liveLink: '',
       status: ProjectStatus.InProgress,
@@ -92,7 +92,7 @@ export class ProjectsComponent {
     {
       title: 'CHIP-8 Emulator',
       description:
-        'A lightweight CHIP-8 emulator in C#. Clean opcode implementation, 60 Hz timers, and a simple renderer. Focus on readability and correctness.',
+        'A lightweight CHIP-8 emulator in C# with full opcode support, 60 Hz timers, and a 64x32 framebuffer.',
       githubLink: 'https://github.com/methran1304/chip8-csharp',
       liveLink: '',
       status: ProjectStatus.InProgress,
