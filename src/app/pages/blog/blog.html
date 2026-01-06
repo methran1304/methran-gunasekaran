@@ -14,15 +14,26 @@
   <div class="flex items-center w-full relative">
     <lucide-angular
       [img]="searchIcon"
-      class="size-4 absolute left-2 text-secondary"
+      class="size-4 absolute left-2 text-secondary z-10"
     ></lucide-angular>
     <input
       type="text"
       [(ngModel)]="searchQuery"
       (ngModelChange)="currentPage = 1"
-      class="font-mono w-full pl-10 pr-10 py-2 bg-borders/10 border border-borders rounded-md focus:outline-none focus:border-accent/50 focus:bg-borders/20 transition-all duration-200 text-sm placeholder:text-secondary/50"
-      placeholder="Search blogs..."
+      (focus)="isSearchFocused = true"
+      (blur)="isSearchFocused = false"
+      class="font-mono w-full pl-10 pr-10 py-2 bg-borders/10 border border-borders rounded-md focus:outline-none focus:border-accent/50 focus:bg-borders/20 transition-all duration-200 text-sm"
     />
+    @if (!searchQuery && !isSearchFocused) {
+    <div class="absolute left-10 pointer-events-none">
+      <om-typewriter
+        [words]="['Search blogs...', 'ai-tools', 'architecture', 'dotnet']"
+        styleClass="font-mono text-sm text-secondary/50"
+        [writeSpeed]="50"
+        [deleteDelay]="2000"
+      ></om-typewriter>
+    </div>
+    }
     @if (searchQuery) {
     <button
       (click)="clearSearch()"

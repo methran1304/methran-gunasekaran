@@ -15,10 +15,11 @@ import copy from 'copy-to-clipboard';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { NgxTypewriterComponent } from '@omnedia/ngx-typewriter';
 
 @Component({
   selector: 'app-blog',
-  imports: [LucideAngularModule, RouterLink, NgxPaginationModule, DatePipe, FormsModule],
+  imports: [LucideAngularModule, RouterLink, NgxPaginationModule, DatePipe, FormsModule, NgxTypewriterComponent],
   templateUrl: './blog.html',
   styleUrl: './blog.css',
 })
@@ -34,6 +35,7 @@ export class BlogComponent implements OnInit {
   isLoading: boolean = true;
   currentPage: number = 1;
   searchQuery: string = '';
+  isSearchFocused: boolean = false;
 
   get filteredBlogs(): BlogPost[] {
     if (!this.blogs || !this.searchQuery.trim()) {
