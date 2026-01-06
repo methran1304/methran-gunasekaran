@@ -5,6 +5,8 @@ import {
   Share2,
   Calendar,
   Check,
+  Search,
+  X,
 } from 'lucide-angular';
 import { BlogService } from '../../services/blog-service';
 import { RouterLink } from '@angular/router';
@@ -12,10 +14,11 @@ import { BlogPost } from '../../models/blog-entry';
 import copy from 'copy-to-clipboard';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { DatePipe } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-blog',
-  imports: [LucideAngularModule, RouterLink, NgxPaginationModule, DatePipe],
+  imports: [LucideAngularModule, RouterLink, NgxPaginationModule, DatePipe, FormsModule],
   templateUrl: './blog.html',
   styleUrl: './blog.css',
 })
@@ -24,10 +27,27 @@ export class BlogComponent implements OnInit {
   readonly shareIcon = Share2;
   readonly checkIcon = Check;
   readonly calendarIcon = Calendar;
+  readonly searchIcon = Search;
+  readonly xIcon = X;
 
   blogs: BlogPost[] | null = [];
   isLoading: boolean = true;
   currentPage: number = 1;
+  searchQuery: string = '';
+
+  get filteredBlogs(): BlogPost[] {
+    if (!this.blogs || !this.searchQuery.trim()) {
+      return this.blogs ?? [];
+    }
+
+    const query = this.searchQuery.toLowerCase().trim();
+    return this.blogs.filter(
+      (blog) =>
+        blog.title.toLowerCase().includes(query) ||
+        blog.description.toLowerCase().includes(query) ||
+        blog.tags?.some((tag) => tag.toLowerCase().includes(query))
+    );
+  }
 
   constructor(private _blogService: BlogService) {}
 
@@ -67,7 +87,7 @@ export class BlogComponent implements OnInit {
 
   copyLink(index: number) {
     if (this.blogs === null) return;
-    const post = this.blogs[index];
+    const post = this.filteredBlogs[index];
     const copyText = `https://methran.dev/blog/${post.slug}`;
     copy(copyText);
     post.isLinkCopied = true;
@@ -76,5 +96,10 @@ export class BlogComponent implements OnInit {
     setTimeout(() => {
       post.isLinkCopied = false;
     }, 2000);
+  }
+
+  clearSearch(): void {
+    this.searchQuery = '';
+    this.currentPage = 1;
   }
 }

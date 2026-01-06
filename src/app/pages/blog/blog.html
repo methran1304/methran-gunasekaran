@@ -10,6 +10,30 @@
     </div>
   </div>
 
+  <!-- search bar -->
+  <div class="flex items-center w-full max-w-xl mx-auto relative">
+    <lucide-angular
+      [img]="searchIcon"
+      class="size-4 absolute left-2 text-secondary"
+    ></lucide-angular>
+    <input
+      type="text"
+      [(ngModel)]="searchQuery"
+      (ngModelChange)="currentPage = 1"
+      class="font-mono w-full pl-10 pr-10 py-2 bg-borders/10 border border-borders rounded-md focus:outline-none focus:border-accent/50 focus:bg-borders/20 transition-all duration-200 text-sm placeholder:text-secondary/50"
+      placeholder="Search blogs..."
+    />
+    @if (searchQuery) {
+    <button
+      (click)="clearSearch()"
+      class="absolute right-3 text-secondary hover:text-accent transition-colors"
+      aria-label="Clear search"
+    >
+      <lucide-angular [img]="xIcon" class="size-4"></lucide-angular>
+    </button>
+    }
+  </div>
+
   @if (isLoading) {
   <!-- loader -->
   <div class="gap-4 min-w-full">
@@ -25,7 +49,7 @@
   } @else {
   <!-- blog list container -->
   <div class="flex flex-col min-w-full space-y-6">
-    @for (blog of (blogs ?? [] | paginate: { itemsPerPage: 3, currentPage:
+    @for (blog of (filteredBlogs | paginate: { itemsPerPage: 3, currentPage:
     currentPage }); track $index) {
     <div class="flex flex-col group cursor-default transition-all duration-800">
       <div
@@ -91,7 +115,7 @@
         </a>
       </div>
     </div>
-    } @if (blogs === null || blogs.length === 0) {
+    } @if (blogs === null || filteredBlogs.length === 0) {
     <div class="gap-4 min-w-full">
       <div
         role="status"
@@ -99,18 +123,20 @@
       >
         <div class="h-4 text-lg text-secondary">
           <span class="text-accent">></span>
-          {{
-            blogs === null
-              ? "Something went wrong!"
-              : "No published blogs available at the moment."
-          }}
+          @if (blogs === null) {
+            Something went wrong!
+          } @else if (searchQuery && filteredBlogs.length === 0) {
+            No blogs found matching "{{ searchQuery }}"
+          } @else {
+            No published blogs available at the moment.
+          }
         </div>
       </div>
     </div>
     }
   </div>
 
-  @if (blogs !== null && blogs.length !== 0) {
+  @if (blogs !== null && filteredBlogs.length !== 0) {
   <div class="flex w-full justify-center">
     <pagination-controls
       class="blog-pagination"
