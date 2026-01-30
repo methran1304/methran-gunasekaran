@@ -16,6 +16,29 @@ During my undergraduate studies, I secured an internship at [Kovai.co](https://w
 
 Now, I am completing my **Masters in Advanced Computer Science** with Distinction at the **University of Liverpool**, where I have explored advanced algorithms, high-performance computing, cloud, machine learning and a lot more. 
 
+## Achievements & Competitions
+
+### Work Recognition
+- **Team of the Quarter – Kovai.co**  
+  Recognised for major contributions to bug fixes and feature rollouts for the Document360 product.
+
+- **Scholarship – LWT Academy**  
+  Awarded an educational trip to Singapore for outstanding performance in coding contests.
+
+### Coding Competitions
+- **2nd Place – UKIEPC (North West UK Region)**  
+  Finished 2nd among 600+ teams, earning eligibility to compete in the ICPC Europe Championship.
+
+- **1st Place – CoDebug (Hindustan Institutions)**  
+  Solved the highest number of problems among 50+ participants in a debugging contest.
+
+- **1st Place – TopCoder (SSEC)**  
+  Achieved 1st position out of 200 teams in data structure and algorithm challenges.
+
+- **2nd Place – Code Gladiators (Parul University, Gujarat)**  
+  Competed in a C programming event focused on I/O-intensive applications.
+
+
 ### Tools
 
 Over the years, I have developed a workflow that balances performance, simplicity, and clarity.  
