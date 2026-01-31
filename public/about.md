@@ -27,7 +27,7 @@ Now, I am completing my **Masters in Advanced Computer Science** with Distinctio
 
 ### Coding Competitions
 - **2nd Place – UKIEPC (North West UK Region)**  
-  Finished 2nd among 600+ teams, earning eligibility to compete in the ICPC Europe Championship.
+  Finished 2nd among 40+ teams, earning eligibility to compete in the ICPC Europe Championship.
 
 - **1st Place – CoDebug (Hindustan Institutions)**  
   Solved the highest number of problems among 50+ participants in a debugging contest.
