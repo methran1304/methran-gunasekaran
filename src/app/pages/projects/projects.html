@@ -118,11 +118,7 @@
                     [img]="starIcon"
                     class="size-4"
                   ></lucide-angular>
-                  <span>{{
-                    contribution.githubStarCount < 1000
-                      ? contribution.githubStarCount
-                      : `${contribution.githubStarCount / 1000}K`
-                  }}</span>
+                  <span>{{ formatCount(contribution.githubStarCount) }}</span>
                 </span>
               }
 
@@ -134,11 +130,7 @@
                     [img]="gitForkIcon"
                     class="size-4"
                   ></lucide-angular>
-                  <span>{{
-                    contribution.githubForkCount < 1000
-                      ? contribution.githubForkCount
-                      : `${contribution.githubForkCount / 1000}K`
-                  }}</span>
+                  <span>{{ formatCount(contribution.githubForkCount) }}</span>
                 </span>
               }
             </div>
