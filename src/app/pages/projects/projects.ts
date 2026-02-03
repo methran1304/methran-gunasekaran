@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import {
   LucideAngularModule,
   ExternalLink,
@@ -10,6 +10,7 @@ import {
 import { Work } from '../../models/work';
 import { WorkStatus } from '../../enums/work-status-enum';
 import { NgClass } from '@angular/common';
+import { GitHubStatsService } from '../../services/github-stats-service';
 
 @Component({
   selector: 'app-projects',
@@ -17,7 +18,9 @@ import { NgClass } from '@angular/common';
   templateUrl: './projects.html',
   styleUrl: './projects.css',
 })
-export class ProjectsComponent {
+export class ProjectsComponent implements OnInit {
+  private githubStatsService = inject(GitHubStatsService);
+
   readonly WorkStatusEnum = WorkStatus;
   readonly liveSiteIcon = ExternalLink;
   readonly githubIcon = Github;
@@ -115,8 +118,6 @@ export class ProjectsComponent {
       status: WorkStatus.Completed,
       techStack: ['.NET', 'C#', 'xUnit', 'API Gateway', 'Microservices'],
       isFeatured: false,
-      githubForkCount: 1700,
-      githubStarCount: 8700,
     },
     {
       title: 'charttools',
@@ -128,8 +129,6 @@ export class ProjectsComponent {
       status: WorkStatus.Completed,
       techStack: ['C#', '.NET', 'Library Development', 'Data Validation'],
       isFeatured: false,
-      githubForkCount: 7,
-      githubStarCount: 14,
     },
     {
       title: 'tldr-pages',
@@ -146,8 +145,6 @@ export class ProjectsComponent {
         'Open Source Documentation',
       ],
       isFeatured: false,
-      githubForkCount: 5100,
-      githubStarCount: 61100,
     },
     {
       title: 'Zen Browser',
@@ -163,8 +160,40 @@ export class ProjectsComponent {
         'Product Discussions',
       ],
       isFeatured: false,
-      githubForkCount: 0,
-      githubStarCount: 0,
     },
   ];
+
+  ngOnInit(): void {
+    this.loadGitHubStats();
+  }
+
+  private loadGitHubStats(): void {
+    this.githubStatsService.getStats().subscribe((cache) => {
+      this.projects = this.projects.map((project) =>
+        this.updateProjectStats(project, cache.repos)
+      );
+
+      this.openSourceContributions = this.openSourceContributions.map(
+        (project) => this.updateProjectStats(project, cache.repos)
+      );
+    });
+  }
+
+  private updateProjectStats(
+    project: Work,
+    repos: Record<string, { stars: number; forks: number }>
+  ): Work {
+    if (!project.githubLink) return project;
+
+    const repoPath = this.githubStatsService.extractRepoPath(
+      project.githubLink
+    );
+    if (!repoPath || !repos[repoPath]) return project;
+
+    return {
+      ...project,
+      githubStarCount: repos[repoPath].stars,
+      githubForkCount: repos[repoPath].forks,
+    };
+  }
 }
