@@ -1,76 +1,200 @@
 <div
   class="flex flex-col items-start w-full h-full space-y-8 px-4 mb-12 lg:mb-0 lg:px-0"
 >
-  <!-- title & sub-->
+  <!-- personal projects-->
   <div class="flex flex-col items-start space-y-3">
-    <div class="font-mono text-2xl text-accent font-bold">Projects</div>
+    <div class="font-mono text-2xl text-accent font-bold">
+      Personal Projects
+    </div>
     <div class="font-mono text-secondary text-lg">My work and experiments!</div>
   </div>
 
   <div class="flex flex-wrap justify-center lg:justify-between gap-24 lg:gap-6">
     @for (project of projects; track project.title) {
-    <div class="group cursor-default transition-all duration-200">
-      <div
-        class="flex flex-col p-6 h-full lg:h-65 w-full lg:w-110 border-1 border-b-0 rounded-b-none border-borders rounded-md group-hover:border-accent/50 transition-colors duration-200"
-      >
+      <div class="group cursor-default transition-colors duration-200">
         <div
-          class="font-mono group-hover:text-accent font-extrabold text-lg mb-2 line-clamp-2"
+          class="flex flex-col p-6 h-full lg:h-65 w-full lg:w-110 border-1 border-b-0 rounded-b-none border-borders rounded-md group-hover:border-accent/50 transition-colors duration-200"
         >
-          <span class="text-accent">$</span>
-          {{ project.title }}
-        </div>
-        <div class="font-mono text-secondary flex-1">
-          {{ project.description }}
-        </div>
-        <div class="flex flex-wrap gap-2 mt-auto">
-          @for(tech of project.techStack; track $index) {
-          <span
-            class="px-2 py-1 text-xs rounded bg-borders/20 text-secondary font-mono hover:bg-accent/10 hover:text-accent transition-all"
-            >{{ tech }}</span
+          <div
+            class="font-mono group-hover:text-accent font-extrabold text-lg mb-2 line-clamp-2"
           >
+            <span class="text-accent">$</span>
+            {{ project.title }}
+          </div>
+          <div class="font-mono text-secondary flex-1">
+            {{ project.description }}
+          </div>
+          <div class="flex flex-wrap gap-2 mt-auto">
+            @for (tech of project.techStack; track $index) {
+              <span
+                class="px-2 py-1 text-xs rounded bg-borders/20 text-secondary font-mono hover:bg-accent/10 hover:text-accent transition-colors"
+                >{{ tech }}</span
+              >
+            }
+          </div>
+        </div>
+
+        <div
+          class="flex p-4 h-12 border-1 rounded-b-md bg-borders/5 border-borders group-hover:border-accent/50 transition-colors duration-200"
+          [ngClass]="
+            project.liveLink
+              ? 'items-center justify-between'
+              : 'items-center justify-end'
+          "
+        >
+          @if (project.status === WorkStatusEnum.InProgress) {
+            <span
+              class="flex items-center gap-2 text-xs text-secondary hover:text-accent/80 transition-colors focus:outline-none rounded px-2 py-1"
+              aria-label="View live site"
+            >
+              <lucide-angular [img]="coneIcon" class="size-4"></lucide-angular>
+              <span>Under Development</span>
+            </span>
+          } @else {
+            @if (project.liveLink) {
+              <a
+                [href]="project.liveLink"
+                target="_blank"
+                class="flex items-center gap-2 text-xs text-secondary hover:text-accent/80 transition-colors focus:outline-none rounded px-2 py-1"
+                aria-label="View live site"
+              >
+                <lucide-angular
+                  [img]="liveSiteIcon"
+                  class="size-4"
+                ></lucide-angular>
+                <span>Live Site</span>
+              </a>
+            }
+            @if (project.githubLink) {
+              <a
+                [href]="project.githubLink"
+                target="_blank"
+                class="flex items-center gap-2 text-xs text-secondary hover:text-accent transition-colors focus:outline-none rounded px-2 py-1"
+                aria-label="View source code"
+              >
+                <lucide-angular
+                  [img]="githubIcon"
+                  class="size-4"
+                ></lucide-angular>
+                <span>Repo</span>
+              </a>
+            }
           }
         </div>
       </div>
+    }
+  </div>
 
-      <div
-        class="flex p-4 h-12 border-1 rounded-b-md bg-borders/5 border-borders group-hover:border-accent/50 transition-all duration-200"
-        [ngClass]="
-          project.liveLink
-            ? 'items-center justify-between'
-            : 'items-center justify-end'
-        "
-      >
-        @if (project.status === projectStatusEnum.InProgress) {
-        <span
-          class="flex items-center gap-2 text-xs text-secondary hover:text-accent/80 transition-colors focus:outline-none rounded px-2 py-1"
-          aria-label="View live site"
-        >
-          <lucide-angular [img]="coneIcon" class="size-4"></lucide-angular>
-          <span>Under Development</span>
-        </span>
-        } @else { @if (project.liveLink) {
-        <a
-          [href]="project.liveLink"
-          target="_blank"
-          class="flex items-center gap-2 text-xs text-secondary hover:text-accent/80 transition-colors focus:outline-none rounded px-2 py-1"
-          aria-label="View live site"
-        >
-          <lucide-angular [img]="liveSiteIcon" class="size-4"></lucide-angular>
-          <span>Live Site</span>
-        </a>
-        } @if (project.githubLink) {
-        <a
-          [href]="project.githubLink"
-          target="_blank"
-          class="flex items-center gap-2 text-xs text-secondary hover:text-accent transition-colors focus:outline-none rounded px-2 py-1"
-          aria-label="View source code"
-        >
-          <lucide-angular [img]="githubIcon" class="size-4"></lucide-angular>
-          <span>Repo</span>
-        </a>
-        } }
-      </div>
+  <!-- open source projects -->
+  <div class="flex flex-col items-start space-y-3 mt-12 lg:mt-0">
+    <div class="font-mono text-2xl text-accent font-bold">
+      Open Source Projects
     </div>
+    <div class="font-mono text-secondary text-lg">
+      My contributions to the open-source community!
+    </div>
+  </div>
+
+  <div class="flex flex-wrap justify-center lg:justify-between gap-24 lg:gap-6">
+    @for (contribution of openSourceContributions; track contribution.title) {
+      <div class="group cursor-default transition-colors duration-200">
+        <div
+          class="flex flex-col p-6 h-full lg:h-65 w-full lg:w-110 border-1 border-b-0 rounded-b-none border-borders rounded-md group-hover:border-accent/50 transition-colors duration-200"
+        >
+          <div class="flex justify-between">
+            <div
+              class="font-mono group-hover:text-accent font-extrabold text-lg mb-2 line-clamp-2 transition-colors"
+            >
+              <span class="text-accent">$</span>
+              {{ contribution.title }}
+            </div>
+
+            <div class="flex gap-3">
+              @if (contribution.githubStarCount) {
+                <span
+                  class="flex justify-between items-center mb-2 gap-x-1 text-sm text-secondary group-hover:text-accent transition-colors"
+                >
+                  <lucide-angular
+                    [img]="starIcon"
+                    class="size-4"
+                  ></lucide-angular>
+                  <span>{{
+                    contribution.githubStarCount < 1000
+                      ? contribution.githubStarCount
+                      : `${contribution.githubStarCount / 1000}K`
+                  }}</span>
+                </span>
+              }
+
+              @if (contribution.githubForkCount) {
+                <span
+                  class="flex justify-between items-center mb-2 gap-x-1 text-sm text-secondary group-hover:text-accent transition-colors"
+                >
+                  <lucide-angular
+                    [img]="gitForkIcon"
+                    class="size-4"
+                  ></lucide-angular>
+                  <span>{{
+                    contribution.githubForkCount < 1000
+                      ? contribution.githubForkCount
+                      : `${contribution.githubForkCount / 1000}K`
+                  }}</span>
+                </span>
+              }
+            </div>
+          </div>
+
+          <div class="font-mono text-secondary flex-1">
+            {{ contribution.description }}
+          </div>
+          <div class="flex flex-wrap gap-2 mt-auto">
+            @for (tech of contribution.techStack; track $index) {
+              <span
+                class="px-2 py-1 text-xs rounded bg-borders/20 text-secondary font-mono hover:bg-accent/10 hover:text-accent transition-colors"
+                >{{ tech }}</span
+              >
+            }
+          </div>
+        </div>
+
+        <div
+          class="flex p-4 h-12 border-1 rounded-b-md bg-borders/5 border-borders group-hover:border-accent/50 transition-colors duration-200"
+          [ngClass]="
+            contribution.liveLink
+              ? 'items-center justify-between'
+              : 'items-center justify-end'
+          "
+        >
+          @if (contribution.liveLink) {
+            <a
+              [href]="contribution.liveLink"
+              target="_blank"
+              class="flex items-center gap-2 text-xs text-secondary hover:text-accent/80 transition-colors focus:outline-none rounded px-2 py-1"
+              aria-label="View live site"
+            >
+              <lucide-angular
+                [img]="liveSiteIcon"
+                class="size-4"
+              ></lucide-angular>
+              <span>Docs/Site</span>
+            </a>
+          }
+          @if (contribution.githubLink) {
+            <a
+              [href]="contribution.githubLink"
+              target="_blank"
+              class="flex items-center gap-2 text-xs text-secondary hover:text-accent transition-colors focus:outline-none rounded px-2 py-1"
+              aria-label="View source code"
+            >
+              <lucide-angular
+                [img]="githubIcon"
+                class="size-4"
+              ></lucide-angular>
+              <span>Pull Request(s)</span>
+            </a>
+          }
+        </div>
+      </div>
     }
   </div>
 </div>

@@ -1,4 +1,4 @@
-export enum ProjectStatus {
+export enum WorkStatus {
     Completed,
     InProgress,
     Dropped
