@@ -12,7 +12,6 @@ import { ArrowUp, LucideAngularModule } from 'lucide-angular'
   styleUrl: './app.css',
 })
 export class App {
-  protected readonly title = signal('methran-gunasekaran');
   public readonly arrowUpIcon = ArrowUp;
   public showScrollToTopBtn: boolean = false;
 
