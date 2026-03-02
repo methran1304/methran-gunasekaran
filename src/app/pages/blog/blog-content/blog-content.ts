@@ -16,7 +16,7 @@ export class BlogContentComponent implements OnInit {
   readonly arrowIcon = ArrowLeft;
   private slug!: string;
   markdownContent!: string;
-  isLocalRun: boolean = true; // enable for debugging
+  isLocalRun: boolean = false; // enable for debugging
   isLoading: boolean = true;
 
   constructor(
