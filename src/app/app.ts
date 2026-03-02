@@ -25,7 +25,6 @@ export class App {
   scrollButtonHandler() {
     this.showScrollToTopBtn =
       document.body.scrollTop > 20 || document.documentElement.scrollTop > 20;
-    console.log('works');
   }
 
   // handle scroll to top request

@@ -1,4 +1,4 @@
-import { Injectable, Renderer2, RendererFactory2 } from '@angular/core';
+import { Injectable, Renderer2, RendererFactory2, Inject, DOCUMENT } from '@angular/core';
 import { Theme } from '../enums/theme-enum';
 
 interface UserPreference {
@@ -11,9 +11,27 @@ interface UserPreference {
 export class ThemeService {
   currentTheme!: Theme;
   private _renderer: Renderer2;
+  private darkPrism?: HTMLLinkElement;
+  private lightPrism?: HTMLLinkElement;
 
-  constructor(rendererFactory: RendererFactory2) {
+  constructor(
+    @Inject(DOCUMENT) private document: Document,
+    rendererFactory: RendererFactory2,
+  ) {
     this._renderer = rendererFactory.createRenderer(null, null);
+    this.createPrismStyles();
+  }
+
+  private createPrismStyles() {
+    // Create dark prism link element
+    this.darkPrism = this._renderer.createElement('link') as HTMLLinkElement;
+    this._renderer.setProperty(this.darkPrism, 'rel', 'stylesheet');
+    this._renderer.setProperty(this.darkPrism, 'href', 'prism-one-dark.css');
+
+    // Create light prism link element
+    this.lightPrism = this._renderer.createElement('link') as HTMLLinkElement;
+    this._renderer.setProperty(this.lightPrism, 'rel', 'stylesheet');
+    this._renderer.setProperty(this.lightPrism, 'href', 'prism-one-light.css');
   }
 
   public initializeTheme() {
@@ -23,7 +41,9 @@ export class ThemeService {
       this.applyTheme();
     } else {
       // If no preference, use system setting
-      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const prefersDark =
+        window.matchMedia &&
+        window.matchMedia('(prefers-color-scheme: dark)').matches;
       const systemTheme = prefersDark ? Theme.Dark : Theme.Light;
       this.setTheme(systemTheme);
     }
@@ -40,15 +60,37 @@ export class ThemeService {
   }
 
   toggleTheme() {
-    const newTheme = this.currentTheme === Theme.Light ? Theme.Dark : Theme.Light;
+    const newTheme =
+      this.currentTheme === Theme.Light ? Theme.Dark : Theme.Light;
     this.setTheme(newTheme);
+  }
+
+  private addPrismTheme(theme: Theme) {
+    // Remove the opposite theme first
+    if (theme === Theme.Dark) {
+      if (this.lightPrism?.parentNode) {
+        this._renderer.removeChild(this.document.head, this.lightPrism);
+      }
+      if (!this.darkPrism?.parentNode) {
+        this._renderer.appendChild(this.document.head, this.darkPrism);
+      }
+    } else {
+      if (this.darkPrism?.parentNode) {
+        this._renderer.removeChild(this.document.head, this.darkPrism);
+      }
+      if (!this.lightPrism?.parentNode) {
+        this._renderer.appendChild(this.document.head, this.lightPrism);
+      }
+    }
   }
 
   private applyTheme() {
     if (this.currentTheme === Theme.Light) {
       this._renderer.addClass(document.documentElement, 'light');
+      this.addPrismTheme(Theme.Light);
     } else {
       this._renderer.removeClass(document.documentElement, 'light');
+      this.addPrismTheme(Theme.Dark);
     }
   }
 
