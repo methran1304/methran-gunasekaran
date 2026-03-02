@@ -16,9 +16,7 @@ export class BlogContentComponent implements OnInit {
   readonly arrowIcon = ArrowLeft;
   private slug!: string;
   markdownContent!: string;
-  // readonly testFilePath = './test.md';
-
-
+  isLocalRun: boolean = false; // enable for debugging
   isLoading: boolean = true;
 
   constructor(
