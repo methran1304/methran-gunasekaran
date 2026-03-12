@@ -39,19 +39,6 @@ Now, I am completing my **Masters in Advanced Computer Science** with Distinctio
   Competed in a C programming event focused on I/O-intensive applications.
 
 
-### Tools
-
-Over the years, I have developed a workflow that balances performance, simplicity, and clarity.  
-I work primarily in the **.NET** and **Angular** ecosystem, where type safety and strong architectural boundaries help me move fast without breaking structure.
-
-For data persistence, I use **MongoDB** when flexibility matters and **SQL Server** when consistency takes priority.
-
-I enjoy working close to the backend - designing APIs, tuning queries, and improving execution paths but I also value how small frontend details can shape user experience.
-
-My development environment is built around efficiency. I use **VS Code** as my primary editor and **iTerm** as my terminal of choice. Together, they keep my workflow fast, minimal, and distraction-free.
-
-My stack often includes **Azure**, **Vercel**, and **GitHub Actions** for deployment and version control. I rely on **Linux** for its performance, using it both as a development environment and a learning tool.
-
 ### What I’m Working On
 
 I like keeping myself engaged with projects and challenges that push me to think differently and refine how I build software.  
