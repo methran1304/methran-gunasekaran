@@ -16,6 +16,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgxTypewriterComponent } from '@omnedia/ngx-typewriter';
+import { PageUtils } from '../../utils/page-utils';
 
 @Component({
   selector: 'app-blog',
@@ -51,7 +52,9 @@ export class BlogComponent implements OnInit {
     );
   }
 
-  constructor(private _blogService: BlogService) {}
+  constructor(private _blogService: BlogService,
+    private _pageUtils: PageUtils
+  ) {}
 
   ngOnInit(): void {
     this.getBlogList();
@@ -103,5 +106,10 @@ export class BlogComponent implements OnInit {
   clearSearch(): void {
     this.searchQuery = '';
     this.currentPage = 1;
+  }
+
+  pageChange(pageNumber: number): void {
+    this.currentPage = pageNumber;
+    this._pageUtils.ScrollToTop();
   }
 }

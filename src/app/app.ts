@@ -4,6 +4,7 @@ import { NavbarComponent } from './layout/navbar/navbar';
 import { FooterComponent } from './layout/footer/footer';
 import { ThemeService } from './services/theme-service';
 import { ArrowUp, LucideAngularModule } from 'lucide-angular'
+import { PageUtils } from './utils/page-utils';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +16,9 @@ export class App {
   public readonly arrowUpIcon = ArrowUp;
   public showScrollToTopBtn: boolean = false;
 
-  constructor(private _themeService: ThemeService) {
+  constructor(private _themeService: ThemeService,
+    private _pageUtils: PageUtils
+  ) {
     // Initialize theme based on user preference or system preference
     this._themeService.initializeTheme();
   }
@@ -29,7 +32,7 @@ export class App {
 
   // handle scroll to top request
   scrollToTop() {
-    window.scroll(0, 0);
     this.showScrollToTopBtn = false;
+    this._pageUtils.ScrollToTop();
   }
 }
