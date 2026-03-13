@@ -14,7 +14,7 @@
     --color-success: #32cd32;
     --color-selection: #009973;
 
-    /* Social colors */
+    /* social colors */
     --color-linkedin: #2466C2;
     --color-mail: #EA4336;
 
@@ -25,6 +25,8 @@
     --size-main-content-max: 1000px;     
     --size-container-max: 1200px;     
     --breakpoint-custom: 900px;
+
+    --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
 /* Light theme overrides */
@@ -164,7 +166,7 @@ body {
 }
 
 html {
-  font-family: "Roboto Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-family: var(--font-mono);
 }
 
 .prose-theme {

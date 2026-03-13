@@ -5,7 +5,6 @@ import { BlogService } from '../../../services/blog-service';
 import { MarkdownComponent, MarkdownService } from 'ngx-markdown';
 import { ViewportScroller } from '@angular/common';
 import { Parser } from 'marked';
-
 @Component({
   selector: 'app-blog-content',
   imports: [RouterLink, LucideAngularModule, MarkdownComponent],
@@ -23,7 +22,7 @@ export class BlogContentComponent implements OnInit {
     private _markdownService: MarkdownService,
     private _activatedRoute: ActivatedRoute,
     private _blogService: BlogService,
-    private _viewportScroller: ViewportScroller
+    private _viewportScroller: ViewportScroller,
   ) {}
 
   ngOnInit(): void {
@@ -88,7 +87,9 @@ export class BlogContentComponent implements OnInit {
 
         // Use Angular's ViewportScroller to scroll to the element
         // The 'slice(1)' removes the '#' from the href
-        this._viewportScroller.scrollToAnchor(href.slice(1), { behavior: 'smooth'});
+        this._viewportScroller.scrollToAnchor(href.slice(1), {
+          behavior: 'smooth',
+        });
       }
     }
   }

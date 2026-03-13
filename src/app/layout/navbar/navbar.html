@@ -1,16 +1,17 @@
 <nav class="w-full bg-background">
   <div class="app-container">
+    
     <div class="flex items-center justify-between h-16">
-      <a [routerLink]="['/']" class="hover:text-accent transition-colors text-2xl -tracking-tight">
+      <a [routerLink]="['/']" class="font-semibold hover:text-accent transition-colors text-2xl -tracking-tight">
         Methran G.
       </a>
 
       <div class="flex items-center gap-4">
-        <button class="hover:text-accent transition-colors" (click)="toggleTheme()">
+        <button class="transition-colors" (click)="toggleTheme()">
           @if (isDarkTheme) {
-            <lucide-angular [img]="sunIcon" class="my-icon"></lucide-angular>
+            <lucide-angular [img]="sunIcon" class="hover:text-amber-300 font-bold my-icon"></lucide-angular>
           } @else {
-            <lucide-angular [img]="moonIcon" class="my-icon"></lucide-angular>
+            <lucide-angular [img]="moonIcon" class="hover:text-blue-500 font-bold my-icon"></lucide-angular>
           }
         </button>
 
@@ -31,7 +32,7 @@
               <a
                 [routerLink]="item.href"
                 routerLinkActive="active"
-                class="link-underline"
+                class="font-semibold link-underline"
                 >{{ item.label }}</a
               >
             </li>

@@ -34,7 +34,7 @@ export class ProjectsComponent implements OnInit {
       description:
         'An AI-powered typing platform that helps users improve speed and accuracy through adaptive exercises, real-time analytics, and personalized feedback.',
       githubLink: 'https://github.com/methran1304/verbatim-app',
-      liveLink: 'https://verbatim.pro',
+      liveLink: 'https://verbatim-six.vercel.app',
       status: WorkStatus.Completed,
       techStack: [
         '.NET 9 WebAPI',
