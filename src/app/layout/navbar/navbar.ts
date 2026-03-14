@@ -1,6 +1,6 @@
 import { NgForOf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { NavigationEnd, Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { ThemeService } from '../../services/theme-service';
 import { Theme } from '../../enums/theme-enum';
 import { LucideAngularModule, SunMedium, Moon } from 'lucide-angular';
@@ -9,35 +9,25 @@ import { LucideAngularModule, SunMedium, Moon } from 'lucide-angular';
   selector: 'app-navbar',
   imports: [RouterLink, RouterLinkActive, LucideAngularModule],
   templateUrl: './navbar.html',
-  styleUrl: './navbar.css',
+  styleUrl: './navbar.css'
 })
 export class NavbarComponent implements OnInit {
   readonly sunIcon = SunMedium;
   readonly moonIcon = Moon;
-  public inBlog: boolean = false;
-
+  
   menuOpen = false;
   isDarkTheme: boolean = false;
   navItems = [
-    { href: '/home', label: 'Home' },
-    { href: '/blogs', label: 'Blogs' },
-    { href: '/projects', label: 'Projects' },
-    { href: '/about', label: 'About' },
-    { href: '/contact', label: 'Contact' },
-  ];
+    { href: '/home', label: 'Home'},
+    { href: '/blogs', label: 'Blogs'},
+    { href: '/projects', label: 'Projects'},
+    { href: '/about', label: 'About'},
+    { href: '/contact', label: 'Contact'},
+  ]
 
-  constructor(
-    private _themeService: ThemeService,
-    private _router: Router,
-  ) {}
+  constructor(private _themeService: ThemeService) { }
 
   ngOnInit(): void {
-    this._router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-        this.inBlog = event.urlAfterRedirects.startsWith("/blog");
-      }
-    });
-
     const currentTheme = this._themeService.getTheme();
     this.isDarkTheme = currentTheme === Theme.Dark;
   }
