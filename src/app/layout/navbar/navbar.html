@@ -33,6 +33,7 @@
                 [routerLink]="item.href"
                 routerLinkActive="active"
                 class="font-semibold link-underline"
+                [class.active]="inBlog && item.label == 'Blogs'"
                 >{{ item.label }}</a
               >
             </li>
