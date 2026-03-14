@@ -1,5 +1,6 @@
 import { Injectable, Renderer2, RendererFactory2, Inject, DOCUMENT } from '@angular/core';
 import { Theme } from '../enums/theme-enum';
+import { Observable, Subject } from 'rxjs';
 
 interface UserPreference {
   theme: Theme;
@@ -13,6 +14,7 @@ export class ThemeService {
   private _renderer: Renderer2;
   private darkPrism?: HTMLLinkElement;
   private lightPrism?: HTMLLinkElement;
+  public themeSubject = new Subject<Theme>();
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
@@ -37,9 +39,11 @@ export class ThemeService {
   public initializeTheme() {
     const preference = this.getPreference();
     if (preference && preference.theme !== undefined) {
+      console.log('first');
       this.currentTheme = preference.theme;
       this.applyTheme();
     } else {
+      console.log('second');
       // If no preference, use system setting
       const prefersDark =
         window.matchMedia &&
@@ -92,6 +96,7 @@ export class ThemeService {
       this._renderer.removeClass(document.documentElement, 'light');
       this.addPrismTheme(Theme.Dark);
     }
+    this.themeSubject.next(this.currentTheme);
   }
 
   private setPreference(selectedPreference: UserPreference) {

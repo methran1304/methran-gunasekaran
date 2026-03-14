@@ -9,27 +9,31 @@ import { LucideAngularModule, SunMedium, Moon } from 'lucide-angular';
   selector: 'app-navbar',
   imports: [RouterLink, RouterLinkActive, LucideAngularModule],
   templateUrl: './navbar.html',
-  styleUrl: './navbar.css'
+  styleUrl: './navbar.css',
 })
 export class NavbarComponent implements OnInit {
   readonly sunIcon = SunMedium;
   readonly moonIcon = Moon;
-  
-  menuOpen = false;
-  isDarkTheme: boolean = false;
-  navItems = [
-    { href: '/home', label: 'Home'},
-    { href: '/blogs', label: 'Blogs'},
-    { href: '/projects', label: 'Projects'},
-    { href: '/about', label: 'About'},
-    { href: '/contact', label: 'Contact'},
-  ]
 
-  constructor(private _themeService: ThemeService) { }
+  menuOpen = false;
+  isDarkTheme: boolean;
+  navItems = [
+    { href: '/home', label: 'Home' },
+    { href: '/blog', label: 'Blogs' },
+    { href: '/projects', label: 'Projects' },
+    { href: '/about', label: 'About' },
+    { href: '/contact', label: 'Contact' },
+  ];
+
+  constructor(private _themeService: ThemeService) {
+    this.isDarkTheme = _themeService.getTheme() === Theme.Dark;
+  }
 
   ngOnInit(): void {
-    const currentTheme = this._themeService.getTheme();
-    this.isDarkTheme = currentTheme === Theme.Dark;
+    this._themeService.themeSubject.subscribe((currentTheme) => {
+      this.isDarkTheme = currentTheme === Theme.Dark;
+      console.log('theme changed: ' + currentTheme);
+    });
   }
 
   toggleTheme(): void {

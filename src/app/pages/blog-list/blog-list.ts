@@ -19,12 +19,12 @@ import { NgxTypewriterComponent } from '@omnedia/ngx-typewriter';
 import { PageUtils } from '../../utils/page-utils';
 
 @Component({
-  selector: 'app-blog',
+  selector: 'app-blog-list',
   imports: [LucideAngularModule, RouterLink, NgxPaginationModule, DatePipe, FormsModule, NgxTypewriterComponent],
-  templateUrl: './blog.html',
-  styleUrl: './blog.css',
+  templateUrl: './blog-list.html',
+  styleUrl: './blog-list.css',
 })
-export class BlogComponent implements OnInit {
+export class BlogList implements OnInit {
   readonly arrowIcon = CornerDownRight;
   readonly shareIcon = Share2;
   readonly checkIcon = Check;

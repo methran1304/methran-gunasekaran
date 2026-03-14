@@ -1,10 +1,10 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home';
-import { BlogComponent } from './pages/blog/blog';
+import { BlogList } from './pages/blog-list/blog-list';
 import { ProjectsComponent } from './pages/projects/projects';
 import { AboutComponent } from './pages/about/about';
 import { ContactComponent } from './pages/contact/contact';
-import { BlogContentComponent } from './pages/blog/blog-content/blog-content';
+import { BlogContentComponent } from './pages/blog-list/blog-content/blog-content';
 
 export const routes: Routes = [
     {
@@ -17,12 +17,17 @@ export const routes: Routes = [
         component: HomeComponent,
     },
     {
-        path: 'blogs',
-        component: BlogComponent
-    },
-    {
-        path: 'blog/:slug',
-        component: BlogContentComponent
+        path: 'blog',
+        children: [
+            {
+                path: '',
+                component: BlogList,
+            },
+            {
+                path: ':slug',
+                component: BlogContentComponent,
+            }
+        ]
     },
     {
         path: 'projects',
