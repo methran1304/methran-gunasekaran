@@ -71,9 +71,7 @@
         </div>
 
         <div class="flex flex-col">
-          <i
-            class="devicon-css3-plain hover:text-accent transition-colors"
-          ></i>
+          <i class="devicon-css3-plain hover:text-accent transition-colors"></i>
           <span class="text-xs mt-1">CSS3</span>
         </div>
 
@@ -192,14 +190,24 @@
   <div
     class="flex flex-col space-y-4 md:flex-row md:space-y-0 md:space-x-6 items-center justify-center"
   >
-    <!-- Download Resume Button -->
+    <!-- Blogs button -->
     <a
       href="/cv.pdf"
       target="_blank"
       class="font-mono px-4 py-2 bg-accent/10 border border-accent/50 text-accent rounded-md hover:bg-accent/20 hover:border-accent transition-all duration-200 text-sm font-medium flex items-center gap-2"
     >
-      <lucide-angular [img]="dlIcon" size="16"></lucide-angular>
+      <lucide-angular [img]="fileUserIcon" size="16"></lucide-angular>
       CV
+    </a>
+
+        <!-- Download Resume Button -->
+    <a
+      [routerLink]="['/blogs']"
+
+      class="font-mono px-4 py-2 bg-background text-primary border border-primary/20 rounded-md hover:bg-primary/5 hover:border-primary/40 transition-all duration-200 text-sm font-medium flex items-center gap-2"
+    >
+      <lucide-angular [img]="notebookPenIcon" size="16"></lucide-angular>
+      Blogs
     </a>
 
     <!-- View Work Button -->
@@ -208,7 +216,9 @@
       class="font-mono px-4 py-2 bg-background text-primary border border-primary/20 rounded-md hover:bg-primary/5 hover:border-primary/40 transition-all duration-200 text-sm font-medium flex items-center gap-2"
     >
       <lucide-angular [img]="folderIcon" size="16"></lucide-angular>
-      VIEW WORK
+      Work
     </a>
+
+
   </div>
 </div>

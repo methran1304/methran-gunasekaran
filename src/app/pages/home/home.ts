@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NgxTypewriterComponent } from '@omnedia/ngx-typewriter';
 import { NgxCrypticTextComponent } from '@omnedia/ngx-cryptic-text';
-import { LucideAngularModule, Download, FolderOpen } from 'lucide-angular';
+import { LucideAngularModule, FileUser, FolderOpen, NotebookPen } from 'lucide-angular';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -16,8 +16,9 @@ import { RouterLink } from '@angular/router';
   styleUrl: './home.css',
 })
 export class HomeComponent {
-  readonly dlIcon = Download;
+  readonly fileUserIcon = FileUser;
   readonly folderIcon = FolderOpen;
+  readonly notebookPenIcon = NotebookPen;
   
   test() {}
   
