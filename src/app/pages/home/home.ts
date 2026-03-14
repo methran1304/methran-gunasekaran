@@ -19,10 +19,4 @@ export class HomeComponent {
   readonly fileUserIcon = FileUser;
   readonly folderIcon = FolderOpen;
   readonly notebookPenIcon = NotebookPen;
-  
-  test() {}
-  
-  navigateToProjects() {
-    console.log('Navigate to projects');
-  }
 }

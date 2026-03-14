@@ -39,11 +39,9 @@ export class ThemeService {
   public initializeTheme() {
     const preference = this.getPreference();
     if (preference && preference.theme !== undefined) {
-      console.log('first');
       this.currentTheme = preference.theme;
       this.applyTheme();
     } else {
-      console.log('second');
       // If no preference, use system setting
       const prefersDark =
         window.matchMedia &&
