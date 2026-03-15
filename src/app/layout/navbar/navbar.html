@@ -1,41 +1,33 @@
 <nav class="w-full bg-background">
   <div class="app-container">
+    
     <div class="flex items-center justify-between h-16">
-      <a
-        [routerLink]="['/']"
-        class="font-semibold hover:text-accent transition-colors text-2xl -tracking-tight"
-      >
+      <a [routerLink]="['/']" class="font-semibold hover:text-accent transition-colors text-2xl -tracking-tight">
         Methran G.
       </a>
 
-      <ul class="hidden md:flex items-center gap-8 ms-2 text-lg">
-        @for (item of navItems; track item.href) {
-          <li>
-            <a
-              [routerLink]="item.href"
-              routerLinkActive="active"
-              class="font-semibold link-underline"
-              >{{ item.label }}</a
-            >
-          </li>
-        }
-      </ul>
-
-      <button class="md:pl-4 transition-colors" (click)="toggleTheme()">
-        @if (isDarkTheme) {
-          <lucide-angular
-            [img]="sunIcon"
-            class="hover:text-amber-300 font-bold my-icon"
-          ></lucide-angular>
-        } @else {
-          <lucide-angular
-            [img]="moonIcon"
-            class="hover:text-blue-500 font-bold my-icon"
-          ></lucide-angular>
-        }
-      </button>
-
       <div class="flex items-center gap-4">
+        <ul class="hidden md:flex items-center gap-8 ms-2 text-lg">
+          @for (item of navItems; track item.href) {
+            <li>
+              <a
+                [routerLink]="item.href"
+                routerLinkActive="active"
+                class="font-semibold link-underline"
+                >{{ item.label }}</a
+              >
+            </li>
+          }
+        </ul>
+
+        <button class="md:pl-4 transition-colors" (click)="toggleTheme()">
+          @if (isDarkTheme) {
+            <lucide-angular [img]="sunIcon" class="hover:text-amber-300 font-bold my-icon"></lucide-angular>
+          } @else {
+            <lucide-angular [img]="moonIcon" class="hover:text-blue-500 font-bold my-icon"></lucide-angular>
+          }
+        </button>
+
         <button
           class="btn-icon md:hidden"
           aria-label="Open menu"
