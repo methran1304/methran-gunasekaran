@@ -1,6 +1,6 @@
 import 'zone.js';
 import { bootstrapApplication } from '@angular/platform-browser';
-import { provideRouter } from '@angular/router';
+import { provideRouter, withInMemoryScrolling } from '@angular/router';
 import { provideMarkdown, SANITIZE } from 'ngx-markdown';
 import { App } from './app/app';
 import { routes } from './app/app.routes'; // create/export your routes
@@ -21,6 +21,9 @@ bootstrapApplication(App, {
         useValue: SecurityContext.NONE,
       },
     }),
-    provideRouter(routes),
+    provideRouter(routes, withInMemoryScrolling({
+      scrollPositionRestoration: 'top',
+      anchorScrolling: 'enabled'
+    })),
   ],
 });
