@@ -5,6 +5,6 @@ import { Injectable } from "@angular/core";
 })
 export class PageUtils {
     public ScrollToTop(): void {
-        window.scroll(0, 0);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 }
