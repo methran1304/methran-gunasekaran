@@ -12,12 +12,12 @@ export class BlogService {
   constructor(private _httpClient: HttpClient) {}
 
   public getBlogList(): Observable<BlogPost[]> {
-    const url = `/api/blog-list`;
+    const url = `/api/get-blog-list`;
     return this._httpClient.get<BlogPost[]>(url);
   }
 
   public getBlogContent(slug: string): Observable<BlogContent> {
-    const url = '/api/blog';
+    const url = '/api/get-blog';
     const params = { slug: slug };
     return this._httpClient.get<BlogContent>(url, {params: params});
   }

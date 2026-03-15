@@ -24,7 +24,7 @@ export class GitHubStatsService {
 
   getStats(): Observable<GitHubStatsCache> {
     if (!this.cache$) {
-      this.cache$ = this.http.get<GitHubStatsCache>('/api/github-stats').pipe(
+      this.cache$ = this.http.get<GitHubStatsCache>('/api/get-github-stats').pipe(
         shareReplay(1),
         catchError(() => of({ repos: {}, lastUpdated: '' }))
       );
