@@ -17,6 +17,7 @@ import { DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgxTypewriterComponent } from '@omnedia/ngx-typewriter';
 import { PageUtils } from '../../utils/page-utils';
+import { ROUTE_CONSTANTS } from '../../constants/route-contants';
 
 @Component({
   selector: 'app-blog-list',
@@ -37,6 +38,7 @@ export class BlogList implements OnInit {
   currentPage: number = 1;
   searchQuery: string = '';
   isSearchFocused: boolean = false;
+  readonly routeConstants = ROUTE_CONSTANTS;
 
   get filteredBlogs(): BlogPost[] {
     if (!this.blogs || !this.searchQuery.trim()) {
@@ -93,7 +95,7 @@ export class BlogList implements OnInit {
   copyLink(index: number) {
     if (this.blogs === null) return;
     const post = this.filteredBlogs[index];
-    const copyText = `https://methran.dev/blog/${post.slug}`;
+    const copyText = `https://methran.dev${this.routeConstants.Blog}/${post.slug}`;
     copy(copyText);
     post.isLinkCopied = true;
 

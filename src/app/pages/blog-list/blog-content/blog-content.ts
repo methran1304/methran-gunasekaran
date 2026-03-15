@@ -5,6 +5,7 @@ import { BlogService } from '../../../services/blog-service';
 import { MarkdownComponent, MarkdownService } from 'ngx-markdown';
 import { ViewportScroller } from '@angular/common';
 import { Parser } from 'marked';
+import { ROUTE_CONSTANTS } from '../../../constants/route-contants';
 @Component({
   selector: 'app-blog-content',
   imports: [RouterLink, LucideAngularModule, MarkdownComponent],
@@ -17,6 +18,7 @@ export class BlogContentComponent implements OnInit {
   markdownContent!: string;
   isLocalRun: boolean = false; // enable for debugging
   isLoading: boolean = true;
+  readonly routeConstants = ROUTE_CONSTANTS;
 
   constructor(
     private _markdownService: MarkdownService,

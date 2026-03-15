@@ -4,6 +4,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { ThemeService } from '../../services/theme-service';
 import { Theme } from '../../enums/theme-enum';
 import { LucideAngularModule, SunMedium, Moon } from 'lucide-angular';
+import { ROUTE_CONSTANTS } from '../../constants/route-contants';
 
 @Component({
   selector: 'app-navbar',
@@ -18,11 +19,11 @@ export class NavbarComponent implements OnInit {
   menuOpen = false;
   isDarkTheme: boolean;
   navItems = [
-    { href: '/home', label: 'Home' },
-    { href: '/blog', label: 'Blogs' },
-    { href: '/projects', label: 'Projects' },
-    { href: '/about', label: 'About' },
-    { href: '/contact', label: 'Contact' },
+    { href: ROUTE_CONSTANTS.Home, label: 'Home' },
+    { href: ROUTE_CONSTANTS.Blog, label: 'Blogs' },
+    { href: ROUTE_CONSTANTS.Projects, label: 'Projects' },
+    { href: ROUTE_CONSTANTS.About, label: 'About' },
+    { href: ROUTE_CONSTANTS.Contact, label: 'Contact' },
   ];
 
   constructor(private _themeService: ThemeService) {

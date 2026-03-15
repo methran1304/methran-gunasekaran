@@ -3,6 +3,7 @@ import { NgxTypewriterComponent } from '@omnedia/ngx-typewriter';
 import { NgxCrypticTextComponent } from '@omnedia/ngx-cryptic-text';
 import { LucideAngularModule, FileUser, FolderOpen, NotebookPen } from 'lucide-angular';
 import { RouterLink } from '@angular/router';
+import { ROUTE_CONSTANTS } from '../../constants/route-contants';
 
 @Component({
   selector: 'app-home',
@@ -19,4 +20,5 @@ export class HomeComponent {
   readonly fileUserIcon = FileUser;
   readonly folderIcon = FolderOpen;
   readonly notebookPenIcon = NotebookPen;
+  readonly routeConstants = ROUTE_CONSTANTS;
 }
