@@ -6,9 +6,7 @@ import { MarkdownComponent, MarkdownService } from 'ngx-markdown';
 import { ViewportScroller } from '@angular/common';
 import { Parser } from 'marked';
 import { ROUTE_CONSTANTS } from '../../../constants/route-contants';
-import matter from 'gray-matter';
 import { FrontMatter } from '../../../models/blog-entry';
-import { BlogContent } from '../../../models/blog-content';
 
 @Component({
   selector: 'app-blog-content',
@@ -66,16 +64,11 @@ export class BlogContentComponent implements OnInit {
 
   getBlogContent(): void {
     this._blogService.getBlogContent(this.slug).subscribe({
-      next: (blogContent: BlogContent) => {
-        const { content, data } = matter(blogContent.content);
-        console.log(data, content);
-        this.frontMatter = {
-          title: data['title'] || null,
-          description: data['description'],
-          tags: data['tags'],
-          publishedDate: data['date'] || new Date().toISOString(), 
-        };
-        this.markdownContent = content;
+      next: (rawContent) => {        
+        const frontMatterRegex = /^---[\s\S]*?---/;
+        this.markdownContent = rawContent.content
+          .replace(frontMatterRegex, '')
+          .trim();
         this.isLoading = false;
       },
       error: (err) => {
