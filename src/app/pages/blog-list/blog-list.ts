@@ -82,7 +82,7 @@ export class BlogList implements OnInit {
               title: post.frontMatter.title,
               description: post.frontMatter.description,
               tags: post.frontMatter.tags,
-              publishedDate: post.frontMatter.publishedDate,
+              publishedDate: new Date(post.frontMatter.publishedDate),
             },
           };
 
