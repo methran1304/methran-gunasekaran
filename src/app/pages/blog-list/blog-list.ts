@@ -71,7 +71,7 @@ export class BlogList implements OnInit {
   }
 
   getBlogList(): void {
-    this._blogService.getBlogList().subscribe({
+    this._blogService.getList().subscribe({
       next: (res) => {
         res.forEach((post, index) => {
           const blogPost: BlogPost = {

@@ -20,7 +20,7 @@ export class BlogService {
   private blogListCache$!: Observable<BlogPost[]>;
   constructor(private _httpClient: HttpClient) {}
 
-  public getBlogList(): Observable<BlogPost[]> {
+  public getList(): Observable<BlogPost[]> {
     if (this.blogListCache$) {
       console.log('cache present: ', this.blogListCache$);
     }
@@ -38,13 +38,13 @@ export class BlogService {
     return this.blogListCache$;
   }
 
-  public async getBlogFrontMatter(slug: string): Promise<FrontMatter | undefined> {
-    return await firstValueFrom(this.getBlogList().pipe(
+  public getFrontMatterBySlug(slug: string): Observable<FrontMatter | undefined> {
+    return (this.getList().pipe(
       map((res) => res.find((blog) => blog.slug === slug)?.frontMatter),
     ));
   }
 
-  public getBlogContent(slug: string): Observable<BlogContent> {
+  public getContenBySlug(slug: string): Observable<BlogContent> {
     const url = '/api/get-blog';
     const params = { slug: slug };
     return this._httpClient.get<BlogContent>(url, { params: params });

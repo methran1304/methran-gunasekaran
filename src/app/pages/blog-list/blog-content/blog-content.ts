@@ -7,6 +7,7 @@ import { ViewportScroller } from '@angular/common';
 import { Parser } from 'marked';
 import { ROUTE_CONSTANTS } from '../../../constants/route-contants';
 import { FrontMatter } from '../../../models/blog-entry';
+import { fromEventPattern } from 'rxjs';
 
 @Component({
   selector: 'app-blog-content',
@@ -17,7 +18,7 @@ import { FrontMatter } from '../../../models/blog-entry';
 export class BlogContentComponent implements OnInit {
   readonly arrowIcon = ArrowLeft;
   private slug!: string;
-  frontMatter!: FrontMatter;
+  frontMatter!: FrontMatter | undefined;
   markdownContent!: string;
   isLocalRun: boolean = false; // enable for debugging
   isLoading: boolean = true;
@@ -32,7 +33,6 @@ export class BlogContentComponent implements OnInit {
 
   ngOnInit(): void {
     this.getSlug();
-    this.getBlogContent();
 
     this._markdownService.renderer.heading = ({ tokens, depth }) => {
       const text = Parser.parseInline(tokens);
@@ -59,17 +59,30 @@ export class BlogContentComponent implements OnInit {
   getSlug(): void {
     this._activatedRoute.paramMap.subscribe((params) => {
       this.slug = params.get('slug')!;
+      this.getBlogFrontMatter();
+      this.getBlogContent();
+    });
+  }
+
+  getBlogFrontMatter(): void {
+    this._blogService.getFrontMatterBySlug(this.slug).subscribe({
+      next: (frontmatter) => {
+        this.frontMatter = frontmatter;
+        console.log(this.frontMatter);
+      },
+      error: (error) => console.error('error: getBlogFrontMatter', error)
     });
   }
 
   getBlogContent(): void {
-    this._blogService.getBlogContent(this.slug).subscribe({
+    this._blogService.getContenBySlug(this.slug).subscribe({
       next: (rawContent) => {        
         const frontMatterRegex = /^---[\s\S]*?---/;
         this.markdownContent = rawContent.content
           .replace(frontMatterRegex, '')
           .trim();
         this.isLoading = false;
+        console.log(this.markdownContent);
       },
       error: (err) => {
         this.markdownContent = '';
