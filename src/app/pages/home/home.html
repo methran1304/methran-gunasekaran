@@ -47,7 +47,7 @@
         @for (lang of languages; track $index) {
           <div class="flex flex-col">
             <i
-              [class]="lang.icon + ' hover:text-accent hover:scale-105 transition-colors'"
+              [class]="lang.icon + ' hover:text-accent hover:scale-110 transition-all'"
             ></i>
             <span class="text-xs mt-1">{{ lang.label }}</span>
           </div>
@@ -62,7 +62,7 @@
         @for (framework of frameworks; track $index) {
           <div class="flex flex-col">
             <i
-              [class]="framework.icon + ' hover:text-accent hover:scale-105 transition-colors'"
+              [class]="framework.icon + ' hover:text-accent hover:scale-110 transition-all'"
             ></i>
             <span class="text-xs mt-1">{{ framework.label }}</span>
           </div>
@@ -77,7 +77,7 @@
         @for (tool of tools; track $index) {
           <div class="flex flex-col">
             <i
-              [class]="tool.icon + ' hover:text-accent hover:scale-105 transition-colors'"
+              [class]="tool.icon + ' hover:text-accent hover:scale-110 transition-all'"
             ></i>
             <span class="text-xs mt-1">{{ tool.label }}</span>
           </div>
