@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {
+  firstValueFrom,
   fromEventPattern,
   map,
   Observable,
@@ -37,10 +38,10 @@ export class BlogService {
     return this.blogListCache$;
   }
 
-  public getBlogFrontMatter(slug: string) {
-    return this.getBlogList().pipe(
+  public async getBlogFrontMatter(slug: string): Promise<FrontMatter | undefined> {
+    return await firstValueFrom(this.getBlogList().pipe(
       map((res) => res.find((blog) => blog.slug === slug)?.frontMatter),
-    );
+    ));
   }
 
   public getBlogContent(slug: string): Observable<BlogContent> {
