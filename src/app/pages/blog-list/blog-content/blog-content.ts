@@ -7,20 +7,23 @@ import { ViewportScroller } from '@angular/common';
 import { Parser } from 'marked';
 import { ROUTE_CONSTANTS } from '../../../constants/route-contants';
 import { FrontMatter } from '../../../models/blog-entry';
-import { fromEventPattern } from 'rxjs';
+import { DatePipe } from '@angular/common';
+import { Calendar } from 'lucide-angular';
+
 
 @Component({
   selector: 'app-blog-content',
-  imports: [RouterLink, LucideAngularModule, MarkdownComponent],
+  imports: [RouterLink, LucideAngularModule, MarkdownComponent, DatePipe],
   templateUrl: './blog-content.html',
   styleUrl: './blog-content.css',
 })
 export class BlogContentComponent implements OnInit {
   readonly arrowIcon = ArrowLeft;
+  readonly calendarIcon = Calendar;
   private slug!: string;
   frontMatter!: FrontMatter | undefined;
   markdownContent!: string;
-  isLocalRun: boolean = false; // enable for debugging
+  isLocalRun: boolean = true; // enable for debugging
   isLoading: boolean = true;
   readonly routeConstants = ROUTE_CONSTANTS;
 
@@ -64,6 +67,7 @@ export class BlogContentComponent implements OnInit {
     });
   }
 
+  // move this logic to api - return data, content from getBlogContent
   getBlogFrontMatter(): void {
     this._blogService.getFrontMatterBySlug(this.slug).subscribe({
       next: (frontmatter) => {
@@ -76,7 +80,7 @@ export class BlogContentComponent implements OnInit {
 
   getBlogContent(): void {
     this._blogService.getContenBySlug(this.slug).subscribe({
-      next: (rawContent) => {        
+      next: (rawContent) => {
         const frontMatterRegex = /^---[\s\S]*?---/;
         this.markdownContent = rawContent.content
           .replace(frontMatterRegex, '')

@@ -38,10 +38,12 @@ export class BlogService {
     return this.blogListCache$;
   }
 
-  public getFrontMatterBySlug(slug: string): Observable<FrontMatter | undefined> {
-    return (this.getList().pipe(
+  public getFrontMatterBySlug(
+    slug: string,
+  ): Observable<FrontMatter | undefined> {
+    return this.getList().pipe(
       map((res) => res.find((blog) => blog.slug === slug)?.frontMatter),
-    ));
+    );
   }
 
   public getContenBySlug(slug: string): Observable<BlogContent> {
