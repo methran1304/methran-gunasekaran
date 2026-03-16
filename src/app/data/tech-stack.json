@@ -17,6 +17,7 @@
     { "key": "oauth", "icon": "devicon-oauth-plain", "label": "OAuth" }
   ],
   "tools": [
+    { "key": "visualstudio", "icon": "devicon-visualstudio-plain", "label": "Visual Studio" },    
     { "key": "linux", "icon": "devicon-linux-plain", "label": "Linux" },
     { "key": "azure", "icon": "devicon-azure-plain", "label": "Azure" },
     { "key": "vercel", "icon": "devicon-vercel-plain", "label": "Vercel" },
