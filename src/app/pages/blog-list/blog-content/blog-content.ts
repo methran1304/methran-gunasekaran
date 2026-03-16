@@ -29,6 +29,7 @@ export class BlogContentComponent implements OnInit {
 
   ngOnInit(): void {
     this.getSlug();
+    this.getBlogFrontMatter();
     this.getBlogContent();
 
     this._markdownService.renderer.heading = ({ tokens, depth }) => {
@@ -57,6 +58,11 @@ export class BlogContentComponent implements OnInit {
     this._activatedRoute.paramMap.subscribe((params) => {
       this.slug = params.get('slug')!;
     });
+  }
+
+  getBlogFrontMatter(): void {
+    const fm = this._blogService.getBlogFrontMatter(this.slug);
+    console.log('fm: ', fm);
   }
 
   getBlogContent(): void {

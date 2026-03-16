@@ -1,7 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, ReplaySubject, share, timer } from 'rxjs';
-import { BlogPost } from '../models/blog-entry';
+import {
+  fromEventPattern,
+  map,
+  Observable,
+  ReplaySubject,
+  share,
+  timer,
+} from 'rxjs';
+import { BlogPost, FrontMatter } from '../models/blog-entry';
 import { BlogContent } from '../models/blog-content';
 // import { SECRETS } from '../../../secrets';
 
@@ -24,20 +31,17 @@ export class BlogService {
           connector: () => new ReplaySubject(),
           resetOnComplete: () => timer(900000),
           resetOnRefCountZero: false,
-        })
+        }),
       );
     }
     return this.blogListCache$;
   }
 
-  // public getBlogFrontMatter(slug: string) {
-  //   const frontMatter: BlogPost
-  //   this.getBlogList().subscribe({
-  //     next: (res) => {
-  //       return res.filter()
-  //     }
-  //   })
-  // }
+  public getBlogFrontMatter(slug: string) {
+    return this.getBlogList().pipe(
+      map((res) => res.find((blog) => blog.slug === slug)?.frontMatter),
+    );
+  }
 
   public getBlogContent(slug: string): Observable<BlogContent> {
     const url = '/api/get-blog';
