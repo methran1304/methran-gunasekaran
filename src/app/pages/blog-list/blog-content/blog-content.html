@@ -63,14 +63,14 @@
     @if (isLocalRun) {
       <markdown
         (click)="onMarkdownClick($event)"
-        class="prose prose-lg prose-theme max-w-5xl w-full"
+        class="prose prose-theme max-w-5xl w-full"
         [src]="'test.md'"
       >
       </markdown>
     } @else {
       <markdown
         (click)="onMarkdownClick($event)"
-        class="prose prose-lg prose-theme max-w-5xl w-full"
+        class="prose prose-theme max-w-5xl w-full"
         [data]="markdownContent"
       >
       </markdown>

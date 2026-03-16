@@ -23,7 +23,7 @@ export class BlogContentComponent implements OnInit {
   private slug!: string;
   frontMatter!: FrontMatter | undefined;
   markdownContent!: string;
-  isLocalRun: boolean = false; // enable for debugging
+  isLocalRun: boolean = false; // enable for debugging blog md
   isLoading: boolean = true;
   readonly routeConstants = ROUTE_CONSTANTS;
 
