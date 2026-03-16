@@ -30,6 +30,15 @@ export class BlogService {
     return this.blogListCache$;
   }
 
+  // public getBlogFrontMatter(slug: string) {
+  //   const frontMatter: BlogPost
+  //   this.getBlogList().subscribe({
+  //     next: (res) => {
+  //       return res.filter()
+  //     }
+  //   })
+  // }
+
   public getBlogContent(slug: string): Observable<BlogContent> {
     const url = '/api/get-blog';
     const params = { slug: slug };

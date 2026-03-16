@@ -21,7 +21,14 @@ import { ROUTE_CONSTANTS } from '../../constants/route-contants';
 
 @Component({
   selector: 'app-blog-list',
-  imports: [LucideAngularModule, RouterLink, NgxPaginationModule, DatePipe, FormsModule, NgxTypewriterComponent],
+  imports: [
+    LucideAngularModule,
+    RouterLink,
+    NgxPaginationModule,
+    DatePipe,
+    FormsModule,
+    NgxTypewriterComponent,
+  ],
   templateUrl: './blog-list.html',
   styleUrl: './blog-list.css',
 })
@@ -48,14 +55,15 @@ export class BlogList implements OnInit {
     const query = this.searchQuery.toLowerCase().trim();
     return this.blogs.filter(
       (blog) =>
-        blog.title.toLowerCase().includes(query) ||
-        blog.description.toLowerCase().includes(query) ||
-        blog.tags?.some((tag) => tag.toLowerCase().includes(query))
+        blog.frontMatter.title.toLowerCase().includes(query) ||
+        blog.frontMatter.description.toLowerCase().includes(query) ||
+        blog.frontMatter.tags?.some((tag) => tag.toLowerCase().includes(query)),
     );
   }
 
-  constructor(private _blogService: BlogService,
-    private _pageUtils: PageUtils
+  constructor(
+    private _blogService: BlogService,
+    private _pageUtils: PageUtils,
   ) {}
 
   ngOnInit(): void {
@@ -68,19 +76,25 @@ export class BlogList implements OnInit {
         res.forEach((post, index) => {
           const blogPost: BlogPost = {
             id: index,
-            title: post.title,
             slug: post.slug,
-            tags: post.tags,
-            description: post.description,
-            publishedDate: new Date(post.publishedDate),
             isLinkCopied: false,
+            frontMatter: {
+              title: post.frontMatter.title,
+              description: post.frontMatter.description,
+              tags: post.frontMatter.tags,
+              publishedDate: post.frontMatter.publishedDate,
+            },
           };
 
           this.blogs!.push(blogPost);
         });
 
         // sort blog based on date
-        this.blogs?.sort((x, y) => y.publishedDate.getTime() - x.publishedDate.getTime());
+        this.blogs?.sort(
+          (x, y) =>
+            y.frontMatter.publishedDate.getTime() -
+            x.frontMatter.publishedDate.getTime(),
+        );
 
         this.isLoading = false;
       },

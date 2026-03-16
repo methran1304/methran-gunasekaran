@@ -1,9 +1,13 @@
 export interface BlogPost {
     id: number;
+    slug: string;
+    isLinkCopied: boolean;
+    frontMatter: FrontMatter;
+}
+
+export interface FrontMatter {
     title: string;
     description: string;
-    slug: string;
     tags: string[];
     publishedDate: Date;
-    isLinkCopied: boolean;
 }

@@ -39,11 +39,13 @@ export async function GET(request: Request) {
         const { data } = matter(fileContent);
 
         return {
-          title: data.title || 'Untitled Blog',
-          slug: data.slug,
-          description: data.description || '',
-          tags: data.tags,
-          publishedDate: data.date || new Date().toISOString()
+          frontMatter: {
+            title: data.title || 'Untitled Blog',
+            slug: data.slug,
+            description: data.description || '',
+            tags: data.tags,
+            publishedDate: data.date || new Date().toISOString(),
+          }
         };
       });
 

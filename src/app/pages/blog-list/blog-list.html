@@ -73,7 +73,7 @@
             class="font-mono group-hover:text-accent font-extrabold text-lg mb-2"
           >
             <span class="text-accent">$</span>
-            {{ blog.title }}
+            {{ blog.frontMatter.title }}
           </a>
 
           <div class="flex items-center gap-2 font-extrabold mb-2">
@@ -81,18 +81,18 @@
               [img]="calendarIcon"
               class="size-4"
             ></lucide-angular>
-            <span>{{ blog.publishedDate | date: "MMM d, y" }}</span>
+            <span>{{ blog.frontMatter.publishedDate | date: "MMM d, y" }}</span>
           </div>
         </div>
 
         <!-- Description -->
         <div class="font-mono text-secondary line-clamp-2">
-          {{ blog.description }}
+          {{ blog.frontMatter.description }}
         </div>
 
         <!-- tags -->
         <div class="flex flex-wrap gap-2 pt-2">
-          @for (tag of blog?.tags ?? []; track $index) {
+          @for (tag of blog?.frontMatter?.tags ?? []; track $index) {
           <span
             class="px-2 py-1 text-xs rounded bg-borders/20 text-secondary font-mono hover:bg-accent/10 hover:text-accent transition-all"
             >{{ tag }}</span
