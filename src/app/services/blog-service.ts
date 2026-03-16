@@ -13,7 +13,11 @@ export class BlogService {
   constructor(private _httpClient: HttpClient) {}
 
   public getBlogList(): Observable<BlogPost[]> {
+    if (this.blogListCache$) {
+      console.log('cache present: ', this.blogListCache$);
+    }
     if (!this.blogListCache$) {
+      console.log('cache not present. fetching...');
       const url = `/api/get-blog-list`;
       this.blogListCache$ = this._httpClient.get<BlogPost[]>(url).pipe(
         share({
