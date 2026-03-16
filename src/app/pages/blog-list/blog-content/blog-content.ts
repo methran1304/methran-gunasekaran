@@ -74,6 +74,7 @@ export class BlogContentComponent implements OnInit {
           publishedDate: data['date'] || new Date().toISOString(), 
         };
         this.markdownContent = content;
+        console.log(this.frontMatter, this.markdownContent);
         this.isLoading = false;
       },
       error: (err) => {
