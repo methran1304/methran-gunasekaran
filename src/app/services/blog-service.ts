@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, Observer, Subscribable } from 'rxjs';
+import { Observable, ReplaySubject, share, timer } from 'rxjs';
 import { BlogPost } from '../models/blog-entry';
 import { BlogContent } from '../models/blog-content';
 // import { SECRETS } from '../../../secrets';
@@ -9,16 +9,26 @@ import { BlogContent } from '../models/blog-content';
   providedIn: 'root',
 })
 export class BlogService {
+  private blogListCache$!: Observable<BlogPost[]>;
   constructor(private _httpClient: HttpClient) {}
 
   public getBlogList(): Observable<BlogPost[]> {
-    const url = `/api/get-blog-list`;
-    return this._httpClient.get<BlogPost[]>(url);
+    if (!this.blogListCache$) {
+      const url = `/api/get-blog-list`;
+      this.blogListCache$ = this._httpClient.get<BlogPost[]>(url).pipe(
+        share({
+          connector: () => new ReplaySubject(),
+          resetOnComplete: () => timer(900000),
+          resetOnRefCountZero: false,
+        })
+      );
+    }
+    return this.blogListCache$;
   }
 
   public getBlogContent(slug: string): Observable<BlogContent> {
     const url = '/api/get-blog';
     const params = { slug: slug };
-    return this._httpClient.get<BlogContent>(url, {params: params});
+    return this._httpClient.get<BlogContent>(url, { params: params });
   }
 }
