@@ -1,0 +1,28 @@
+{
+  "languages": [
+    { "key": "csharp", "icon": "devicon-csharp-plain", "label": "C#" },
+    { "key": "python", "icon": "devicon-python-plain", "label": "Python" },
+    { "key": "cplusplus", "icon": "devicon-cplusplus-plain", "label": "C++" },
+    { "key": "html5", "icon": "devicon-html5-plain", "label": "HTML5" },
+    { "key": "css3", "icon": "devicon-css3-plain", "label": "CSS3" },
+    { "key": "typescript", "icon": "devicon-typescript-plain", "label": "TypeScript" },
+    { "key": "bash", "icon": "devicon-bash-plain", "label": "Bash" }
+  ],
+  "frameworks": [
+    { "key": "dotnetcore", "icon": "devicon-dotnetcore-plain", "label": ".NET" },
+    { "key": "angular", "icon": "devicon-angular-plain", "label": "Angular" },
+    { "key": "blazor", "icon": "devicon-blazor-plain", "label": "Blazor" },
+    { "key": "fastapi", "icon": "devicon-fastapi-plain", "label": "FastAPI" },
+    { "key": "tailwindcss", "icon": "devicon-tailwindcss-plain", "label": "Tailwind" },
+    { "key": "oauth", "icon": "devicon-oauth-plain", "label": "OAuth" }
+  ],
+  "tools": [
+    { "key": "linux", "icon": "devicon-linux-plain", "label": "Linux" },
+    { "key": "azure", "icon": "devicon-azure-plain", "label": "Azure" },
+    { "key": "vercel", "icon": "devicon-vercel-plain", "label": "Vercel" },
+    { "key": "github", "icon": "devicon-github-plain", "label": "GitHub" },
+    { "key": "docker", "icon": "devicon-docker-plain", "label": "Docker" },
+    { "key": "mongodb", "icon": "devicon-mongodb-plain", "label": "MongoDB" },
+    { "key": "microsoftsqlserver", "icon": "devicon-microsoftsqlserver-plain", "label": "SQL Server" }
+  ]
+}

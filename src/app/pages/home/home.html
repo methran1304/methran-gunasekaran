@@ -44,48 +44,14 @@
     <div>
       <p class="font-mono text-sm text-primary mb-3">Languages & Scripting</p>
       <div class="flex flex-wrap justify-center gap-5 text-4xl">
-        <div class="flex flex-col">
-          <i
-            class="devicon-csharp-plain hover:text-accent transition-colors"
-          ></i>
-          <span class="text-xs mt-1">C#</span>
-        </div>
-        <div class="flex flex-col">
-          <i
-            class="devicon-python-plain hover:text-accent transition-colors"
-          ></i>
-          <span class="text-xs mt-1">Python</span>
-        </div>
-        <div class="flex flex-col">
-          <i
-            class="devicon-cplusplus-plain hover:text-accent transition-colors"
-          ></i>
-          <span class="text-xs mt-1">C++</span>
-        </div>
-
-        <div class="flex flex-col">
-          <i
-            class="devicon-html5-plain hover:text-accent transition-colors"
-          ></i>
-          <span class="text-xs mt-1">HTML5</span>
-        </div>
-
-        <div class="flex flex-col">
-          <i class="devicon-css3-plain hover:text-accent transition-colors"></i>
-          <span class="text-xs mt-1">CSS3</span>
-        </div>
-
-        <div class="flex flex-col">
-          <i
-            class="devicon-typescript-plain hover:text-accent transition-colors"
-          ></i>
-          <span class="text-xs mt-1">TypeScript</span>
-        </div>
-
-        <div class="flex flex-col">
-          <i class="devicon-bash-plain hover:text-accent transition-colors"></i>
-          <span class="text-xs mt-1">Bash</span>
-        </div>
+        @for (lang of languages; track $index) {
+          <div class="flex flex-col">
+            <i
+              [class]="lang.icon + ' hover:text-accent hover:scale-105 transition-colors'"
+            ></i>
+            <span class="text-xs mt-1">{{ lang.label }}</span>
+          </div>
+        }
       </div>
     </div>
 
@@ -93,43 +59,14 @@
     <div>
       <p class="font-mono text-sm text-primary mb-3">Frameworks & Libraries</p>
       <div class="flex flex-wrap justify-center gap-5 text-4xl">
-        <div class="flex flex-col">
-          <i
-            class="devicon-dotnetcore-plain hover:text-accent transition-colors"
-          ></i>
-          <span class="text-xs mt-1">.NET</span>
-        </div>
-        <div class="flex flex-col">
-          <i
-            class="devicon-angular-plain hover:text-accent transition-colors"
-          ></i>
-          <span class="text-xs mt-1">Angular</span>
-        </div>
-        <div class="flex flex-col">
-          <i
-            class="devicon-blazor-plain hover:text-accent transition-colors"
-          ></i>
-
-          <span class="text-xs mt-1">Blazor</span>
-        </div>
-        <div class="flex flex-col">
-          <i
-            class="devicon-fastapi-plain hover:text-accent transition-colors"
-          ></i>
-          <span class="text-xs mt-1">FastAPI</span>
-        </div>
-        <div class="flex flex-col">
-          <i
-            class="devicon-tailwindcss-plain hover:text-accent transition-colors"
-          ></i>
-          <span class="text-xs mt-1">Tailwind</span>
-        </div>
-        <div class="flex flex-col">
-          <i
-            class="devicon-oauth-plain hover:text-accent transition-colors"
-          ></i>
-          <span class="text-xs mt-1">OAuth</span>
-        </div>
+        @for (framework of frameworks; track $index) {
+          <div class="flex flex-col">
+            <i
+              [class]="framework.icon + ' hover:text-accent hover:scale-105 transition-colors'"
+            ></i>
+            <span class="text-xs mt-1">{{ framework.label }}</span>
+          </div>
+        }
       </div>
     </div>
 
@@ -137,49 +74,14 @@
     <div class="col-span-1 md:col-span-2">
       <p class="font-mono text-sm text-primary mb-3">Tools & Databases</p>
       <div class="flex flex-wrap justify-center gap-5 text-4xl">
-        <div class="flex flex-col">
-          <i
-            class="devicon-linux-plain hover:text-accent transition-colors"
-          ></i>
-          <span class="text-xs mt-1">Linux</span>
-        </div>
-        <div class="flex flex-col">
-          <i
-            class="devicon-azure-plain hover:text-accent transition-colors"
-          ></i>
-          <span class="text-xs mt-1">Azure</span>
-        </div>
-
-        <div class="flex flex-col">
-          <i
-            class="devicon-vercel-plain hover:text-accent transition-colors"
-          ></i>
-          <span class="text-xs mt-1">Vercel</span>
-        </div>
-        <div class="flex flex-col">
-          <i
-            class="devicon-github-plain hover:text-accent transition-colors"
-          ></i>
-          <span class="text-xs mt-1">GitHub</span>
-        </div>
-        <div class="flex flex-col">
-          <i
-            class="devicon-docker-plain hover:text-accent transition-colors"
-          ></i>
-          <span class="text-xs mt-1">Docker</span>
-        </div>
-        <div class="flex flex-col">
-          <i
-            class="devicon-mongodb-plain hover:text-accent transition-colors"
-          ></i>
-          <span class="text-xs mt-1">MongoDB</span>
-        </div>
-        <div class="flex flex-col">
-          <i
-            class="devicon-microsoftsqlserver-plain hover:text-accent transition-colors"
-          ></i>
-          <span class="text-xs mt-1">SQL Server</span>
-        </div>
+        @for (tool of tools; track $index) {
+          <div class="flex flex-col">
+            <i
+              [class]="tool.icon + ' hover:text-accent hover:scale-105 transition-colors'"
+            ></i>
+            <span class="text-xs mt-1">{{ tool.label }}</span>
+          </div>
+        }
       </div>
     </div>
   </div>
@@ -200,10 +102,9 @@
       CV
     </a>
 
-        <!-- Download Resume Button -->
+    <!-- Download Resume Button -->
     <a
       [routerLink]="[routeConstants.Blog]"
-
       class="font-mono px-4 py-2 bg-background text-primary border border-primary/20 rounded-md hover:bg-primary/5 hover:border-primary/40 transition-all duration-200 text-sm font-medium flex items-center gap-2"
     >
       <lucide-angular [img]="notebookPenIcon" size="16"></lucide-angular>
@@ -218,7 +119,5 @@
       <lucide-angular [img]="folderIcon" size="16"></lucide-angular>
       Work
     </a>
-
-
   </div>
 </div>
