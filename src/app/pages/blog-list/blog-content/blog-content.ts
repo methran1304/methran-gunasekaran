@@ -6,6 +6,9 @@ import { MarkdownComponent, MarkdownService } from 'ngx-markdown';
 import { ViewportScroller } from '@angular/common';
 import { Parser } from 'marked';
 import { ROUTE_CONSTANTS } from '../../../constants/route-contants';
+import matter from 'gray-matter';
+import { FrontMatter } from '../../../models/blog-entry';
+
 @Component({
   selector: 'app-blog-content',
   imports: [RouterLink, LucideAngularModule, MarkdownComponent],
@@ -15,6 +18,7 @@ import { ROUTE_CONSTANTS } from '../../../constants/route-contants';
 export class BlogContentComponent implements OnInit {
   readonly arrowIcon = ArrowLeft;
   private slug!: string;
+  frontMatter!: FrontMatter;
   markdownContent!: string;
   isLocalRun: boolean = false; // enable for debugging
   isLoading: boolean = true;
@@ -29,7 +33,6 @@ export class BlogContentComponent implements OnInit {
 
   ngOnInit(): void {
     this.getSlug();
-    this.getBlogFrontMatter();
     this.getBlogContent();
 
     this._markdownService.renderer.heading = ({ tokens, depth }) => {
@@ -60,18 +63,17 @@ export class BlogContentComponent implements OnInit {
     });
   }
 
-  getBlogFrontMatter(): void {
-    const fm = this._blogService.getBlogFrontMatter(this.slug);
-    console.log('fm: ', fm);
-  }
-
   getBlogContent(): void {
     this._blogService.getBlogContent(this.slug).subscribe({
       next: (rawContent) => {
-        const frontMatterRegex = /^---[\s\S]*?---/;
-        this.markdownContent = rawContent.content
-          .replace(frontMatterRegex, '')
-          .trim();
+        const { content, data } = matter(rawContent);
+        this.frontMatter = {
+          title: data['title'] || null,
+          description: data['description'],
+          tags: data['tags'],
+          publishedDate: data['date'] || new Date().toISOString(), 
+        };
+        this.markdownContent = content;
         this.isLoading = false;
       },
       error: (err) => {
