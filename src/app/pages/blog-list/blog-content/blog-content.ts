@@ -23,7 +23,7 @@ export class BlogContentComponent implements OnInit {
   private slug!: string;
   frontMatter!: FrontMatter | undefined;
   markdownContent!: string;
-  isLocalRun: boolean = false; // enable for debugging
+  isLocalRun: boolean = true; // enable for debugging
   isLoading: boolean = true;
   readonly routeConstants = ROUTE_CONSTANTS;
 
@@ -72,7 +72,6 @@ export class BlogContentComponent implements OnInit {
     this._blogService.getFrontMatterBySlug(this.slug).subscribe({
       next: (frontmatter) => {
         this.frontMatter = frontmatter;
-        console.log(this.frontMatter);
       },
       error: (error) => console.error('error: getBlogFrontMatter', error)
     });
@@ -86,7 +85,6 @@ export class BlogContentComponent implements OnInit {
           .replace(frontMatterRegex, '')
           .trim();
         this.isLoading = false;
-        console.log(this.markdownContent);
       },
       error: (err) => {
         this.markdownContent = '';
