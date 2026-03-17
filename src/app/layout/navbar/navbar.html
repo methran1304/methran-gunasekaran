@@ -22,9 +22,9 @@
 
         <button class="md:pl-4 transition-colors" (click)="toggleTheme()">
           @if (isDarkTheme) {
-            <lucide-angular [img]="sunIcon" class="hover:text-amber-300 font-bold my-icon"></lucide-angular>
+            <lucide-angular [img]="sunIcon" class="cursor-pointer hover:text-amber-300 font-bold my-icon"></lucide-angular>
           } @else {
-            <lucide-angular [img]="moonIcon" class="hover:text-blue-500 font-bold my-icon"></lucide-angular>
+            <lucide-angular [img]="moonIcon" class="cursor-pointer hover:text-blue-500 font-bold my-icon"></lucide-angular>
           }
         </button>
 
