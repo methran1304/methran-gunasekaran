@@ -67,7 +67,7 @@ export class BlogContentComponent implements OnInit {
     });
   }
 
-  // move this logic to api - return data, content from getBlogContent
+  // move this logic to api - return data, content from getBlogContent - PRIORITY
   getBlogFrontMatter(): void {
     this._blogService.getFrontMatterBySlug(this.slug).subscribe({
       next: (frontmatter) => {
