@@ -16,6 +16,8 @@ During my undergraduate studies, I secured an internship at [Kovai.co](https://w
 
 Now, I am completing my **Masters in Advanced Computer Science** with Distinction at the **University of Liverpool**, where I have explored advanced algorithms, high-performance computing, cloud, machine learning and a lot more. 
 
+Most recently, I joined a stealth AI startup as a **Founding Engineer**, building an enterprise AI integration platform — designing MCP-based microservices and agentic systems on Azure that unify fragmented legacy platforms.
+
 ## Achievements & Competitions
 
 ### Work Recognition

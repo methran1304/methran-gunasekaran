@@ -30,6 +30,28 @@ export class ProjectsComponent implements OnInit {
 
   projects: Work[] = [
     {
+      title: 'Stealth AI Startup',
+      description:
+        'Founding Engineer at a stealth enterprise AI integration startup building a unified intelligence layer that connects legacy systems through MCP microservices and AI agents. Shipping Azure-native services and Bicep-defined infrastructure with a Cursor-driven agentic development workflow.',
+      liveLink: '',
+      status: WorkStatus.InProgress,
+      techStack: [
+        'TypeScript',
+        'Node.js',
+        'MCP',
+        'Cursor',
+        'Agentic Development',
+        'Azure Container Apps',
+        'Azure Service Bus',
+        'Azure Blob Storage',
+        'Azure Key Vault',
+        'Bicep',
+        'SQLite',
+        'Redis',
+      ],
+      isFeatured: true,
+    },
+    {
       title: 'Verbatim',
       description:
         'An AI-powered typing platform that helps users improve speed and accuracy through adaptive exercises, real-time analytics, and personalized feedback.',
