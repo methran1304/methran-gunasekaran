@@ -13,51 +13,23 @@
     @for (project of projects; track project.title) {
       <div class="group cursor-default transition-colors duration-200">
         <div
-          class="flex flex-col p-6 h-full lg:h-65 w-full lg:w-110 border-1 border-b-0 rounded-b-none border-borders rounded-md group-hover:border-accent/50 transition-colors duration-200"
+          class="card-scroll flex flex-col p-6 h-65 w-full lg:w-110 border-1 border-b-0 rounded-b-none border-borders rounded-md group-hover:border-accent/50 transition-colors duration-200 overflow-y-auto overscroll-contain"
         >
           <div
-            class="font-mono group-hover:text-accent font-extrabold text-lg mb-2 line-clamp-2"
+            class="font-mono group-hover:text-accent font-extrabold text-lg mb-2"
           >
             <span class="text-accent">$</span>
             {{ project.title }}
           </div>
-          <div class="font-mono text-secondary flex-1">
+          <div class="font-mono text-secondary mb-4">
             {{ project.description }}
           </div>
-          <div
-            class="flex flex-wrap gap-2 mt-auto"
-            [ngClass]="
-              isTagsExpanded(project.title)
-                ? 'max-h-20 overflow-y-auto pr-1'
-                : ''
-            "
-          >
-            @for (tech of getVisibleTags(project); track $index) {
+          <div class="flex flex-wrap gap-2">
+            @for (tech of project.techStack; track $index) {
               <span
                 class="px-2 py-1 text-xs rounded bg-borders/20 text-secondary font-mono hover:bg-accent/10 hover:text-accent transition-colors"
                 >{{ tech }}</span
               >
-            }
-            @if (
-              getRemainingTagCount(project) > 0 &&
-              !isTagsExpanded(project.title)
-            ) {
-              <button
-                type="button"
-                (click)="toggleTagsExpanded(project.title)"
-                class="px-2 py-1 text-xs rounded bg-accent/10 text-accent font-mono hover:bg-accent/20 transition-colors cursor-pointer"
-              >
-                +{{ getRemainingTagCount(project) }} more
-              </button>
-            }
-            @if (isTagsExpanded(project.title)) {
-              <button
-                type="button"
-                (click)="toggleTagsExpanded(project.title)"
-                class="px-2 py-1 text-xs rounded bg-accent/10 text-accent font-mono hover:bg-accent/20 transition-colors cursor-pointer"
-              >
-                Show less
-              </button>
             }
           </div>
         </div>
@@ -127,17 +99,17 @@
     @for (contribution of openSourceContributions; track contribution.title) {
       <div class="group cursor-default transition-colors duration-200">
         <div
-          class="flex flex-col p-6 h-full lg:h-65 w-full lg:w-110 border-1 border-b-0 rounded-b-none border-borders rounded-md group-hover:border-accent/50 transition-colors duration-200"
+          class="card-scroll flex flex-col p-6 h-65 w-full lg:w-110 border-1 border-b-0 rounded-b-none border-borders rounded-md group-hover:border-accent/50 transition-colors duration-200 overflow-y-auto overscroll-contain"
         >
           <div class="flex justify-between">
             <div
-              class="font-mono group-hover:text-accent font-extrabold text-lg mb-2 line-clamp-2 transition-colors"
+              class="font-mono group-hover:text-accent font-extrabold text-lg mb-2 transition-colors"
             >
               <span class="text-accent">$</span>
               {{ contribution.title }}
             </div>
 
-            <div class="flex gap-3">
+            <div class="flex gap-3 shrink-0">
               @if (contribution.githubStarCount) {
                 <span
                   class="flex justify-between items-center mb-2 gap-2 text-sm text-secondary group-hover:text-accent transition-colors"
@@ -164,43 +136,15 @@
             </div>
           </div>
 
-          <div class="font-mono text-secondary flex-1">
+          <div class="font-mono text-secondary mb-4">
             {{ contribution.description }}
           </div>
-          <div
-            class="flex flex-wrap gap-2 mt-auto"
-            [ngClass]="
-              isTagsExpanded(contribution.title)
-                ? 'max-h-20 overflow-y-auto pr-1'
-                : ''
-            "
-          >
-            @for (tech of getVisibleTags(contribution); track $index) {
+          <div class="flex flex-wrap gap-2">
+            @for (tech of contribution.techStack; track $index) {
               <span
                 class="px-2 py-1 text-xs rounded bg-borders/20 text-secondary font-mono hover:bg-accent/10 hover:text-accent transition-colors"
                 >{{ tech }}</span
               >
-            }
-            @if (
-              getRemainingTagCount(contribution) > 0 &&
-              !isTagsExpanded(contribution.title)
-            ) {
-              <button
-                type="button"
-                (click)="toggleTagsExpanded(contribution.title)"
-                class="px-2 py-1 text-xs rounded bg-accent/10 text-accent font-mono hover:bg-accent/20 transition-colors cursor-pointer"
-              >
-                +{{ getRemainingTagCount(contribution) }} more
-              </button>
-            }
-            @if (isTagsExpanded(contribution.title)) {
-              <button
-                type="button"
-                (click)="toggleTagsExpanded(contribution.title)"
-                class="px-2 py-1 text-xs rounded bg-accent/10 text-accent font-mono hover:bg-accent/20 transition-colors cursor-pointer"
-              >
-                Show less
-              </button>
             }
           </div>
         </div>
