@@ -24,12 +24,40 @@
           <div class="font-mono text-secondary flex-1">
             {{ project.description }}
           </div>
-          <div class="flex flex-wrap gap-2 mt-auto">
-            @for (tech of project.techStack; track $index) {
+          <div
+            class="flex flex-wrap gap-2 mt-auto"
+            [ngClass]="
+              isTagsExpanded(project.title)
+                ? 'max-h-20 overflow-y-auto pr-1'
+                : ''
+            "
+          >
+            @for (tech of getVisibleTags(project); track $index) {
               <span
                 class="px-2 py-1 text-xs rounded bg-borders/20 text-secondary font-mono hover:bg-accent/10 hover:text-accent transition-colors"
                 >{{ tech }}</span
               >
+            }
+            @if (
+              getRemainingTagCount(project) > 0 &&
+              !isTagsExpanded(project.title)
+            ) {
+              <button
+                type="button"
+                (click)="toggleTagsExpanded(project.title)"
+                class="px-2 py-1 text-xs rounded bg-accent/10 text-accent font-mono hover:bg-accent/20 transition-colors cursor-pointer"
+              >
+                +{{ getRemainingTagCount(project) }} more
+              </button>
+            }
+            @if (isTagsExpanded(project.title)) {
+              <button
+                type="button"
+                (click)="toggleTagsExpanded(project.title)"
+                class="px-2 py-1 text-xs rounded bg-accent/10 text-accent font-mono hover:bg-accent/20 transition-colors cursor-pointer"
+              >
+                Show less
+              </button>
             }
           </div>
         </div>
@@ -139,12 +167,40 @@
           <div class="font-mono text-secondary flex-1">
             {{ contribution.description }}
           </div>
-          <div class="flex flex-wrap gap-2 mt-auto">
-            @for (tech of contribution.techStack; track $index) {
+          <div
+            class="flex flex-wrap gap-2 mt-auto"
+            [ngClass]="
+              isTagsExpanded(contribution.title)
+                ? 'max-h-20 overflow-y-auto pr-1'
+                : ''
+            "
+          >
+            @for (tech of getVisibleTags(contribution); track $index) {
               <span
                 class="px-2 py-1 text-xs rounded bg-borders/20 text-secondary font-mono hover:bg-accent/10 hover:text-accent transition-colors"
                 >{{ tech }}</span
               >
+            }
+            @if (
+              getRemainingTagCount(contribution) > 0 &&
+              !isTagsExpanded(contribution.title)
+            ) {
+              <button
+                type="button"
+                (click)="toggleTagsExpanded(contribution.title)"
+                class="px-2 py-1 text-xs rounded bg-accent/10 text-accent font-mono hover:bg-accent/20 transition-colors cursor-pointer"
+              >
+                +{{ getRemainingTagCount(contribution) }} more
+              </button>
+            }
+            @if (isTagsExpanded(contribution.title)) {
+              <button
+                type="button"
+                (click)="toggleTagsExpanded(contribution.title)"
+                class="px-2 py-1 text-xs rounded bg-accent/10 text-accent font-mono hover:bg-accent/20 transition-colors cursor-pointer"
+              >
+                Show less
+              </button>
             }
           </div>
         </div>

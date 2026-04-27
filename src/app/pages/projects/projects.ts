@@ -28,6 +28,9 @@ export class ProjectsComponent implements OnInit {
   readonly starIcon = Star;
   readonly gitForkIcon = GitFork;
 
+  readonly visibleTagLimit = 6;
+  private expandedTagSections = new Set<string>();
+
   projects: Work[] = [
     {
       title: 'Stealth AI Startup',
@@ -211,6 +214,32 @@ export class ProjectsComponent implements OnInit {
       githubStarCount: repos[repoPath].stars,
       githubForkCount: repos[repoPath].forks,
     };
+  }
+
+  getVisibleTags(work: Work): string[] {
+    if (
+      this.isTagsExpanded(work.title) ||
+      work.techStack.length <= this.visibleTagLimit
+    ) {
+      return work.techStack;
+    }
+    return work.techStack.slice(0, this.visibleTagLimit);
+  }
+
+  getRemainingTagCount(work: Work): number {
+    return Math.max(0, work.techStack.length - this.visibleTagLimit);
+  }
+
+  isTagsExpanded(title: string): boolean {
+    return this.expandedTagSections.has(title);
+  }
+
+  toggleTagsExpanded(title: string): void {
+    if (this.expandedTagSections.has(title)) {
+      this.expandedTagSections.delete(title);
+    } else {
+      this.expandedTagSections.add(title);
+    }
   }
 
   formatCount(count: number | undefined): string {
