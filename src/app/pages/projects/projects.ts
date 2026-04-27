@@ -32,7 +32,7 @@ export class ProjectsComponent implements OnInit {
     {
       title: 'Stealth AI Startup',
       description:
-        'Founding Engineer at a stealth enterprise AI integration startup building a unified intelligence layer that connects legacy systems through MCP microservices and AI agents. Shipping Azure-native services and Bicep-defined infrastructure with a Cursor-driven agentic development workflow.',
+        'Founding Engineer at a stealth enterprise AI integration startup building a unified intelligence layer that connects legacy systems through MCP microservices and AI agents.',
       liveLink: '',
       status: WorkStatus.InProgress,
       techStack: [
