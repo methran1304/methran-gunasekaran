@@ -12,8 +12,7 @@
     { "key": "dotnetcore", "icon": "devicon-dotnetcore-plain", "label": ".NET" },
     { "key": "fastapi", "icon": "devicon-fastapi-plain", "label": "FastAPI" },
     { "key": "angular", "icon": "devicon-angular-plain", "label": "Angular" },
-    { "key": "nextjs", "icon": "devicon-nextjs-plain", "label": "Next.js" },
-    { "key": "tailwindcss", "icon": "devicon-tailwindcss-plain", "label": "Tailwind" }
+    { "key": "nextjs", "icon": "devicon-nextjs-plain", "label": "Next.js" }
   ],
   "tools": [
     { "key": "azure", "icon": "devicon-azure-plain", "label": "Azure" },
