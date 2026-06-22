@@ -12,9 +12,17 @@ import {
   Calendar,
 } from 'lucide-angular';
 import { RouterLink } from '@angular/router';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ROUTE_CONSTANTS } from '../../constants/route-contants';
 import { BlogService } from '../../services/blog-service';
 import { BlogPost } from '../../models/blog-entry';
+
+interface TechItem {
+  key: string;
+  icon: string;
+  label: string;
+  svg?: string;
+}
 
 @Component({
   selector: 'app-home',
@@ -29,9 +37,9 @@ import { BlogPost } from '../../models/blog-entry';
   styleUrl: './home.css',
 })
 export class HomeComponent implements OnInit {
-  languages = techStack.languages;
-  frameworks = techStack.frameworks;
-  tools = techStack.tools;
+  languages = techStack.languages as TechItem[];
+  frameworks = techStack.frameworks as TechItem[];
+  tools = techStack.tools as TechItem[];
 
   readonly fileUserIcon = FileUser;
   readonly folderIcon = FolderOpen;
@@ -42,7 +50,14 @@ export class HomeComponent implements OnInit {
 
   recentBlogs: BlogPost[] = [];
 
-  constructor(private _blogService: BlogService) {}
+  constructor(
+    private _blogService: BlogService,
+    private _sanitizer: DomSanitizer,
+  ) {}
+
+  trustSvg(svg: string): SafeHtml {
+    return this._sanitizer.bypassSecurityTrustHtml(svg);
+  }
 
   ngOnInit(): void {
     this._blogService.getList().subscribe({

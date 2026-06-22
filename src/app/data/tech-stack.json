@@ -4,35 +4,23 @@
     { "key": "python", "icon": "devicon-python-plain", "label": "Python" },
     { "key": "csharp", "icon": "devicon-csharp-plain", "label": "C#" },
     { "key": "cplusplus", "icon": "devicon-cplusplus-plain", "label": "C++" },
-    { "key": "html5", "icon": "devicon-html5-plain", "label": "HTML5" },
-    { "key": "css3", "icon": "devicon-css3-plain", "label": "CSS3" },
     { "key": "bash", "icon": "devicon-bash-plain", "label": "Bash" }
   ],
   "frameworks": [
     { "key": "nodejs", "icon": "devicon-nodejs-plain", "label": "Node.js" },
-    { "key": "mcp", "icon": "", "label": "MCP" },
-    { "key": "zod", "icon": "", "label": "Zod" },
+    { "key": "mcp", "icon": "", "label": "MCP", "svg": "<svg width='1em' height='1em' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='4' r='2.2' fill='currentColor' stroke='none'/><circle cx='5' cy='18' r='2.2' fill='currentColor' stroke='none'/><circle cx='19' cy='18' r='2.2' fill='currentColor' stroke='none'/><circle cx='12' cy='12' r='2.6' fill='currentColor' stroke='none'/><line x1='12' y1='6.4' x2='12' y2='9.4'/><line x1='10.1' y1='13.7' x2='6.6' y2='16.1'/><line x1='13.9' y1='13.7' x2='17.4' y2='16.1'/></svg>" },
     { "key": "dotnetcore", "icon": "devicon-dotnetcore-plain", "label": ".NET" },
     { "key": "fastapi", "icon": "devicon-fastapi-plain", "label": "FastAPI" },
     { "key": "angular", "icon": "devicon-angular-plain", "label": "Angular" },
     { "key": "nextjs", "icon": "devicon-nextjs-plain", "label": "Next.js" },
-    { "key": "blazor", "icon": "devicon-blazor-plain", "label": "Blazor" },
-    { "key": "tailwindcss", "icon": "devicon-tailwindcss-plain", "label": "Tailwind" },
-    { "key": "vitest", "icon": "", "label": "Vitest" },
-    { "key": "oauth", "icon": "devicon-oauth-plain", "label": "OAuth" }
+    { "key": "tailwindcss", "icon": "devicon-tailwindcss-plain", "label": "Tailwind" }
   ],
   "tools": [
     { "key": "azure", "icon": "devicon-azure-plain", "label": "Azure" },
-    { "key": "claude", "icon": "", "label": "Claude" },
+    { "key": "claude", "icon": "", "label": "Claude", "svg": "<svg width='1em' height='1em' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.6' stroke-linecap='round'><line x1='12' y1='12' x2='21' y2='12'/><line x1='12' y1='12' x2='19.8' y2='7.5'/><line x1='12' y1='12' x2='16.5' y2='4.2'/><line x1='12' y1='12' x2='12' y2='3'/><line x1='12' y1='12' x2='7.5' y2='4.2'/><line x1='12' y1='12' x2='4.2' y2='7.5'/><line x1='12' y1='12' x2='3' y2='12'/><line x1='12' y1='12' x2='4.2' y2='16.5'/><line x1='12' y1='12' x2='7.5' y2='19.8'/><line x1='12' y1='12' x2='12' y2='21'/><line x1='12' y1='12' x2='16.5' y2='19.8'/><line x1='12' y1='12' x2='19.8' y2='16.5'/></svg>" },
     { "key": "postgresql", "icon": "devicon-postgresql-plain", "label": "PostgreSQL" },
-    { "key": "pgvector", "icon": "", "label": "pgvector" },
     { "key": "docker", "icon": "devicon-docker-plain", "label": "Docker" },
-    { "key": "redis", "icon": "devicon-redis-plain", "label": "Redis" },
-    { "key": "bicep", "icon": "", "label": "Bicep" },
     { "key": "github", "icon": "devicon-github-plain", "label": "GitHub" },
-    { "key": "linux", "icon": "devicon-linux-plain", "label": "Linux" },
-    { "key": "vercel", "icon": "devicon-vercel-plain", "label": "Vercel" },
-    { "key": "mongodb", "icon": "devicon-mongodb-plain", "label": "MongoDB" },
-    { "key": "microsoftsqlserver", "icon": "devicon-microsoftsqlserver-plain", "label": "SQL Server" }
+    { "key": "linux", "icon": "devicon-linux-plain", "label": "Linux" }
   ]
 }

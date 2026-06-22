@@ -49,16 +49,17 @@
       <div class="flex flex-wrap justify-center gap-5 text-4xl">
         @for (lang of languages; track $index) {
           <div class="flex flex-col items-center">
-            @if (lang.icon) {
+            @if (lang.svg) {
+              <span
+                class="inline-flex hover:text-accent hover:scale-110 transition-all"
+                [innerHTML]="trustSvg(lang.svg)"
+              ></span>
+              <span class="text-xs mt-2">{{ lang.label }}</span>
+            } @else if (lang.icon) {
               <i
                 [class]="lang.icon + ' hover:text-accent hover:scale-110 transition-all'"
               ></i>
               <span class="text-xs mt-2">{{ lang.label }}</span>
-            } @else {
-              <span
-                class="px-2 py-1 text-sm font-mono border border-borders/50 rounded-md hover:border-accent hover:text-accent hover:scale-110 transition-all"
-                >{{ lang.label }}</span
-              >
             }
           </div>
         }
@@ -71,16 +72,17 @@
       <div class="flex flex-wrap justify-center gap-5 text-4xl">
         @for (framework of frameworks; track $index) {
           <div class="flex flex-col items-center">
-            @if (framework.icon) {
+            @if (framework.svg) {
+              <span
+                class="inline-flex hover:text-accent hover:scale-110 transition-all"
+                [innerHTML]="trustSvg(framework.svg)"
+              ></span>
+              <span class="text-xs mt-2">{{ framework.label }}</span>
+            } @else if (framework.icon) {
               <i
                 [class]="framework.icon + ' hover:text-accent hover:scale-110 transition-all'"
               ></i>
               <span class="text-xs mt-2">{{ framework.label }}</span>
-            } @else {
-              <span
-                class="px-2 py-1 text-sm font-mono border border-borders/50 rounded-md hover:border-accent hover:text-accent hover:scale-110 transition-all"
-                >{{ framework.label }}</span
-              >
             }
           </div>
         }
@@ -93,16 +95,17 @@
       <div class="flex flex-wrap justify-center gap-5 text-4xl">
         @for (tool of tools; track $index) {
           <div class="flex flex-col items-center">
-            @if (tool.icon) {
+            @if (tool.svg) {
+              <span
+                class="inline-flex hover:text-accent hover:scale-110 transition-all"
+                [innerHTML]="trustSvg(tool.svg)"
+              ></span>
+              <span class="text-xs mt-2">{{ tool.label }}</span>
+            } @else if (tool.icon) {
               <i
                 [class]="tool.icon + ' hover:text-accent hover:scale-110 transition-all'"
               ></i>
               <span class="text-xs mt-2">{{ tool.label }}</span>
-            } @else {
-              <span
-                class="px-2 py-1 text-sm font-mono border border-borders/50 rounded-md hover:border-accent hover:text-accent hover:scale-110 transition-all"
-                >{{ tool.label }}</span
-              >
             }
           </div>
         }
