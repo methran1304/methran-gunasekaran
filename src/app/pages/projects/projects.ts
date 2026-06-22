@@ -32,7 +32,7 @@ export class ProjectsComponent implements OnInit {
     {
       title: 'Stealth AI Startup',
       description:
-        'Founding Engineer at a stealth enterprise AI integration startup. Building a governed fleet of autonomous AI agents that run real operations across email, WhatsApp and Teams, connecting fragmented legacy systems through typed, Zod-validated MCP microservices with durable memory and reliability guardrails.',
+        'Founding Engineer at a stealth AI startup, building a governed fleet of autonomous AI agents that connect legacy systems through typed MCP microservices.',
       liveLink: '',
       status: WorkStatus.InProgress,
       techStack: [
