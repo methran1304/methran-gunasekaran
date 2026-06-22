@@ -45,8 +45,8 @@ Most recently, I joined a stealth AI startup as a **Founding Engineer**, buildin
 
 I like keeping myself engaged with projects and challenges that push me to think differently and refine how I build software.  
 Here’s what I’m currently focused on:
-- Obtaining **Microsoft Azure Developer Associate** Certification
-- Fixing minor bugs and refining user experience on the **Verbatim** platform  
+- Building **autonomous AI agents** and **MCP services** as a Founding Engineer — durable memory, long-running operations, tool-calling safety, and the reliability work that keeps a fleet running in production
+- Writing about **agent engineering** on this blog — memory beyond vector stores, taming the context window, safe tool calling, and retries done right
 - Developing a CLI-based **Regex Engine** to deepen my understanding of state machines
 
 ### Beyond the Code
