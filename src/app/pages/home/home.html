@@ -113,47 +113,6 @@
     </div>
   </div>
 
-  <!-- recent writing -->
-  @if (recentBlogs.length) {
-    <div class="w-full max-w-3xl px-0 sm:px-4">
-      <div class="flex items-center justify-between mb-3">
-        <p class="font-mono text-sm text-primary">Recent writing</p>
-        <a
-          [routerLink]="[routeConstants.Blog]"
-          class="font-mono text-xs text-secondary hover:text-accent transition-colors"
-          >view all →</a
-        >
-      </div>
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        @for (blog of recentBlogs; track blog.slug) {
-          <a
-            [routerLink]="[routeConstants.Blog + '/' + blog.slug]"
-            class="group flex flex-col p-4 border border-borders rounded-md hover:border-accent/50 transition-colors duration-200"
-          >
-            <div class="flex items-center gap-2 text-xs text-secondary mb-2">
-              <lucide-angular [img]="calendarIcon" class="size-3"></lucide-angular>
-              <span>{{ blog.frontMatter.publishedDate | date: "MMM d, y" }}</span>
-            </div>
-            <div
-              class="font-mono text-sm font-bold group-hover:text-accent transition-colors line-clamp-2 mb-2"
-            >
-              <span class="text-accent">$</span> {{ blog.frontMatter.title }}
-            </div>
-            <div class="font-mono text-xs text-secondary line-clamp-3">
-              {{ blog.frontMatter.description }}
-            </div>
-            <div
-              class="flex items-center gap-2 text-xs text-secondary group-hover:text-accent transition-colors mt-3"
-            >
-              <lucide-angular [img]="arrowIcon" class="size-3"></lucide-angular>
-              <span>Read more</span>
-            </div>
-          </a>
-        }
-      </div>
-    </div>
-  }
-
   <!-- resume & my work -->
   <div
     class="flex flex-col space-y-4 md:flex-row md:space-y-0 md:space-x-6 items-center justify-center"
