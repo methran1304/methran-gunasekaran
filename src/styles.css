@@ -240,6 +240,9 @@ p.om-typewriter-text.term-typewriter::after {
 .crt-backdrop {
   position: fixed;
   inset: 0;
+  /* the home wrapper's space-y-8 gives every child a 2rem bottom margin,
+     which would shrink this inset-0 box and leave an empty strip */
+  margin: 0;
   z-index: -1;
   pointer-events: none;
   opacity: 0.4;
