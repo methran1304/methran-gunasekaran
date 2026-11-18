@@ -25,11 +25,18 @@
   }
 
   <!-- hero section -->
-  <div class="flex flex-col items-center space-y-4">
+  <div class="flex flex-col items-center space-y-4 text-center">
+    <div class="font-mono text-sm sm:text-base text-secondary" aria-hidden="true">
+      <span class="text-accent font-bold">$</span> whoami
+    </div>
+
     <om-cryptic-text
+      role="heading"
+      aria-level="1"
+      aria-label="Methran"
       [animateOnce]="true"
       [text]="'Methran'"
-      styleClass="font-mono text-4xl md:text-5xl text-accent"
+      styleClass="font-mono font-extrabold tracking-tight leading-tight text-5xl sm:text-6xl text-primary"
       [animationSpeed]="1000"
     ></om-cryptic-text>
 
@@ -49,20 +56,13 @@
 
   <!-- short intro -->
   <div
-    class="max-w-2xl mx-auto space-y-3 font-mono text-left sm:text-center"
+    class="max-w-2xl mx-auto font-mono text-left sm:text-center"
   >
-    <p>
-      I'm a software engineer who loves building fast and reliable systems.
-      Currently a Founding Engineer at Usermode.ai, where I build
-      governed fleets of autonomous AI agents and the MCP services that connect
-      them to real business systems, mostly in TypeScript and Python.
-    </p>
-
-    <p>
-      Before that I built full-stack features for Document360, a SaaS knowledge
-      base used by teams at companies like VMware, Midjourney, Toyota, and
-      McDonald's. Curiosity keeps me going. I enjoy learning new tools, trying
-      out ideas, and finding better ways to build.
+    <p class="text-pretty sm:text-balance">
+      I build fast, reliable systems. At Usermode.ai, that means governed
+      fleets of autonomous AI agents and the MCP services that connect them to
+      real business systems. Before that, I built full-stack features for
+      Document360, used by teams at VMware, Midjourney, Toyota and McDonald's.
     </p>
   </div>
 
