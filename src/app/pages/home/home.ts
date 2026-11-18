@@ -50,8 +50,13 @@ export class HomeComponent {
   // CRT glyph backdrop: skipped for reduced-motion users and without WebGL
   readonly showCrt = HomeComponent.canShowCrt();
 
+  // phones render a wider-than-screen canvas (see .crt-canvas), so draw it at
+  // a lower resolution there to keep the GPU cost down
+  readonly crtDpr =
+    typeof window !== 'undefined' && window.innerWidth < 640 ? 0.75 : 1;
+
   // dark: phosphor green. light: the backdrop is colour-inverted in CSS,
-  // so this pink inverts to roughly the light-theme accent (#047857).
+  // so this pink inverts to a deep green (~#00633f).
   private readonly _themeService = inject(ThemeService);
   readonly crtTint = signal(this.tintFor(this._themeService.getTheme()));
 
@@ -62,7 +67,7 @@ export class HomeComponent {
   }
 
   private tintFor(theme: Theme): string {
-    return theme === Theme.Light ? '#fb87a8' : '#00ffb2';
+    return theme === Theme.Light ? '#ff9cc0' : '#00ffb2';
   }
 
   private static canShowCrt(): boolean {

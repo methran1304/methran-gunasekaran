@@ -4,23 +4,24 @@
   <!-- full-viewport CRT glyph field; loaded after first paint so ogl/WebGL stays out of the initial bundle -->
   @defer (on idle) {
     @if (showCrt) {
-      <om-faulty-terminal
-        class="crt-backdrop"
-        aria-hidden="true"
-        [tint]="crtTint()"
-        [scale]="3"
-        [gridMul]="[2, 1]"
-        [digitSize]="1.4"
-        [timeScale]="0.35"
-        [scanlineIntensity]="0.4"
-        [glitchAmount]="0.4"
-        [flickerAmount]="0.3"
-        [noiseAmp]="0.8"
-        [curvature]="0"
-        [brightness]="0.9"
-        [mouseReact]="false"
-        [dpr]="1"
-      ></om-faulty-terminal>
+      <div class="crt-backdrop" aria-hidden="true">
+        <om-faulty-terminal
+          class="crt-canvas"
+          [tint]="crtTint()"
+          [scale]="3"
+          [gridMul]="[2, 1]"
+          [digitSize]="1.4"
+          [timeScale]="0.35"
+          [scanlineIntensity]="0.4"
+          [glitchAmount]="0.4"
+          [flickerAmount]="0.3"
+          [noiseAmp]="0.8"
+          [curvature]="0"
+          [brightness]="0.9"
+          [mouseReact]="false"
+          [dpr]="crtDpr"
+        ></om-faulty-terminal>
+      </div>
     }
   }
 

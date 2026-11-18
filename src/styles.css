@@ -245,6 +245,8 @@ p.om-typewriter-text.term-typewriter::after {
   margin: 0;
   z-index: -1;
   pointer-events: none;
+  overflow: hidden;
+  container-type: size;
   opacity: 0.4;
   mix-blend-mode: screen;
   /* calmer behind the centred text, full strength towards the edges */
@@ -252,10 +254,33 @@ p.om-typewriter-text.term-typewriter::after {
   mask-image: radial-gradient(ellipse 55% 50% at 50% 42%, rgb(0 0 0 / 0.3) 0%, rgb(0 0 0 / 0.5) 55%, #000 100%);
 }
 
+/* The shader lays out a fixed number of glyph columns and rows whatever the
+   canvas shape, so on a portrait phone every cell was squeezed sideways.
+   Always render at the landscape shape it was tuned on (~1.76:1, a laptop
+   screen) and crop it to cover the viewport, like object-fit: cover. */
+.crt-canvas {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: max(100cqw, 176cqh);
+  height: max(100cqh, 56.8cqw);
+  transform: translate(-50%, -50%);
+}
+
+/* on phones nearly the whole screen is text, so the calm centre would hide
+   the field almost entirely; use a flatter fade there */
+@media (max-width: 639px) {
+  .crt-backdrop {
+    -webkit-mask-image: linear-gradient(rgb(0 0 0 / 0.6), #000);
+    mask-image: linear-gradient(rgb(0 0 0 / 0.6), #000);
+  }
+}
+
+/* light theme: invert to a white field, then multiply so white drops out */
 :root.light .crt-backdrop {
   filter: invert(1);
   mix-blend-mode: multiply;
-  opacity: 0.35;
+  opacity: 0.55;
 }
 
 /* a soft background-coloured halo keeps text crisp over the glyph field */
