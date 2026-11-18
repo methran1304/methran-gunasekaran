@@ -87,34 +87,36 @@
 
   /* link with chevron on hover */
   .link-chevron {
-    @apply relative font-medium text-primary hover:text-accent transition-all duration-300 ease-in-out;
+    @apply relative font-medium text-primary hover:text-accent transition-colors duration-200 ease-out;
   }
   
+  /* the marker is always a "›" glyph; only its opacity and offset animate */
   .link-chevron::before {
-    content: "";
-    position: absolute;
-    left: -1rem; /* -20px */
-    top: 50%;
-    transform: translateY(-50%);
-    width: 0;
-    height: 0;
-    border-left: 4px solid transparent;
-    border-right: 4px solid transparent;
-    border-top: 4px solid transparent;
-    border-bottom: 4px solid transparent;
-    transition: all 100ms ease-in-out;
-    opacity: 0;
-  }
-  
-  .link-chevron:hover::before {
     content: "›";
-    left: -1rem; /* -16px */
-    width: auto;
-    height: auto;
-    border: none;
+    position: absolute;
+    left: -1rem;
+    top: 50%;
     font-weight: bold;
+    line-height: 1;
     color: var(--color-accent);
+    opacity: 0;
+    transform: translate(-4px, -50%);
+    transition:
+      opacity 150ms ease-out,
+      transform 150ms ease-out;
+    pointer-events: none;
+  }
+
+  .link-chevron:hover::before,
+  .link-chevron:focus-visible::before {
     opacity: 1;
+    transform: translate(0, -50%);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .link-chevron::before {
+      transition: none;
+    }
   }
 }
 
