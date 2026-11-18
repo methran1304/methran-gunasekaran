@@ -57,8 +57,6 @@ export class HomeComponent {
   // on any screen, instead of squeezing them on narrow ones.
   readonly crtGridMul = signal<[number, number]>(HomeComponent.gridMulFor());
 
-  // Desktop stays at 1x. Phones are small enough to render near their real
-  // pixel density (capped at 2x) for about the same cost as a laptop at 1x.
   readonly crtDpr = HomeComponent.crtDprFor();
 
   private readonly _destroyRef = inject(DestroyRef);
@@ -85,11 +83,17 @@ export class HomeComponent {
     return [window.innerWidth / 756, window.innerHeight / 860];
   }
 
+  // Render above 1x for sharper glyphs, up to the screen's pixel density
+  // (capped at 2x), within a per-frame budget of ~3 MP. On a 14" M-series
+  // MacBook at 120 Hz: 2.9 MP held 120 fps, 3.6 MP ~119, 4.2 MP 102, 5 MP 88,
+  // so 3 MP keeps headroom for slower GPUs. Gives ~1.5x on a 14" MacBook,
+  // 2x on phones; large monitors fall back towards 1x.
   private static crtDprFor(): number {
     if (typeof window === 'undefined') return 1;
-    return window.innerWidth < 640
-      ? Math.min(window.devicePixelRatio || 1, 2)
-      : 1;
+    const device = window.devicePixelRatio || 1;
+    const budget = 3_000_000;
+    const fit = Math.sqrt(budget / (window.innerWidth * window.innerHeight));
+    return Math.max(1, Math.min(device, 2, fit));
   }
 
   private tintFor(theme: Theme): string {
