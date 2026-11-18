@@ -85,6 +85,18 @@
     @apply p-2 rounded-md text-primary hover:bg-borders/20 transition-colors;
   }
 
+  /* solid terminal button: opaque fill, inverts to accent on hover/focus
+     like a selected line */
+  .btn-term {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-md border font-mono text-sm font-medium bg-background text-primary border-borders cursor-pointer transition-colors duration-150 hover:bg-accent hover:text-background hover:border-accent focus-visible:bg-accent focus-visible:text-background focus-visible:border-accent focus-visible:outline-none;
+    text-shadow: none;
+  }
+
+  /* primary variant: accent outline + text at rest */
+  .btn-term-primary {
+    @apply text-accent border-accent;
+  }
+
   /* link with chevron on hover */
   .link-chevron {
     @apply relative font-medium text-primary hover:text-accent transition-colors duration-200 ease-out;
@@ -132,6 +144,13 @@ body {
 
 html {
   font-family: var(--font-mono);
+}
+
+/* no rubber-band bounce past the top/bottom of the page (it would pull the
+   sticky nav down and expose the fixed CRT layer behind it) */
+html,
+body {
+  overscroll-behavior-y: none;
 }
 
 .prose-theme {
