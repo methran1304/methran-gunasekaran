@@ -255,18 +255,6 @@ p.om-typewriter-text.term-typewriter::after {
   animation: term-blink 1.06s steps(1, end) infinite;
 }
 
-/* About page: the markdown's first heading is the page title */
-.prose-theme.term-cursor-first > :first-child::after {
-  content: "";
-  display: inline-block;
-  width: 0.55em;
-  height: 1em;
-  margin-left: 0.2em;
-  vertical-align: -0.12em;
-  background: var(--color-accent);
-  animation: term-blink 1.06s steps(1, end) infinite;
-}
-
 /* CRT glyph field filling the viewport behind the home page.
    It must not sit inside an isolated stacking context: the blend modes
    below need the real page background as their backdrop so the shader's
@@ -319,8 +307,7 @@ p.om-typewriter-text.term-typewriter::after {
 
 @media (prefers-reduced-motion: reduce) {
   .term-cursor::after,
-  p.om-typewriter-text.term-typewriter::after,
-  .prose-theme.term-cursor-first > :first-child::after {
+  p.om-typewriter-text.term-typewriter::after {
     animation: none;
   }
 }

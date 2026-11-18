@@ -1,0 +1,25 @@
+/* inline links: accent, underlined, like links elsewhere on the site */
+.about-link {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-color: color-mix(in srgb, var(--color-accent) 50%, transparent);
+  transition: text-decoration-color 150ms ease;
+}
+
+.about-link:hover {
+  text-decoration-color: var(--color-accent);
+}
+
+/* achievement cards share the project card look */
+.about-card {
+  padding: 1.5rem;
+  border: 1px solid var(--color-borders);
+  border-radius: 0.375rem;
+  cursor: default;
+  transition: border-color 200ms ease;
+}
+
+.about-card:hover {
+  border-color: color-mix(in srgb, var(--color-accent) 50%, transparent);
+}
