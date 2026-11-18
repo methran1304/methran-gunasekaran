@@ -1,0 +1,20 @@
+/*
+ * TypeScript config for the Vercel serverless functions in /api.
+ *
+ * Vercel compiles each function with the nearest tsconfig.json. Without this
+ * file it falls back to the root (Angular) config, whose "module": "preserve"
+ * emits ESM `import`/`export` into api/*.js. With no "type": "module" in
+ * package.json, Vercel's Node runtime loads those files as CommonJS and they
+ * crash with "SyntaxError: Cannot use import statement outside a module"
+ * (FUNCTION_INVOCATION_FAILED). Emitting CommonJS here avoids that.
+ */
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "ES2022",
+    "esModuleInterop": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "types": ["node"]
+  }
+}
