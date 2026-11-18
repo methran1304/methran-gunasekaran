@@ -6,17 +6,16 @@ import {
   TrafficCone,
   Star,
   GitFork,
+  BriefcaseBusiness,
 } from 'lucide-angular';
 import { Work } from '../../models/work';
 import { WorkStatus } from '../../enums/work-status-enum';
-import { NgClass } from '@angular/common';
 import { GitHubStatsService } from '../../services/github-stats-service';
 
 @Component({
   selector: 'app-projects',
-  imports: [LucideAngularModule, NgClass],
+  imports: [LucideAngularModule],
   templateUrl: './projects.html',
-  styleUrl: './projects.css',
 })
 export class ProjectsComponent implements OnInit {
   private githubStatsService = inject(GitHubStatsService);
@@ -27,29 +26,24 @@ export class ProjectsComponent implements OnInit {
   readonly coneIcon = TrafficCone;
   readonly starIcon = Star;
   readonly gitForkIcon = GitFork;
+  readonly briefcaseIcon = BriefcaseBusiness;
 
   projects: Work[] = [
     {
       title: 'Usermode.ai',
       description:
         'Founding Engineer at Usermode.ai, building a governed fleet of autonomous AI agents that connect legacy systems through typed MCP microservices.',
-      liveLink: '',
-      status: WorkStatus.InProgress,
+      liveLink: 'https://usermode.ai',
+      status: WorkStatus.CurrentRole,
       techStack: [
         'TypeScript',
         'Node.js',
         'MCP',
-        'Zod',
         'Python',
         'FastAPI',
         'Claude',
         'PostgreSQL',
-        'pgvector',
-        'Azure Container Apps',
-        'Azure API Management',
-        'Azure Key Vault',
-        'Bicep',
-        'Vitest',
+        'Azure',
       ],
       isFeatured: true,
     },
@@ -102,7 +96,7 @@ export class ProjectsComponent implements OnInit {
         'Tailwind CSS',
         'GitHub REST API',
         'NgxUI',
-        'primsjs',
+        'prismjs',
         'ngx-markdown',
       ],
       isFeatured: false,

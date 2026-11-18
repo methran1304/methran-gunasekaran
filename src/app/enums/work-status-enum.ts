@@ -1,5 +1,6 @@
 export enum WorkStatus {
     Completed,
     InProgress,
-    Dropped
+    Dropped,
+    CurrentRole
 }

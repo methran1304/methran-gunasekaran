@@ -25,24 +25,26 @@
   </div>
 
   <!-- short intro -->
-  <div class="px-0 sm:px-18">
-    <div class="text-center font-mono mb-2">
+  <div
+    class="max-w-2xl mx-auto space-y-3 font-mono text-left sm:text-center"
+  >
+    <p>
       I'm a software engineer who loves building fast and reliable systems.
       Currently a Founding Engineer at Usermode.ai, where I build
       governed fleets of autonomous AI agents and the MCP services that connect
       them to real business systems, mostly in TypeScript and Python.
-    </div>
+    </p>
 
-    <div class="text-center font-mono">
+    <p>
       Before that I built full-stack features for Document360, a SaaS knowledge
       base used by teams at companies like VMware, Midjourney, Toyota, and
       McDonald's. Curiosity keeps me going. I enjoy learning new tools, trying
       out ideas, and finding better ways to build.
-    </div>
+    </p>
   </div>
 
   <!-- tech stack -->
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-10 text-gray-500 text-center">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-10 text-secondary text-center">
     <!-- Languages -->
     <div>
       <p class="font-mono text-sm text-primary mb-3">Languages & Scripting</p>
@@ -113,36 +115,31 @@
     </div>
   </div>
 
-  <!-- resume & my work -->
-  <div
-    class="flex flex-col space-y-4 md:flex-row md:space-y-0 md:space-x-6 items-center justify-center"
-  >
-    <!-- Blogs button -->
+  <!-- cv, blogs & projects -->
+  <div class="flex flex-col sm:flex-row items-center justify-center w-full gap-3 sm:gap-6">
     <a
       [href]="routeConstants.CV"
       target="_blank"
-      class="font-mono px-4 py-2 bg-accent/10 border border-accent/50 text-accent rounded-md hover:bg-accent/20 hover:border-accent transition-all duration-200 text-sm font-medium flex items-center gap-2"
+      class="font-mono w-full max-w-64 sm:w-32 justify-center px-4 py-2 bg-accent/10 border border-accent/50 text-accent rounded-md hover:bg-accent/20 hover:border-accent transition-all duration-200 text-sm font-medium flex items-center gap-2"
     >
       <lucide-angular [img]="fileUserIcon" size="16"></lucide-angular>
       CV
     </a>
 
-    <!-- Download Resume Button -->
     <a
       [routerLink]="[routeConstants.Blog]"
-      class="font-mono px-4 py-2 bg-background text-primary border border-primary/20 rounded-md hover:bg-primary/5 hover:border-primary/40 transition-all duration-200 text-sm font-medium flex items-center gap-2"
+      class="font-mono w-full max-w-64 sm:w-32 justify-center px-4 py-2 bg-background text-primary border border-primary/20 rounded-md hover:bg-primary/5 hover:border-primary/40 transition-all duration-200 text-sm font-medium flex items-center gap-2"
     >
       <lucide-angular [img]="notebookPenIcon" size="16"></lucide-angular>
       Blogs
     </a>
 
-    <!-- View Work Button -->
     <a
       [routerLink]="[routeConstants.Projects]"
-      class="font-mono px-4 py-2 bg-background text-primary border border-primary/20 rounded-md hover:bg-primary/5 hover:border-primary/40 transition-all duration-200 text-sm font-medium flex items-center gap-2"
+      class="font-mono w-full max-w-64 sm:w-32 justify-center px-4 py-2 bg-background text-primary border border-primary/20 rounded-md hover:bg-primary/5 hover:border-primary/40 transition-all duration-200 text-sm font-medium flex items-center gap-2"
     >
       <lucide-angular [img]="folderIcon" size="16"></lucide-angular>
-      Work
+      Projects
     </a>
   </div>
 </div>
