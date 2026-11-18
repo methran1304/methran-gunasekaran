@@ -9,11 +9,11 @@
     <div class="font-mono text-secondary text-lg">My work and experiments!</div>
   </div>
 
-  <div class="flex flex-wrap justify-center lg:justify-between gap-24 lg:gap-6">
+  <div class="grid w-full grid-cols-1 lg:grid-cols-2 gap-24 lg:gap-6">
     @for (project of projects; track project.title) {
       <div class="group cursor-default transition-colors duration-200">
         <div
-          class="card-scroll flex flex-col p-6 h-65 w-full lg:w-110 border-1 border-b-0 rounded-b-none border-borders rounded-md group-hover:border-accent/50 transition-colors duration-200 overflow-y-auto overscroll-contain"
+          class="card-scroll flex flex-col p-6 h-65 w-full border-1 border-b-0 rounded-b-none border-borders rounded-md group-hover:border-accent/50 transition-colors duration-200 overflow-y-auto overscroll-contain"
         >
           <div
             class="font-mono group-hover:text-accent font-extrabold text-lg mb-2"
@@ -95,11 +95,11 @@
     </div>
   </div>
 
-  <div class="flex flex-wrap justify-center lg:justify-between gap-24 lg:gap-6">
+  <div class="grid w-full grid-cols-1 lg:grid-cols-2 gap-24 lg:gap-6">
     @for (contribution of openSourceContributions; track contribution.title) {
       <div class="group cursor-default transition-colors duration-200">
         <div
-          class="card-scroll flex flex-col p-6 h-65 w-full lg:w-110 border-1 border-b-0 rounded-b-none border-borders rounded-md group-hover:border-accent/50 transition-colors duration-200 overflow-y-auto overscroll-contain"
+          class="card-scroll flex flex-col p-6 h-65 w-full border-1 border-b-0 rounded-b-none border-borders rounded-md group-hover:border-accent/50 transition-colors duration-200 overflow-y-auto overscroll-contain"
         >
           <div class="flex justify-between">
             <div

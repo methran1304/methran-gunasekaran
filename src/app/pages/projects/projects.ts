@@ -30,9 +30,9 @@ export class ProjectsComponent implements OnInit {
 
   projects: Work[] = [
     {
-      title: 'Stealth AI Startup',
+      title: 'Usermode.ai',
       description:
-        'Founding Engineer at a stealth AI startup, building a governed fleet of autonomous AI agents that connect legacy systems through typed MCP microservices.',
+        'Founding Engineer at Usermode.ai, building a governed fleet of autonomous AI agents that connect legacy systems through typed MCP microservices.',
       liveLink: '',
       status: WorkStatus.InProgress,
       techStack: [
