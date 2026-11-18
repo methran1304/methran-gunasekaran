@@ -14,10 +14,6 @@
     --color-success: #32cd32;
     --color-selection: #009973;
 
-    /* social colors */
-    --color-linkedin: #2466C2;
-    --color-mail: #EA4336;
-
       /* spacing/size tokens for layout */
     --spacing-container-x: 16px;   /* base x padding */
     --size-nav-h: 64px;            /* 64px nav height */
@@ -118,39 +114,6 @@
     border: none;
     font-weight: bold;
     color: var(--color-accent);
-    opacity: 1;
-  }
-
-  .link-chevron-linkedin:hover::before {
-    content: "›";
-    left: -1rem; /* -16px */
-    width: auto;
-    height: auto;
-    border: none;
-    font-weight: bold;
-    color: var(--color-linkedin);
-    opacity: 1;
-  }
-
-  .link-chevron-mail:hover::before {
-    content: "›";
-    left: -1rem; /* -16px */
-    width: auto;
-    height: auto;
-    border: none;
-    font-weight: bold;
-    color: var(--color-mail);
-    opacity: 1;
-  }
-
-  .link-chevron-primary:hover::before {
-    content: "›";
-    left: -1rem; /* -16px */
-    width: auto;
-    height: auto;
-    border: none;
-    font-weight: bold;
-    color: var(--color-primary);
     opacity: 1;
   }
 }
