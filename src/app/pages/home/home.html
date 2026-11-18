@@ -1,31 +1,31 @@
 <div
-  class="relative isolate flex flex-col items-center w-full px-4 lg:px-0 space-y-8 justify-center min-h-[calc(100dvh-var(--size-nav-h)-var(--size-footer-h)-8rem-4px)] sm:min-h-[calc(100dvh-var(--size-nav-h)-var(--size-footer-h)-9rem-4px)] lg:min-h-[calc(100dvh-var(--size-nav-h)-var(--size-footer-h)-10rem-4px)]"
+  class="crt-legible flex flex-col items-center w-full px-4 lg:px-0 space-y-8 justify-center min-h-[calc(100dvh-var(--size-nav-h)-var(--size-footer-h)-8rem-4px)] sm:min-h-[calc(100dvh-var(--size-nav-h)-var(--size-footer-h)-9rem-4px)] lg:min-h-[calc(100dvh-var(--size-nav-h)-var(--size-footer-h)-10rem-4px)]"
 >
-  <!-- hero section -->
-  <div class="relative w-full flex flex-col items-center space-y-4">
-    <!-- loaded after first paint so ogl/WebGL stays out of the initial bundle -->
-    @defer (on idle) {
-      @if (showCrt) {
-        <om-faulty-terminal
-          class="crt-backdrop"
-          aria-hidden="true"
-          [tint]="crtTint()"
-          [scale]="3"
-          [gridMul]="[2, 1]"
-          [digitSize]="1.4"
-          [timeScale]="0.35"
-          [scanlineIntensity]="0.4"
-          [glitchAmount]="0.4"
-          [flickerAmount]="0.3"
-          [noiseAmp]="0.8"
-          [curvature]="0.15"
-          [brightness]="0.9"
-          [mouseReact]="false"
-          [dpr]="1"
-        ></om-faulty-terminal>
-      }
+  <!-- full-viewport CRT glyph field; loaded after first paint so ogl/WebGL stays out of the initial bundle -->
+  @defer (on idle) {
+    @if (showCrt) {
+      <om-faulty-terminal
+        class="crt-backdrop"
+        aria-hidden="true"
+        [tint]="crtTint()"
+        [scale]="3"
+        [gridMul]="[2, 1]"
+        [digitSize]="1.4"
+        [timeScale]="0.35"
+        [scanlineIntensity]="0.4"
+        [glitchAmount]="0.4"
+        [flickerAmount]="0.3"
+        [noiseAmp]="0.8"
+        [curvature]="0"
+        [brightness]="0.9"
+        [mouseReact]="false"
+        [dpr]="1"
+      ></om-faulty-terminal>
     }
+  }
 
+  <!-- hero section -->
+  <div class="flex flex-col items-center space-y-4">
     <om-cryptic-text
       [animateOnce]="true"
       [text]="'Methran'"
