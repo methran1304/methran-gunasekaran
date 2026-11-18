@@ -25,6 +25,11 @@ export class BlogContentComponent implements OnInit {
   markdownContent!: string;
   isLocalRun: boolean = false; // enable for debugging blog md
   isLoading: boolean = true;
+  // the header (front matter) and the article come from separate requests;
+  // show the loader until both are back so the header never renders empty
+  // and the article doesn't jump down when it arrives
+  private frontMatterDone = false;
+  private contentDone = false;
   readonly routeConstants = ROUTE_CONSTANTS;
 
   constructor(
@@ -62,6 +67,9 @@ export class BlogContentComponent implements OnInit {
   getSlug(): void {
     this._activatedRoute.paramMap.subscribe((params) => {
       this.slug = params.get('slug')!;
+      this.frontMatterDone = false;
+      this.contentDone = false;
+      this.isLoading = true;
       this.getBlogFrontMatter();
       this.getBlogContent();
     });
@@ -72,8 +80,14 @@ export class BlogContentComponent implements OnInit {
     this._blogService.getFrontMatterBySlug(this.slug).subscribe({
       next: (frontmatter) => {
         this.frontMatter = frontmatter;
+        this.frontMatterDone = true;
+        this.updateLoading();
       },
-      error: (error) => console.error('error: getBlogFrontMatter', error)
+      error: (error) => {
+        console.error('error: getBlogFrontMatter', error);
+        this.frontMatterDone = true;
+        this.updateLoading();
+      },
     });
   }
 
@@ -84,13 +98,19 @@ export class BlogContentComponent implements OnInit {
         this.markdownContent = rawContent.content
           .replace(frontMatterRegex, '')
           .trim();
-        this.isLoading = false;
+        this.contentDone = true;
+        this.updateLoading();
       },
       error: (err) => {
         this.markdownContent = '';
-        this.isLoading = false;
+        this.contentDone = true;
+        this.updateLoading();
       },
     });
+  }
+
+  private updateLoading(): void {
+    this.isLoading = !(this.frontMatterDone && this.contentDone);
   }
 
   onMarkdownClick(event: MouseEvent): void {

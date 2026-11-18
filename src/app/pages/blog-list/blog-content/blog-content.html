@@ -1,10 +1,12 @@
-<a
-  class="flex items-center gap-2 px-2 md:px-0 mb-6 w-fit hover:text-accent"
-  [routerLink]="[routeConstants.Blog]"
->
-  <lucide-angular [img]="arrowIcon" class="size-4"></lucide-angular>
-  <span>Go Back</span>
-</a>
+<!-- one centred reading column for the back link, header and article -->
+<article class="mx-auto w-full max-w-2xl px-2 md:px-0">
+  <a
+    class="inline-flex items-center gap-2 mb-8 w-fit text-secondary hover:text-accent transition-colors"
+    [routerLink]="[routeConstants.Blog]"
+  >
+    <lucide-angular [img]="arrowIcon" class="size-4"></lucide-angular>
+    <span>Go Back</span>
+  </a>
 
 @if (isLoading) {
   <!-- loader -->
@@ -19,63 +21,47 @@
     </div>
   </div>
 } @else {
-  <!-- front matter -->
-  <div class="flex flex-col min-w-full mb-6">
-    <div class="flex flex-col group cursor-default transition-all duration-800">
-      <div
-        class="p-6 space-y-4 border-1  border-borders rounded-md group-hover:border-accent/50 transition-colors duration-200"
-      >
-        <!-- title and date -->
-        <div class="flex flex-col items-start space-y-4 md:flex-row md:space-y-0 md:justify-between min-w-full text-xl font-extrabold">
-          <div class="group-hover:text-accent">
-            <span class="text-accent">$</span>
-            {{ frontMatter?.title }}
-          </div>
+  <!-- front matter: title, then a quiet meta line, then the summary -->
+  @if (frontMatter) {
+  <header class="mb-8 pb-8 space-y-4 border-b border-borders">
+    <h1 class="font-mono text-2xl sm:text-3xl font-extrabold leading-tight">
+      <span class="text-accent">$</span>
+      {{ frontMatter?.title }}
+    </h1>
 
-          <div class="flex items-center gap-2 mb-2 whitespace-nowrap">
-            <lucide-angular
-              [img]="calendarIcon"
-              class="size-5"
-            ></lucide-angular>
-            <span>{{ frontMatter?.publishedDate | date: "MMM d, y" }}</span>
-          </div>
-        </div>
-
-        <!-- description -->
-        <div class="font-mono text-secondary text-lg">
-          {{ frontMatter?.description }}
-        </div>
-
-        <!-- tags -->
-        <div class="flex flex-wrap gap-2 pt-2">
-          @for (tag of frontMatter?.tags ?? []; track $index) {
-            <span
-              class="px-2 py-1 rounded bg-borders/20 text-secondary font-mono hover:bg-accent/10 hover:text-accent transition-all hover:scale-105"
-              >{{ tag }}</span
-            >
-          }
-        </div>
-      </div>      
+    <div
+      class="flex flex-wrap items-center gap-x-3 gap-y-2 font-mono text-sm text-secondary"
+    >
+      <span class="inline-flex items-center gap-1.5 whitespace-nowrap">
+        <lucide-angular [img]="calendarIcon" class="size-4"></lucide-angular>
+        {{ frontMatter?.publishedDate | date: "MMM d, y" }}
+      </span>
+      @for (tag of frontMatter?.tags ?? []; track $index) {
+        <span class="px-2 py-0.5 text-xs rounded bg-borders/20">{{ tag }}</span>
+      }
     </div>
-  </div>
 
-  <div class="flex px-2 md:px-0 min-h-full justify-center items-start">
-    @if (isLocalRun) {
-      <markdown
-        (click)="onMarkdownClick($event)"
-        class="prose prose-theme max-w-2xl w-full"
-        [src]="'test.md'"
-      >
-      </markdown>
-    } @else {
-      <markdown
-        (click)="onMarkdownClick($event)"
-        class="prose prose-theme max-w-2xl w-full"
-        [data]="markdownContent"
-      >
-      </markdown>
-    }
-  </div>
+    <p class="font-mono text-secondary">
+      {{ frontMatter?.description }}
+    </p>
+  </header>
+  }
+
+  @if (isLocalRun) {
+    <markdown
+      (click)="onMarkdownClick($event)"
+      class="prose prose-theme max-w-none w-full"
+      [src]="'test.md'"
+    >
+    </markdown>
+  } @else {
+    <markdown
+      (click)="onMarkdownClick($event)"
+      class="prose prose-theme max-w-none w-full"
+      [data]="markdownContent"
+    >
+    </markdown>
+  }
 
   @if (markdownContent.length === 0 && !isLocalRun) {
     <div class="gap-4 min-w-full">
@@ -90,3 +76,4 @@
     </div>
   }
 }
+</article>

@@ -183,6 +183,40 @@ body {
 .prose-theme :where(a):not(:where(.not-prose, .not-prose *)):hover {
   text-decoration-color: var(--color-accent);
 }
+
+/* code: no JetBrains Mono ligatures (so `!==` reads and pastes as typed) */
+.prose-theme pre,
+.prose-theme code {
+  font-variant-ligatures: none;
+  font-feature-settings: "liga" 0, "calt" 0;
+}
+
+/* on wide screens let code blocks run 3rem past the text column on each
+   side, so typical 75-85 character lines fit without a scrollbar.
+   The [class*=language-] selector outranks Prism's own pre margin. */
+@media (min-width: 1024px) {
+  .prose-theme pre,
+  .prose-theme pre[class*="language-"] {
+    margin-left: -3rem;
+    margin-right: -3rem;
+  }
+}
+
+/* inline code: a small chip instead of Tailwind Typography's backticks */
+.prose-theme :not(pre) > code::before,
+.prose-theme :not(pre) > code::after {
+  content: none;
+}
+
+.prose-theme :not(pre) > code {
+  padding: 0.1em 0.35em;
+  border: 1px solid var(--color-borders);
+  border-radius: 0.25rem;
+  background: var(--color-code);
+  font-size: 0.875em;
+  font-weight: 500;
+}
+
 /* ------------------------------------------------------------------ */
 /* terminal motion: block cursor, CRT backdrop                         */
 /* ------------------------------------------------------------------ */
