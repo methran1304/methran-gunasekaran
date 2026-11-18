@@ -1,7 +1,7 @@
 <div class="flex flex-col items-start w-full h-full space-y-8 px-4 lg:px-0">
   <!-- title & sub-->
   <div class="flex flex-col items-start space-y-3">
-    <div class="font-mono text-2xl text-accent font-bold">Contact</div>
+    <div class="font-mono text-2xl text-accent font-bold term-cursor">Contact</div>
     <div class="font-mono text-secondary text-lg">
       Let's connect and build something amazing together!
     </div>
@@ -12,10 +12,14 @@
     <div class="font-mono text-xl text-accent font-bold">Socials</div>
 
     <div class="flex flex-col items-start item space-y-2">
-      <div class="flex items-center gap-2">
+      <a
+        href="mailto:g.methran@gmail.com?subject=Portfolio%20Inquiry"
+        class="flex items-center gap-2 w-fit hover:text-accent/80 transition-colors"
+        aria-label="Email g.methran@gmail.com"
+      >
         <lucide-angular [img]="mailIcon" class="size-4"></lucide-angular>
         <span class="underline underline-offset-4">g.methran@gmail.com</span>
-      </div>
+      </a>
 
       <a
         href="https://www.linkedin.com/in/methran"
@@ -31,10 +35,10 @@
         href="https://github.com/methran1304"
         target="_blank"
         class="flex items-center gap-2 w-fit hover:text-accent/80 transition-colors hover:cursor-pointer"
-        aria-label="Github Profile"
+        aria-label="GitHub Profile"
       >
         <lucide-angular [img]="githubIcon" class="size-4"></lucide-angular>
-        <span>Github</span>
+        <span>GitHub</span>
       </a>
 
       <a
@@ -97,7 +101,7 @@
       <div class="w-full mt-4 lg:mt-0 lg:col-span-1 lg:row-start-3 order-4 lg:order-none">
         <button
           type="submit"
-          class="font-mono px-4 py-2 bg-accent/10 border border-accent/50 text-accent rounded-md hover:cursor-pointer hover:bg-accent/20 hover:border-accent transition-all duration-200 text-sm font-medium"
+          class="btn-term btn-term-primary"
         >
           Send Message
         </button>

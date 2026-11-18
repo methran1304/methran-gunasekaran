@@ -3,17 +3,17 @@
 >
   <!-- personal projects-->
   <div class="flex flex-col items-start space-y-3">
-    <div class="font-mono text-2xl text-accent font-bold">
-      Personal Projects
-    </div>
+    <div class="font-mono text-2xl text-accent font-bold term-cursor">Personal Projects</div>
     <div class="font-mono text-secondary text-lg">My work and experiments!</div>
   </div>
 
-  <div class="grid w-full grid-cols-1 lg:grid-cols-2 gap-24 lg:gap-6">
+  <div class="grid w-full grid-cols-1 lg:grid-cols-2 gap-6">
     @for (project of projects; track project.title) {
-      <div class="group cursor-default transition-colors duration-200">
+      <div
+        class="group flex flex-col h-full cursor-default transition-colors duration-200"
+      >
         <div
-          class="card-scroll flex flex-col p-6 h-65 w-full border-1 border-b-0 rounded-b-none border-borders rounded-md group-hover:border-accent/50 transition-colors duration-200 overflow-y-auto overscroll-contain"
+          class="flex flex-col flex-1 p-6 border-1 border-b-0 rounded-b-none border-borders rounded-md group-hover:border-accent/50 transition-colors duration-200"
         >
           <div
             class="font-mono group-hover:text-accent font-extrabold text-lg mb-2"
@@ -24,7 +24,7 @@
           <div class="font-mono text-secondary mb-4">
             {{ project.description }}
           </div>
-          <div class="flex flex-wrap gap-2">
+          <div class="flex flex-wrap gap-2 mt-auto">
             @for (tech of project.techStack; track $index) {
               <span
                 class="px-2 py-1 text-xs rounded bg-borders/20 text-secondary font-mono hover:bg-accent/10 hover:text-accent transition-colors"
@@ -35,49 +35,74 @@
         </div>
 
         <div
-          class="flex p-4 h-12 border-1 rounded-b-md bg-borders/5 border-borders group-hover:border-accent/50 transition-colors duration-200"
-          [ngClass]="
-            project.liveLink
-              ? 'items-center justify-between'
-              : 'items-center justify-end'
-          "
+          class="flex items-center p-4 h-12 border-1 rounded-b-md bg-borders/5 border-borders group-hover:border-accent/50 transition-colors duration-200"
         >
-          @if (project.status === WorkStatusEnum.InProgress) {
-            <span
-              class="flex items-center gap-2 text-xs text-secondary hover:text-accent/80 transition-colors focus:outline-none rounded px-2 py-1"
-              aria-label="View live site"
-            >
-              <lucide-angular [img]="coneIcon" class="size-4"></lucide-angular>
-              <span>Under Development</span>
-            </span>
-          } @else {
-            @if (project.liveLink) {
-              <a
-                [href]="project.liveLink"
-                target="_blank"
-                class="flex items-center gap-2 text-xs text-secondary hover:text-accent/80 transition-colors focus:outline-none rounded px-2 py-1"
-                aria-label="View live site"
+          @switch (project.status) {
+            @case (WorkStatusEnum.CurrentRole) {
+              <span
+                class="flex items-center gap-2 text-xs text-accent px-2 py-1"
               >
                 <lucide-angular
-                  [img]="liveSiteIcon"
+                  [img]="briefcaseIcon"
                   class="size-4"
                 ></lucide-angular>
-                <span>Live Site</span>
-              </a>
+                <span>Current role</span>
+              </span>
+              @if (project.liveLink) {
+                <a
+                  [href]="project.liveLink"
+                  target="_blank"
+                  rel="noopener"
+                  class="ml-auto flex items-center gap-2 text-xs text-secondary hover:text-accent transition-colors focus:outline-none rounded px-2 py-1"
+                  [attr.aria-label]="'Visit ' + project.title"
+                >
+                  <lucide-angular
+                    [img]="liveSiteIcon"
+                    class="size-4"
+                  ></lucide-angular>
+                  <span>Visit site</span>
+                </a>
+              }
             }
-            @if (project.githubLink) {
-              <a
-                [href]="project.githubLink"
-                target="_blank"
-                class="flex items-center gap-2 text-xs text-secondary hover:text-accent transition-colors focus:outline-none rounded px-2 py-1"
-                aria-label="View source code"
+            @case (WorkStatusEnum.InProgress) {
+              <span
+                class="ml-auto flex items-center gap-2 text-xs text-secondary px-2 py-1"
               >
-                <lucide-angular
-                  [img]="githubIcon"
-                  class="size-4"
-                ></lucide-angular>
-                <span>Repo</span>
-              </a>
+                <lucide-angular [img]="coneIcon" class="size-4"></lucide-angular>
+                <span>Under Development</span>
+              </span>
+            }
+            @default {
+              @if (project.liveLink) {
+                <a
+                  [href]="project.liveLink"
+                  target="_blank"
+                  rel="noopener"
+                  class="flex items-center gap-2 text-xs text-secondary hover:text-accent transition-colors focus:outline-none rounded px-2 py-1"
+                  aria-label="View live site"
+                >
+                  <lucide-angular
+                    [img]="liveSiteIcon"
+                    class="size-4"
+                  ></lucide-angular>
+                  <span>Live Site</span>
+                </a>
+              }
+              @if (project.githubLink) {
+                <a
+                  [href]="project.githubLink"
+                  target="_blank"
+                  rel="noopener"
+                  class="ml-auto flex items-center gap-2 text-xs text-secondary hover:text-accent transition-colors focus:outline-none rounded px-2 py-1"
+                  aria-label="View source code"
+                >
+                  <lucide-angular
+                    [img]="githubIcon"
+                    class="size-4"
+                  ></lucide-angular>
+                  <span>Repo</span>
+                </a>
+              }
             }
           }
         </div>
@@ -86,7 +111,7 @@
   </div>
 
   <!-- open source projects -->
-  <div class="flex flex-col items-start space-y-3 mt-12 lg:mt-0">
+  <div class="flex flex-col items-start space-y-3 pt-8">
     <div class="font-mono text-2xl text-accent font-bold">
       Open Source Projects
     </div>
@@ -95,11 +120,13 @@
     </div>
   </div>
 
-  <div class="grid w-full grid-cols-1 lg:grid-cols-2 gap-24 lg:gap-6">
+  <div class="grid w-full grid-cols-1 lg:grid-cols-2 gap-6">
     @for (contribution of openSourceContributions; track contribution.title) {
-      <div class="group cursor-default transition-colors duration-200">
+      <div
+        class="group flex flex-col h-full cursor-default transition-colors duration-200"
+      >
         <div
-          class="card-scroll flex flex-col p-6 h-65 w-full border-1 border-b-0 rounded-b-none border-borders rounded-md group-hover:border-accent/50 transition-colors duration-200 overflow-y-auto overscroll-contain"
+          class="flex flex-col flex-1 p-6 border-1 border-b-0 rounded-b-none border-borders rounded-md group-hover:border-accent/50 transition-colors duration-200"
         >
           <div class="flex justify-between">
             <div
@@ -139,7 +166,7 @@
           <div class="font-mono text-secondary mb-4">
             {{ contribution.description }}
           </div>
-          <div class="flex flex-wrap gap-2">
+          <div class="flex flex-wrap gap-2 mt-auto">
             @for (tech of contribution.techStack; track $index) {
               <span
                 class="px-2 py-1 text-xs rounded bg-borders/20 text-secondary font-mono hover:bg-accent/10 hover:text-accent transition-colors"
@@ -150,18 +177,14 @@
         </div>
 
         <div
-          class="flex p-4 h-12 border-1 rounded-b-md bg-borders/5 border-borders group-hover:border-accent/50 transition-colors duration-200"
-          [ngClass]="
-            contribution.liveLink
-              ? 'items-center justify-between'
-              : 'items-center justify-end'
-          "
+          class="flex items-center p-4 h-12 border-1 rounded-b-md bg-borders/5 border-borders group-hover:border-accent/50 transition-colors duration-200"
         >
           @if (contribution.liveLink) {
             <a
               [href]="contribution.liveLink"
               target="_blank"
-              class="flex items-center gap-2 text-xs text-secondary hover:text-accent/80 transition-colors focus:outline-none rounded px-2 py-1"
+              rel="noopener"
+              class="flex items-center gap-2 text-xs text-secondary hover:text-accent transition-colors focus:outline-none rounded px-2 py-1"
               aria-label="View live site"
             >
               <lucide-angular
@@ -175,7 +198,8 @@
             <a
               [href]="contribution.githubLink"
               target="_blank"
-              class="flex items-center gap-2 text-xs text-secondary hover:text-accent transition-colors focus:outline-none rounded px-2 py-1"
+              rel="noopener"
+              class="ml-auto flex items-center gap-2 text-xs text-secondary hover:text-accent transition-colors focus:outline-none rounded px-2 py-1"
               aria-label="View source code"
             >
               <lucide-angular

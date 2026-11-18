@@ -14,10 +14,6 @@
     --color-success: #32cd32;
     --color-selection: #009973;
 
-    /* social colors */
-    --color-linkedin: #2466C2;
-    --color-mail: #EA4336;
-
       /* spacing/size tokens for layout */
     --spacing-container-x: 16px;   /* base x padding */
     --size-nav-h: 64px;            /* 64px nav height */
@@ -34,7 +30,7 @@
   --color-background: #ffffff;
   --color-primary: #111111;
   --color-secondary: #4b5563;
-  --color-accent: #01a373;
+  --color-accent: #047857; /* ~5.5:1 on white, readable at small sizes */
   --color-borders: #d1d5db;
   --color-code: #f5f5f5;
   --color-error: #cc0000;
@@ -89,69 +85,50 @@
     @apply p-2 rounded-md text-primary hover:bg-borders/20 transition-colors;
   }
 
+  /* solid terminal button: opaque fill, inverts to accent on hover/focus
+     like a selected line */
+  .btn-term {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-md border font-mono text-sm font-medium bg-background text-primary border-borders cursor-pointer transition-colors duration-150 hover:bg-accent hover:text-background hover:border-accent focus-visible:bg-accent focus-visible:text-background focus-visible:border-accent focus-visible:outline-none;
+    text-shadow: none;
+  }
+
+  /* primary variant: accent outline + text at rest */
+  .btn-term-primary {
+    @apply text-accent border-accent;
+  }
+
   /* link with chevron on hover */
   .link-chevron {
-    @apply relative font-medium text-primary hover:text-accent transition-all duration-300 ease-in-out;
+    @apply relative font-medium text-primary hover:text-accent transition-colors duration-200 ease-out;
   }
   
+  /* the marker is always a "›" glyph; only its opacity and offset animate */
   .link-chevron::before {
-    content: "";
+    content: "›";
     position: absolute;
-    left: -1rem; /* -20px */
+    left: -1rem;
     top: 50%;
-    transform: translateY(-50%);
-    width: 0;
-    height: 0;
-    border-left: 4px solid transparent;
-    border-right: 4px solid transparent;
-    border-top: 4px solid transparent;
-    border-bottom: 4px solid transparent;
-    transition: all 100ms ease-in-out;
-    opacity: 0;
-  }
-  
-  .link-chevron:hover::before {
-    content: "›";
-    left: -1rem; /* -16px */
-    width: auto;
-    height: auto;
-    border: none;
     font-weight: bold;
+    line-height: 1;
     color: var(--color-accent);
-    opacity: 1;
+    opacity: 0;
+    transform: translate(-4px, -50%);
+    transition:
+      opacity 150ms ease-out,
+      transform 150ms ease-out;
+    pointer-events: none;
   }
 
-  .link-chevron-linkedin:hover::before {
-    content: "›";
-    left: -1rem; /* -16px */
-    width: auto;
-    height: auto;
-    border: none;
-    font-weight: bold;
-    color: var(--color-linkedin);
+  .link-chevron:hover::before,
+  .link-chevron:focus-visible::before {
     opacity: 1;
+    transform: translate(0, -50%);
   }
 
-  .link-chevron-mail:hover::before {
-    content: "›";
-    left: -1rem; /* -16px */
-    width: auto;
-    height: auto;
-    border: none;
-    font-weight: bold;
-    color: var(--color-mail);
-    opacity: 1;
-  }
-
-  .link-chevron-primary:hover::before {
-    content: "›";
-    left: -1rem; /* -16px */
-    width: auto;
-    height: auto;
-    border: none;
-    font-weight: bold;
-    color: var(--color-primary);
-    opacity: 1;
+  @media (prefers-reduced-motion: reduce) {
+    .link-chevron::before {
+      transition: none;
+    }
   }
 }
 
@@ -169,13 +146,20 @@ html {
   font-family: var(--font-mono);
 }
 
+/* no rubber-band bounce past the top/bottom of the page (it would pull the
+   sticky nav down and expose the fixed CRT layer behind it) */
+html,
+body {
+  overscroll-behavior-y: none;
+}
+
 .prose-theme {
   /* base text colors */
   --tw-prose-body: var(--color-primary);
   --tw-prose-headings: var(--color-accent);
   --tw-prose-lead: var(--color-secondary);
   --tw-prose-links: var(--color-accent);
-  --tw-prose-bold: var(--color-accent);
+  --tw-prose-bold: var(--color-primary);
   --tw-prose-counters: var(--color-secondary);
   --tw-prose-bullets: var(--color-secondary);
   --tw-prose-hr: var(--color-borders);
@@ -187,4 +171,163 @@ html {
   --tw-prose-pre-bg: var(--color-code);
   --tw-prose-th-borders: var(--color-borders);
   --tw-prose-td-borders: var(--color-borders);
+}
+
+/* links are the only accent-coloured inline text, so they stay recognisable */
+.prose-theme :where(a):not(:where(.not-prose, .not-prose *)) {
+  text-decoration-color: color-mix(in srgb, var(--color-accent) 50%, transparent);
+  text-underline-offset: 3px;
+  transition: text-decoration-color 150ms ease;
+}
+
+.prose-theme :where(a):not(:where(.not-prose, .not-prose *)):hover {
+  text-decoration-color: var(--color-accent);
+}
+
+/* code: no JetBrains Mono ligatures (so `!==` reads and pastes as typed) */
+.prose-theme pre,
+.prose-theme code {
+  font-variant-ligatures: none;
+  font-feature-settings: "liga" 0, "calt" 0;
+}
+
+/* on wide screens let code blocks run 3rem past the text column on each
+   side, so typical 75-85 character lines fit without a scrollbar.
+   The [class*=language-] selector outranks Prism's own pre margin. */
+@media (min-width: 1024px) {
+  .prose-theme pre,
+  .prose-theme pre[class*="language-"] {
+    margin-left: -3rem;
+    margin-right: -3rem;
+  }
+}
+
+/* inline code: a small chip instead of Tailwind Typography's backticks */
+.prose-theme :not(pre) > code::before,
+.prose-theme :not(pre) > code::after {
+  content: none;
+}
+
+.prose-theme :not(pre) > code {
+  padding: 0.1em 0.35em;
+  border: 1px solid var(--color-borders);
+  border-radius: 0.25rem;
+  background: var(--color-code);
+  font-size: 0.875em;
+  font-weight: 500;
+}
+
+/* ------------------------------------------------------------------ */
+/* terminal motion: block cursor, CRT backdrop                         */
+/* ------------------------------------------------------------------ */
+
+@keyframes term-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* blinking block cursor appended after a heading */
+.term-cursor::after {
+  content: "";
+  display: inline-block;
+  width: 0.55em;
+  height: 1em;
+  margin-left: 0.2em;
+  vertical-align: -0.12em;
+  background: var(--color-accent);
+  animation: term-blink 1.06s steps(1, end) infinite;
+}
+
+/* same cursor for the home typewriter (overrides the library's thin,
+   absolutely positioned caret so the block follows the last character,
+   even when the line wraps on narrow screens) */
+p.om-typewriter-text.term-typewriter::after {
+  position: static;
+  display: inline-block;
+  /* the library template leaves a trailing space before this; pull back over it */
+  margin: 0 0 0 -0.4em;
+  vertical-align: -0.12em;
+  height: 1em;
+  aspect-ratio: auto;
+  width: 0.55em;
+  background-color: var(--color-accent);
+  animation: term-blink 1.06s steps(1, end) infinite;
+}
+
+/* About page: the markdown's first heading is the page title */
+.prose-theme.term-cursor-first > :first-child::after {
+  content: "";
+  display: inline-block;
+  width: 0.55em;
+  height: 1em;
+  margin-left: 0.2em;
+  vertical-align: -0.12em;
+  background: var(--color-accent);
+  animation: term-blink 1.06s steps(1, end) infinite;
+}
+
+/* CRT glyph field filling the viewport behind the home page.
+   It must not sit inside an isolated stacking context: the blend modes
+   below need the real page background as their backdrop so the shader's
+   black (dark) / inverted white (light) disappears instead of tinting. */
+.crt-backdrop {
+  position: fixed;
+  inset: 0;
+  /* the home wrapper's space-y-8 gives every child a 2rem bottom margin,
+     which would shrink this inset-0 box and leave an empty strip */
+  margin: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+  container-type: size;
+  opacity: 0.4;
+  mix-blend-mode: screen;
+  /* calmer behind the centred text, full strength towards the edges */
+  -webkit-mask-image: radial-gradient(ellipse 55% 50% at 50% 42%, rgb(0 0 0 / 0.3) 0%, rgb(0 0 0 / 0.5) 55%, #000 100%);
+  mask-image: radial-gradient(ellipse 55% 50% at 50% 42%, rgb(0 0 0 / 0.3) 0%, rgb(0 0 0 / 0.5) 55%, #000 100%);
+}
+
+/* The shader lays out a fixed number of glyph columns and rows whatever the
+   canvas shape, so on a portrait phone every cell was squeezed sideways.
+   Always render at the landscape shape it was tuned on (~1.76:1, a laptop
+   screen) and crop it to cover the viewport, like object-fit: cover. */
+.crt-canvas {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: max(100cqw, 176cqh);
+  height: max(100cqh, 56.8cqw);
+  transform: translate(-50%, -50%);
+}
+
+/* on phones nearly the whole screen is text, so the calm centre would hide
+   the field almost entirely; use a flatter fade there */
+@media (max-width: 639px) {
+  .crt-backdrop {
+    -webkit-mask-image: linear-gradient(rgb(0 0 0 / 0.6), #000);
+    mask-image: linear-gradient(rgb(0 0 0 / 0.6), #000);
+  }
+}
+
+/* light theme: invert to a white field, then multiply so white drops out */
+:root.light .crt-backdrop {
+  filter: invert(1);
+  mix-blend-mode: multiply;
+  opacity: 0.55;
+}
+
+/* a soft background-coloured halo keeps text crisp over the glyph field */
+.crt-legible {
+  text-shadow:
+    0 0 4px var(--color-background),
+    0 0 10px var(--color-background);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .term-cursor::after,
+  p.om-typewriter-text.term-typewriter::after,
+  .prose-theme.term-cursor-first > :first-child::after {
+    animation: none;
+  }
 }

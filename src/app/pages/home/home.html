@@ -1,23 +1,54 @@
 <div
-  class="flex flex-col items-center w-full px-4 lg:px-0 space-y-8 justify-center min-h-[calc(100dvh-var(--size-nav-h)-var(--size-footer-h)-8rem-4px)] sm:min-h-[calc(100dvh-var(--size-nav-h)-var(--size-footer-h)-9rem-4px)] lg:min-h-[calc(100dvh-var(--size-nav-h)-var(--size-footer-h)-10rem-4px)]"
+  class="crt-legible flex flex-col items-center w-full px-4 lg:px-0 space-y-8 justify-center min-h-[calc(100dvh-var(--size-nav-h)-var(--size-footer-h)-8rem-4px)] sm:min-h-[calc(100dvh-var(--size-nav-h)-var(--size-footer-h)-9rem-4px)] lg:min-h-[calc(100dvh-var(--size-nav-h)-var(--size-footer-h)-10rem-4px)]"
 >
+  <!-- full-viewport CRT glyph field; loaded after first paint so ogl/WebGL stays out of the initial bundle -->
+  @defer (on idle) {
+    @if (showCrt) {
+      <div class="crt-backdrop" aria-hidden="true">
+        <om-faulty-terminal
+          class="crt-canvas"
+          [tint]="crtTint()"
+          [scale]="3"
+          [gridMul]="[2, 1]"
+          [digitSize]="1.4"
+          [timeScale]="0.35"
+          [scanlineIntensity]="0.4"
+          [glitchAmount]="0.4"
+          [flickerAmount]="0.3"
+          [noiseAmp]="0.8"
+          [curvature]="0"
+          [brightness]="0.9"
+          [mouseReact]="false"
+          [dpr]="crtDpr"
+        ></om-faulty-terminal>
+      </div>
+    }
+  }
+
   <!-- hero section -->
-  <div class="flex flex-col items-center space-y-4">
+  <div class="flex flex-col items-center space-y-4 text-center">
+    <div class="font-mono text-sm sm:text-base text-secondary" aria-hidden="true">
+      <span class="text-accent font-bold">$</span> whoami
+    </div>
+
     <om-cryptic-text
+      role="heading"
+      aria-level="1"
+      aria-label="Methran"
       [animateOnce]="true"
       [text]="'Methran'"
-      styleClass="font-mono text-4xl md:text-5xl text-accent"
+      styleClass="font-mono font-extrabold tracking-tight leading-tight text-5xl sm:text-6xl text-primary"
       [animationSpeed]="1000"
     ></om-cryptic-text>
 
     <om-typewriter
       [words]="[
-        'Founding Engineer @ AI Startup',
+        'Founding Engineer @ Usermode.ai',
         'AI agents that act, not just chat.',
         'MCP, memory, and systems that hold up.',
       ]"
       [styleClass]="
-        'font-mono text-sm sm:text-base md:text-lg text-secondary tracking-wide'
+        'font-mono text-sm sm:text-base md:text-lg text-secondary tracking-wide term-typewriter'
       "
       [writeSpeed]="25"
       [startDelay]="1000"
@@ -25,24 +56,20 @@
   </div>
 
   <!-- short intro -->
-  <div class="px-0 sm:px-18">
-    <div class="text-center font-mono mb-2">
+  <div
+    class="max-w-2xl mx-auto font-mono text-left sm:text-center"
+  >
+    <p class="text-pretty sm:text-balance">
       I'm a software engineer who loves building fast and reliable systems.
-      Currently a Founding Engineer at Usermode.ai, where I build
-      governed fleets of autonomous AI agents and the MCP services that connect
-      them to real business systems, mostly in TypeScript and Python.
-    </div>
-
-    <div class="text-center font-mono">
-      Before that I built full-stack features for Document360, a SaaS knowledge
-      base used by teams at companies like VMware, Midjourney, Toyota, and
-      McDonald's. Curiosity keeps me going. I enjoy learning new tools, trying
-      out ideas, and finding better ways to build.
-    </div>
+      Currently, I'm a Founding Engineer at Usermode.ai, working on AI agents
+      and the MCP services that connect them to the systems companies already
+      use. Before that, I built features for Document360, used by teams at
+      VMware, Midjourney, Toyota, McDonald's, and more.
+    </p>
   </div>
 
   <!-- tech stack -->
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-10 text-gray-500 text-center">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-10 text-secondary text-center">
     <!-- Languages -->
     <div>
       <p class="font-mono text-sm text-primary mb-3">Languages & Scripting</p>
@@ -113,36 +140,31 @@
     </div>
   </div>
 
-  <!-- resume & my work -->
-  <div
-    class="flex flex-col space-y-4 md:flex-row md:space-y-0 md:space-x-6 items-center justify-center"
-  >
-    <!-- Blogs button -->
+  <!-- cv, blogs & projects -->
+  <div class="flex flex-col sm:flex-row items-center justify-center w-full gap-3 sm:gap-6">
     <a
       [href]="routeConstants.CV"
       target="_blank"
-      class="font-mono px-4 py-2 bg-accent/10 border border-accent/50 text-accent rounded-md hover:bg-accent/20 hover:border-accent transition-all duration-200 text-sm font-medium flex items-center gap-2"
+      class="btn-term btn-term-primary w-full max-w-64 sm:w-32"
     >
       <lucide-angular [img]="fileUserIcon" size="16"></lucide-angular>
       CV
     </a>
 
-    <!-- Download Resume Button -->
     <a
       [routerLink]="[routeConstants.Blog]"
-      class="font-mono px-4 py-2 bg-background text-primary border border-primary/20 rounded-md hover:bg-primary/5 hover:border-primary/40 transition-all duration-200 text-sm font-medium flex items-center gap-2"
+      class="btn-term w-full max-w-64 sm:w-32"
     >
       <lucide-angular [img]="notebookPenIcon" size="16"></lucide-angular>
       Blogs
     </a>
 
-    <!-- View Work Button -->
     <a
       [routerLink]="[routeConstants.Projects]"
-      class="font-mono px-4 py-2 bg-background text-primary border border-primary/20 rounded-md hover:bg-primary/5 hover:border-primary/40 transition-all duration-200 text-sm font-medium flex items-center gap-2"
+      class="btn-term w-full max-w-64 sm:w-32"
     >
       <lucide-angular [img]="folderIcon" size="16"></lucide-angular>
-      Work
+      Projects
     </a>
   </div>
 </div>

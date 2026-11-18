@@ -106,9 +106,10 @@ export class BlogList implements OnInit {
     });
   }
 
-  copyLink(index: number) {
+  // takes the post itself: the template's $index restarts on every page of
+  // the paginated list, so indexing filteredBlogs copied the wrong link
+  copyLink(post: BlogPost) {
     if (this.blogs === null) return;
-    const post = this.filteredBlogs[index];
     const copyText = `https://methran.dev${this.routeConstants.Blog}/${post.slug}`;
     copy(copyText);
     post.isLinkCopied = true;
