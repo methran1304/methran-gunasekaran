@@ -1,7 +1,184 @@
-<div class="flex px-2 md:px-0 min-h-full justify-center items-start">
-  <markdown
-    class="prose prose-theme term-cursor-first max-w-2xl w-full"
-    [src]="filePath"
-  >
-  </markdown>
+<div
+  class="flex flex-col items-start w-full h-full space-y-8 px-4 mb-12 lg:mb-0 lg:px-0"
+>
+  <!-- title & sub -->
+  <div class="flex flex-col items-start space-y-3">
+    <div class="font-mono text-2xl text-accent font-bold term-cursor">About</div>
+    <div class="font-mono text-secondary text-lg">
+      A closer look at my journey, my craft, and what drives me forward.
+    </div>
+  </div>
+
+  <!-- my journey -->
+  <section class="flex flex-col items-start space-y-4 w-full">
+    <h2 class="font-mono text-xl text-accent font-bold">My Journey</h2>
+
+    <p>
+      My fascination with computers began early when I first used
+      TurtleGraphics to draw shapes on a screen through simple instructions.
+      The idea that a machine could follow my logic and produce something
+      visual instantly captivated me.
+    </p>
+
+    <p>
+      In high school, that curiosity turned into exploration. I spent hours
+      experimenting with games, operating systems, and programming. Nothing
+      matched the excitement of my programming class. I started with C++ and
+      soon began automating everyday tasks with Python just for fun.
+    </p>
+
+    <p>
+      Toward the end of school, programming became more than a hobby. Learning
+      algorithms made me appreciate the elegance behind the logic, and seeing
+      them power real-world features like map navigation and text
+      autocorrection pushed me deeper into computer science.
+    </p>
+
+    <p>
+      Around this time, I also worked part-time as a
+      <strong>C/C++ Teaching Assistant</strong> at
+      <a
+        href="https://internshala.com/"
+        target="_blank"
+        rel="noopener"
+        class="about-link"
+        >Internshala</a
+      >, helping students understand the language and object oriented
+      programming.
+    </p>
+
+    <p>
+      During my undergraduate studies, I secured an internship at
+      <a
+        href="https://www.kovai.co/"
+        target="_blank"
+        rel="noopener"
+        class="about-link"
+        >Kovai.co</a
+      >
+      as a <strong>Software Engineer</strong>, where I later received a
+      full-time offer upon graduation. It was there that I got into the .NET
+      and Angular ecosystem, discovering my passion for web development while
+      contributing to
+      <a
+        href="https://document360.com/"
+        target="_blank"
+        rel="noopener"
+        class="about-link"
+        >Document360</a
+      >
+      with a focus on backend performance and authentication.
+    </p>
+
+    <p>
+      Now, I am completing my
+      <strong>Masters in Advanced Computer Science</strong> with Distinction at
+      the <strong>University of Liverpool</strong>, where I have explored
+      advanced algorithms, high-performance computing, cloud, machine learning
+      and a lot more.
+    </p>
+
+    <p>
+      Most recently, I joined <strong>Usermode.ai</strong> as a
+      <strong>Founding Engineer</strong>, building an enterprise AI integration
+      platform — designing MCP-based microservices and agentic systems on Azure
+      that unify fragmented legacy platforms.
+    </p>
+  </section>
+
+  <!-- achievements -->
+  <section class="flex flex-col items-start space-y-6 w-full">
+    <h2 class="font-mono text-xl text-accent font-bold">
+      Achievements &amp; Competitions
+    </h2>
+
+    <div class="flex flex-col space-y-4 w-full">
+      <h3 class="font-mono text-lg font-bold">Work Recognition</h3>
+      <div class="grid w-full grid-cols-1 lg:grid-cols-2 gap-6">
+        @for (item of workRecognition; track item.title) {
+          <div class="about-card group">
+            <div class="font-mono font-extrabold group-hover:text-accent mb-2">
+              <span class="text-accent">$</span> {{ item.title }}
+            </div>
+            <div class="font-mono text-secondary">{{ item.description }}</div>
+          </div>
+        }
+      </div>
+    </div>
+
+    <div class="flex flex-col space-y-4 w-full">
+      <h3 class="font-mono text-lg font-bold">Coding Competitions</h3>
+      <div class="grid w-full grid-cols-1 lg:grid-cols-2 gap-6">
+        @for (item of codingCompetitions; track item.title) {
+          <div class="about-card group">
+            <div class="font-mono font-extrabold group-hover:text-accent mb-2">
+              <span class="text-accent">$</span> {{ item.title }}
+            </div>
+            <div class="font-mono text-secondary">{{ item.description }}</div>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- what i'm working on -->
+  <section class="flex flex-col items-start space-y-4 w-full">
+    <h2 class="font-mono text-xl text-accent font-bold">What I’m Working On</h2>
+
+    <p>
+      I like keeping myself engaged with projects and challenges that push me
+      to think differently and refine how I build software. Here’s what I’m
+      currently focused on:
+    </p>
+
+    <ul class="flex flex-col space-y-3">
+      <li class="flex gap-3">
+        <span class="text-accent font-bold shrink-0" aria-hidden="true">></span>
+        <span>
+          Building <strong>autonomous AI agents</strong> and
+          <strong>MCP services</strong> as a Founding Engineer — durable
+          memory, long-running operations, tool-calling safety, and the
+          reliability work that keeps a fleet running in production
+        </span>
+      </li>
+      <li class="flex gap-3">
+        <span class="text-accent font-bold shrink-0" aria-hidden="true">></span>
+        <span>
+          Writing about <strong>agent engineering</strong> on this blog —
+          memory beyond vector stores, taming the context window, safe tool
+          calling, and retries done right
+        </span>
+      </li>
+      <li class="flex gap-3">
+        <span class="text-accent font-bold shrink-0" aria-hidden="true">></span>
+        <span>
+          Developing a CLI-based <strong>Regex Engine</strong> to deepen my
+          understanding of state machines
+        </span>
+      </li>
+    </ul>
+  </section>
+
+  <!-- beyond the code -->
+  <section class="flex flex-col items-start space-y-4 w-full">
+    <h2 class="font-mono text-xl text-accent font-bold">Beyond the Code</h2>
+
+    <p>
+      Outside of programming, I try to stay grounded and balanced through the
+      things I love. You’ll often find me laughing and spending quality time
+      with my family and friends.
+    </p>
+
+    <p>
+      I’m a huge admirer of astronomy! I can talk about the universe, space,
+      and the cosmos endlessly. The scale and mystery of it all constantly
+      remind me how much there is to learn.
+    </p>
+
+    <p>
+      I also enjoy playing video games, which often inspire my creativity and
+      problem-solving mindset. When I’m not gaming, I like working out and
+      trying new cuisines whenever I get the chance.
+    </p>
+  </section>
 </div>
