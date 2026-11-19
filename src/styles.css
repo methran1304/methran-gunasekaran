@@ -239,6 +239,30 @@ body {
   animation: term-blink 1.06s steps(1, end) infinite;
 }
 
+/* home typewriter subtitle: always one line. Below 640px the font scales
+   with the viewport so the longest phrase ("MCP, memory, and systems that
+   hold up." = 38 chars, ~23.6em with the cursor) fits inside the page
+   gutters (4rem) with ~2% to spare for browser rounding: 14px from ~407px,
+   ~12.7px at 375px, ~10.4px at 320px. */
+.hero-subtitle {
+  white-space: nowrap;
+  font-size: min(0.875rem, calc((100vw - 4rem) / 24.5));
+  line-height: 1.5;
+}
+
+@media (min-width: 640px) {
+  .hero-subtitle {
+    font-size: 1rem;
+    letter-spacing: 0.025em;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero-subtitle {
+    font-size: 1.125rem;
+  }
+}
+
 /* same cursor for the home typewriter (overrides the library's thin,
    absolutely positioned caret so the block follows the last character,
    even when the line wraps on narrow screens) */
