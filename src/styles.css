@@ -202,17 +202,6 @@ body {
   font-feature-settings: "liga" 0, "calt" 0;
 }
 
-/* on wide screens let code blocks run 3rem past the text column on each
-   side, so typical 75-85 character lines fit without a scrollbar.
-   The [class*=language-] selector outranks Prism's own pre margin. */
-@media (min-width: 1024px) {
-  .prose-theme pre,
-  .prose-theme pre[class*="language-"] {
-    margin-left: -3rem;
-    margin-right: -3rem;
-  }
-}
-
 /* inline code: a small chip instead of Tailwind Typography's backticks */
 .prose-theme :not(pre) > code::before,
 .prose-theme :not(pre) > code::after {
