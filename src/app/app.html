@@ -1,8 +1,10 @@
 <div class="flex flex-col min-h-dvh">
   <app-navbar class="bar-sticky"></app-navbar>
 
-  <main class="flex-1">
-    <div class="app-main-content py-8 sm:py-10 lg:py-12 min-h-app">
+  <!-- main fills the space between nav and footer; pages that want to
+       fill it (home) can flex inside it instead of guessing heights -->
+  <main class="flex-1 flex flex-col">
+    <div class="app-main-content flex-1 flex flex-col w-full py-8 sm:py-10 lg:py-12">
       <router-outlet></router-outlet>
     </div>
   </main>
