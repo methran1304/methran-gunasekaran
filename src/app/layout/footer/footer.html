@@ -1,82 +1,50 @@
 <footer class="w-full bg-background">
-  <div class="app-container my-4">
-    <!-- name & desc -->
-    @if (showTitle) {
-    <div class="flex flex-col mb-2">
-      <div class="flex flex-col">
-        <span class="mb-1">Methran Gunasekaran</span>
-        <span class="text-sm text-secondary"
-          >Founding Engineer @ Usermode.ai</span
+  <!-- one centred row, the same height as the nav, like a terminal status
+     bar; centred so the fixed back-to-top button (bottom right) never covers
+     it. Phones stack it into two short lines. -->
+  <div
+    class="app-container flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-8 py-4 sm:py-0 sm:h-16"
+  >
+    <!-- contact -->
+    <div class="flex items-center">
+      <span class="hidden sm:inline text-sm font-medium me-7"
+        ><span class="mr-1 font-extrabold text-accent">$</span
+        >./connect.sh</span
+      >
+
+      <div class="flex items-center gap-7">
+        <a
+          href="https://www.linkedin.com/in/methran/"
+          target="_blank"
+          class="link-chevron text-secondary hover:text-accent"
+          aria-label="LinkedIn"
         >
-      </div>
-    </div>
-    }
+          <lucide-angular [img]="linkedInIcon" [size]="20"></lucide-angular>
+        </a>
 
-    <!-- contact & site Links -->
-    <div
-      class="flex flex-col mb-4 md:flex-row md:justify-between gap-8 md:gap-0"
-    >
-      <!-- contact-->
-      <div class="flex flex-col">
-        <span class="text-sm font-medium mb-4"
-          ><span class="mr-1 font-extrabold text-accent">$</span
-          >./connect.sh</span
+        <a
+          href="https://github.com/methran1304"
+          target="_blank"
+          class="link-chevron text-secondary hover:text-accent"
+          aria-label="GitHub"
         >
+          <lucide-angular [img]="githubIcon" [size]="20"></lucide-angular>
+        </a>
 
-        <div class="flex ms-3 gap-8">
-          <a
-            href="https://www.linkedin.com/in/methran/"
-            target="_blank"
-            class="link-chevron text-secondary hover:text-accent"
-            aria-label="LinkedIn"
-          >
-            <lucide-angular [img]="linkedInIcon"></lucide-angular>
-          </a>
-
-          <a
-            href="https://github.com/methran1304"
-            target="_blank"
-            class="link-chevron text-secondary hover:text-accent"
-            aria-label="GitHub"
-          >
-            <lucide-angular [img]="githubIcon"></lucide-angular>
-          </a>
-
-          <a
-            href="mailto:g.methran@gmail.com?subject=Portfolio%20Inquiry"
-            class="link-chevron text-secondary hover:text-accent"
-            aria-label="Email"
-          >
-            <lucide-angular [img]="mailIcon"></lucide-angular>
-          </a>
-        </div>
-      </div>
-
-      <!-- site links -->
-      <div class="flex flex-col">
-        <span class="text-sm font-medium mb-3">
-          <span class="mr-1 font-extrabold text-accent">$</span
-          >./site-links.sh</span
+        <a
+          href="mailto:g.methran@gmail.com?subject=Portfolio%20Inquiry"
+          class="link-chevron text-secondary hover:text-accent"
+          aria-label="Email"
         >
-        <div
-          class="grid grid-cols-2 ms-4 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-2"
-        >
-          @for (item of navItems; track item.href) {
-          <a
-            [routerLink]="item.href"
-            routerLinkActive="active"
-            class="link-chevron text-sm"
-            >{{ item.label }}</a
-          >
-          }
-        </div>
+          <lucide-angular [img]="mailIcon" [size]="20"></lucide-angular>
+        </a>
       </div>
     </div>
 
-    <div class="flex justify-center">
-      <span class="text-[12px] text-secondary">
-        Copyright © 2026 methran.dev
-      </span>
-    </div>
+    <span class="hidden sm:block h-4 w-px bg-borders" aria-hidden="true"></span>
+
+    <span class="text-[12px] text-secondary whitespace-nowrap">
+      Copyright © 2026 methran.dev
+    </span>
   </div>
 </footer>
