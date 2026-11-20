@@ -4,5 +4,4 @@ export const ROUTE_CONSTANTS = {
     Contact: '/contact',
     About: '/about',
     Projects: '/projects',
-    CV: '/cv.pdf'
 }

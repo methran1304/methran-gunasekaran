@@ -8,7 +8,6 @@ import { NgxCrypticTextComponent } from '@omnedia/ngx-cryptic-text';
 import { NgxFaultyTerminalComponent } from '@omnedia/ngx-faulty-terminal';
 import {
   LucideAngularModule,
-  FileUser,
   FolderOpen,
   NotebookPen,
 } from 'lucide-angular';
@@ -43,7 +42,6 @@ export class HomeComponent {
   frameworks = techStack.frameworks as TechItem[];
   tools = techStack.tools as TechItem[];
 
-  readonly fileUserIcon = FileUser;
   readonly folderIcon = FolderOpen;
   readonly notebookPenIcon = NotebookPen;
   readonly routeConstants = ROUTE_CONSTANTS;

@@ -16,10 +16,11 @@
 
       /* spacing/size tokens for layout */
     --spacing-container-x: 16px;   /* base x padding */
-    --size-nav-h: 64px;            /* 64px nav height */
-    --size-footer-h: 80px;         /* default footer min-height */
-    --size-main-content-max: 1000px;     
-    --size-container-max: 1200px;     
+    /* rem, not px, so they scale with the root font size below */
+    --size-nav-h: 4rem;            /* nav height (h-16) */
+    --size-footer-h: 5rem;         /* default footer min-height */
+    --size-main-content-max: 62.5rem; /* 1000px at 16px */
+    --size-container-max: 75rem;      /* 1200px at 16px */
     --breakpoint-custom: 900px;
 
     --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
@@ -146,6 +147,16 @@ html {
   font-family: var(--font-mono);
 }
 
+/* From 640px up the whole site renders at 85% of the browser's base size,
+   the look of 85% browser zoom: text, spacing and widths are all in rem, so
+   they scale together. A percentage keeps respecting the visitor's own font
+   size setting. Phones stay at 100% so body text stays comfortable to read. */
+@media (min-width: 640px) {
+  html {
+    font-size: 85%;
+  }
+}
+
 /* no rubber-band bounce past the top/bottom of the page (it would pull the
    sticky nav down and expose the fixed CRT layer behind it) */
 html,
@@ -243,7 +254,8 @@ body {
    with the viewport so the longest phrase ("MCP, memory, and systems that
    hold up." = 38 chars, ~23.6em with the cursor) fits inside the page
    gutters (4rem) with ~2% to spare for browser rounding: 13px from ~382px,
-   ~10.4px at 320px. 14px from 640px, 15px from 768px. */
+   ~10.4px at 320px. From 640px the root is 85%, so 1rem/1.125rem render at
+   ~13.6px/15.3px. */
 .hero-subtitle {
   white-space: nowrap;
   font-size: min(0.8125rem, calc((100vw - 4rem) / 24.5));
@@ -252,14 +264,14 @@ body {
 
 @media (min-width: 640px) {
   .hero-subtitle {
-    font-size: 0.875rem;
+    font-size: 1rem;
     letter-spacing: 0.025em;
   }
 }
 
 @media (min-width: 768px) {
   .hero-subtitle {
-    font-size: 0.9375rem;
+    font-size: 1.125rem;
   }
 }
 
