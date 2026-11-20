@@ -1,6 +1,7 @@
-import { NgForOf } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Component, OnInit, signal } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { NavigationEnd, Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { filter } from 'rxjs';
 import { ThemeService } from '../../services/theme-service';
 import { Theme } from '../../enums/theme-enum';
 import { LucideAngularModule, SunMedium, Moon } from 'lucide-angular';
@@ -26,8 +27,24 @@ export class NavbarComponent implements OnInit {
     { href: ROUTE_CONSTANTS.Contact, label: 'Contact' },
   ];
 
-  constructor(private _themeService: ThemeService) {
+  /** the current page as a shell path: ~/blog for the blog and its posts,
+   *  ~/projects, ...; empty on home, where a lone "~" reads as a stray mark */
+  readonly path = signal('');
+
+  constructor(private _themeService: ThemeService, router: Router) {
     this.isDarkTheme = _themeService.getTheme() === Theme.Dark;
+
+    router.events
+      .pipe(
+        filter((e): e is NavigationEnd => e instanceof NavigationEnd),
+        takeUntilDestroyed(),
+      )
+      .subscribe((e) => this.path.set(this.pathFor(e.urlAfterRedirects)));
+  }
+
+  private pathFor(url: string): string {
+    const section = url.split(/[?#]/)[0].split('/').filter(Boolean)[0];
+    return !section || section === 'home' ? '' : `~/${section}`;
   }
 
   ngOnInit(): void {
