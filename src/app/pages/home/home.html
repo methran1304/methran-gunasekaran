@@ -1,5 +1,5 @@
 <div
-  class="crt-legible flex flex-col items-center w-full px-4 lg:px-0 space-y-8 justify-center min-h-[calc(100dvh-var(--size-nav-h)-var(--size-footer-h)-8rem-4px)] sm:min-h-[calc(100dvh-var(--size-nav-h)-var(--size-footer-h)-9rem-4px)] lg:min-h-[calc(100dvh-var(--size-nav-h)-var(--size-footer-h)-10rem-4px)]"
+  class="flex flex-col items-center w-full px-4 lg:px-0 space-y-7 justify-center min-h-[calc(100dvh-var(--size-nav-h)-var(--size-footer-h)-8rem-4px)] sm:min-h-[calc(100dvh-var(--size-nav-h)-var(--size-footer-h)-9rem-4px)] lg:min-h-[calc(100dvh-var(--size-nav-h)-var(--size-footer-h)-10rem-4px)]"
 >
   <!-- full-viewport CRT glyph field; loaded after first paint so ogl/WebGL stays out of the initial bundle -->
   @defer (on idle) {
@@ -11,10 +11,10 @@
           [scale]="3"
           [gridMul]="crtGridMul()"
           [digitSize]="1.4"
-          [timeScale]="0.35"
-          [scanlineIntensity]="0.4"
-          [glitchAmount]="0.4"
-          [flickerAmount]="0.3"
+          [timeScale]="crt.timeScale"
+          [scanlineIntensity]="crt.scanline"
+          [glitchAmount]="crt.glitch"
+          [flickerAmount]="crt.flicker"
           [noiseAmp]="0.8"
           [curvature]="0"
           [brightness]="0.9"
@@ -26,8 +26,8 @@
   }
 
   <!-- hero section -->
-  <div class="flex flex-col items-center space-y-4 text-center">
-    <div class="font-mono text-sm sm:text-base text-secondary" aria-hidden="true">
+  <div class="w-full max-w-xl flex flex-col items-center space-y-3 text-center">
+    <div class="font-mono text-xs sm:text-sm text-secondary" aria-hidden="true">
       <span class="text-accent font-bold">$</span> whoami
     </div>
 
@@ -37,7 +37,7 @@
       aria-label="Methran"
       [animateOnce]="true"
       [text]="'Methran'"
-      styleClass="font-mono font-extrabold tracking-tight leading-tight text-5xl sm:text-6xl text-primary"
+      styleClass="font-mono font-extrabold tracking-tight leading-tight text-[2.5rem] sm:text-5xl text-primary"
       [animationSpeed]="1000"
     ></om-cryptic-text>
 
@@ -57,9 +57,9 @@
 
   <!-- short intro -->
   <div
-    class="max-w-2xl mx-auto font-mono text-left sm:text-center"
+    class="max-w-xl mx-auto font-mono text-sm text-center"
   >
-    <p class="text-pretty sm:text-balance">
+    <p class="text-balance">
       I'm a software engineer who loves building fast and reliable systems.
       Currently, I'm a Founding Engineer at Usermode.ai, working on AI agents
       and the MCP services that connect them to the systems companies already
@@ -69,10 +69,10 @@
   </div>
 
   <!-- tech stack -->
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-10 text-secondary text-center">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-secondary text-center">
     <!-- Languages -->
     <div>
-      <p class="font-mono text-sm text-primary mb-3">Languages & Scripting</p>
+      <p class="font-mono text-xs text-primary mb-3">Languages & Scripting</p>
       <div class="flex flex-wrap justify-center gap-5 text-4xl">
         @for (lang of languages; track $index) {
           <div class="flex flex-col items-center">
@@ -81,12 +81,12 @@
                 class="inline-flex hover:text-accent hover:scale-110 transition-all"
                 [innerHTML]="trustSvg(lang.svg)"
               ></span>
-              <span class="text-xs mt-2">{{ lang.label }}</span>
+              <span class="text-[11px] mt-2">{{ lang.label }}</span>
             } @else if (lang.icon) {
               <i
                 [class]="lang.icon + ' hover:text-accent hover:scale-110 transition-all'"
               ></i>
-              <span class="text-xs mt-2">{{ lang.label }}</span>
+              <span class="text-[11px] mt-2">{{ lang.label }}</span>
             }
           </div>
         }
@@ -95,7 +95,7 @@
 
     <!-- Frameworks -->
     <div>
-      <p class="font-mono text-sm text-primary mb-3">Frameworks & Libraries</p>
+      <p class="font-mono text-xs text-primary mb-3">Frameworks & Libraries</p>
       <div class="flex flex-wrap justify-center gap-5 text-4xl">
         @for (framework of frameworks; track $index) {
           <div class="flex flex-col items-center">
@@ -104,12 +104,12 @@
                 class="inline-flex hover:text-accent hover:scale-110 transition-all"
                 [innerHTML]="trustSvg(framework.svg)"
               ></span>
-              <span class="text-xs mt-2">{{ framework.label }}</span>
+              <span class="text-[11px] mt-2">{{ framework.label }}</span>
             } @else if (framework.icon) {
               <i
                 [class]="framework.icon + ' hover:text-accent hover:scale-110 transition-all'"
               ></i>
-              <span class="text-xs mt-2">{{ framework.label }}</span>
+              <span class="text-[11px] mt-2">{{ framework.label }}</span>
             }
           </div>
         }
@@ -118,7 +118,7 @@
 
     <!-- Tools & Platforms -->
     <div class="col-span-1 md:col-span-2">
-      <p class="font-mono text-sm text-primary mb-3">Tools & Databases</p>
+      <p class="font-mono text-xs text-primary mb-3">Tools & Databases</p>
       <div class="flex flex-wrap justify-center gap-5 text-4xl">
         @for (tool of tools; track $index) {
           <div class="flex flex-col items-center">
@@ -127,12 +127,12 @@
                 class="inline-flex hover:text-accent hover:scale-110 transition-all"
                 [innerHTML]="trustSvg(tool.svg)"
               ></span>
-              <span class="text-xs mt-2">{{ tool.label }}</span>
+              <span class="text-[11px] mt-2">{{ tool.label }}</span>
             } @else if (tool.icon) {
               <i
                 [class]="tool.icon + ' hover:text-accent hover:scale-110 transition-all'"
               ></i>
-              <span class="text-xs mt-2">{{ tool.label }}</span>
+              <span class="text-[11px] mt-2">{{ tool.label }}</span>
             }
           </div>
         }
@@ -141,11 +141,11 @@
   </div>
 
   <!-- cv, blogs & projects -->
-  <div class="flex flex-col sm:flex-row items-center justify-center w-full gap-3 sm:gap-6">
+  <div class="flex flex-col sm:flex-row items-center justify-center w-full gap-3 sm:gap-5">
     <a
       [href]="routeConstants.CV"
       target="_blank"
-      class="btn-term btn-term-primary w-full max-w-64 sm:w-32"
+      class="btn-term btn-term-primary w-full max-w-56 sm:w-28 text-xs py-1.5"
     >
       <lucide-angular [img]="fileUserIcon" size="16"></lucide-angular>
       CV
@@ -153,7 +153,7 @@
 
     <a
       [routerLink]="[routeConstants.Blog]"
-      class="btn-term w-full max-w-64 sm:w-32"
+      class="btn-term w-full max-w-56 sm:w-28 text-xs py-1.5"
     >
       <lucide-angular [img]="notebookPenIcon" size="16"></lucide-angular>
       Blogs
@@ -161,7 +161,7 @@
 
     <a
       [routerLink]="[routeConstants.Projects]"
-      class="btn-term w-full max-w-64 sm:w-32"
+      class="btn-term w-full max-w-56 sm:w-28 text-xs py-1.5"
     >
       <lucide-angular [img]="folderIcon" size="16"></lucide-angular>
       Projects

@@ -242,24 +242,24 @@ body {
 /* home typewriter subtitle: always one line. Below 640px the font scales
    with the viewport so the longest phrase ("MCP, memory, and systems that
    hold up." = 38 chars, ~23.6em with the cursor) fits inside the page
-   gutters (4rem) with ~2% to spare for browser rounding: 14px from ~407px,
-   ~12.7px at 375px, ~10.4px at 320px. */
+   gutters (4rem) with ~2% to spare for browser rounding: 13px from ~382px,
+   ~10.4px at 320px. 14px from 640px, 15px from 768px. */
 .hero-subtitle {
   white-space: nowrap;
-  font-size: min(0.875rem, calc((100vw - 4rem) / 24.5));
+  font-size: min(0.8125rem, calc((100vw - 4rem) / 24.5));
   line-height: 1.5;
 }
 
 @media (min-width: 640px) {
   .hero-subtitle {
-    font-size: 1rem;
+    font-size: 0.875rem;
     letter-spacing: 0.025em;
   }
 }
 
 @media (min-width: 768px) {
   .hero-subtitle {
-    font-size: 1.125rem;
+    font-size: 0.9375rem;
   }
 }
 
@@ -285,19 +285,43 @@ p.om-typewriter-text.term-typewriter::after {
    black (dark) / inverted white (light) disappears instead of tinting. */
 .crt-backdrop {
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  /* the large viewport height doesn't change while a phone's address bar
+     slides in and out, so scrolling no longer resizes (and clears) the
+     WebGL canvas, which made it flicker */
+  height: 100vh;
+  height: 100lvh;
   /* the home wrapper's space-y-8 gives every child a 2rem bottom margin,
-     which would shrink this inset-0 box and leave an empty strip */
+     which would shrink this box and leave an empty strip */
   margin: 0;
   z-index: -1;
   pointer-events: none;
   overflow: hidden;
   opacity: 0.4;
   mix-blend-mode: screen;
-  /* calmer behind the centred text, full strength towards the edges */
-  -webkit-mask-image: radial-gradient(ellipse 55% 50% at 50% 42%, rgb(0 0 0 / 0.3) 0%, rgb(0 0 0 / 0.5) 55%, #000 100%);
-  mask-image: radial-gradient(ellipse 55% 50% at 50% 42%, rgb(0 0 0 / 0.3) 0%, rgb(0 0 0 / 0.5) 55%, #000 100%);
+  /* Faint glyphs behind the text (which spans about +/-25rem: the intro is
+     +/-21rem, the tech stack +/-25rem), ramping up just outside it to full
+     strength from +/-33rem. Horizontal only, with many stops, so the fade
+     has no visible edge or shape. */
+  --crt-fade: linear-gradient(
+    to right,
+    #000 calc(50% - 33rem),
+    rgb(0 0 0 / 0.8) calc(50% - 30rem),
+    rgb(0 0 0 / 0.5) calc(50% - 27rem),
+    rgb(0 0 0 / 0.25) calc(50% - 24rem),
+    rgb(0 0 0 / 0.15) calc(50% - 21rem),
+    rgb(0 0 0 / 0.15) calc(50% + 21rem),
+    rgb(0 0 0 / 0.25) calc(50% + 24rem),
+    rgb(0 0 0 / 0.5) calc(50% + 27rem),
+    rgb(0 0 0 / 0.8) calc(50% + 30rem),
+    #000 calc(50% + 33rem)
+  );
+  -webkit-mask-image: var(--crt-fade);
+  mask-image: var(--crt-fade);
 }
+
 
 /* fills the backdrop exactly; HomeComponent sizes the glyph grid from the
    viewport so cells keep their proportions on any screen shape */
@@ -306,27 +330,24 @@ p.om-typewriter-text.term-typewriter::after {
   inset: 0;
 }
 
-/* on phones nearly the whole screen is text, so the calm centre would hide
-   the field almost entirely; use a flatter fade there */
-@media (max-width: 639px) {
-  .crt-backdrop {
-    -webkit-mask-image: linear-gradient(rgb(0 0 0 / 0.6), #000);
-    mask-image: linear-gradient(rgb(0 0 0 / 0.6), #000);
-  }
-}
-
 /* light theme: invert to a white field, then multiply so white drops out */
 :root.light .crt-backdrop {
   filter: invert(1);
   mix-blend-mode: multiply;
   opacity: 0.55;
 }
+/* phones and small tablets are almost all text: a uniform low level instead
+   (no edge to notice), faint enough that text reads cleanly over it */
+@media (max-width: 767px) {
+  .crt-backdrop {
+    -webkit-mask-image: none;
+    mask-image: none;
+    opacity: 0.14;
+  }
 
-/* a soft background-coloured halo keeps text crisp over the glyph field */
-.crt-legible {
-  text-shadow:
-    0 0 4px var(--color-background),
-    0 0 10px var(--color-background);
+  :root.light .crt-backdrop {
+    opacity: 0.18;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
