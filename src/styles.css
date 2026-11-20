@@ -301,43 +301,25 @@ p.om-typewriter-text.term-typewriter::after {
   overflow: hidden;
   opacity: 0.4;
   mix-blend-mode: screen;
-  /* Nearly no glyphs behind the content column, easing smoothly up to full
-     strength towards the sides over ~16rem. Horizontal only and with many
-     stops, so there is no visible edge or shape to the fade. */
-  -webkit-mask-image: linear-gradient(
+  /* Faint glyphs behind the text (which spans about +/-25rem: the intro is
+     +/-21rem, the tech stack +/-25rem), ramping up just outside it to full
+     strength from +/-33rem. Horizontal only, with many stops, so the fade
+     has no visible edge or shape. */
+  --crt-fade: linear-gradient(
     to right,
-    #000 calc(50% - 46rem),
-    rgb(0 0 0 / 0.9) calc(50% - 42rem),
-    rgb(0 0 0 / 0.7) calc(50% - 38rem),
-    rgb(0 0 0 / 0.45) calc(50% - 34rem),
-    rgb(0 0 0 / 0.25) calc(50% - 31rem),
-    rgb(0 0 0 / 0.12) calc(50% - 28rem),
-    rgb(0 0 0 / 0.08) calc(50% - 24rem),
-    rgb(0 0 0 / 0.08) calc(50% + 24rem),
-    rgb(0 0 0 / 0.12) calc(50% + 28rem),
-    rgb(0 0 0 / 0.25) calc(50% + 31rem),
-    rgb(0 0 0 / 0.45) calc(50% + 34rem),
-    rgb(0 0 0 / 0.7) calc(50% + 38rem),
-    rgb(0 0 0 / 0.9) calc(50% + 42rem),
-    #000 calc(50% + 46rem)
+    #000 calc(50% - 33rem),
+    rgb(0 0 0 / 0.8) calc(50% - 30rem),
+    rgb(0 0 0 / 0.5) calc(50% - 27rem),
+    rgb(0 0 0 / 0.25) calc(50% - 24rem),
+    rgb(0 0 0 / 0.15) calc(50% - 21rem),
+    rgb(0 0 0 / 0.15) calc(50% + 21rem),
+    rgb(0 0 0 / 0.25) calc(50% + 24rem),
+    rgb(0 0 0 / 0.5) calc(50% + 27rem),
+    rgb(0 0 0 / 0.8) calc(50% + 30rem),
+    #000 calc(50% + 33rem)
   );
-  mask-image: linear-gradient(
-    to right,
-    #000 calc(50% - 46rem),
-    rgb(0 0 0 / 0.9) calc(50% - 42rem),
-    rgb(0 0 0 / 0.7) calc(50% - 38rem),
-    rgb(0 0 0 / 0.45) calc(50% - 34rem),
-    rgb(0 0 0 / 0.25) calc(50% - 31rem),
-    rgb(0 0 0 / 0.12) calc(50% - 28rem),
-    rgb(0 0 0 / 0.08) calc(50% - 24rem),
-    rgb(0 0 0 / 0.08) calc(50% + 24rem),
-    rgb(0 0 0 / 0.12) calc(50% + 28rem),
-    rgb(0 0 0 / 0.25) calc(50% + 31rem),
-    rgb(0 0 0 / 0.45) calc(50% + 34rem),
-    rgb(0 0 0 / 0.7) calc(50% + 38rem),
-    rgb(0 0 0 / 0.9) calc(50% + 42rem),
-    #000 calc(50% + 46rem)
-  );
+  -webkit-mask-image: var(--crt-fade);
+  mask-image: var(--crt-fade);
 }
 
 
