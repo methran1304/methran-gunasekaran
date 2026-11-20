@@ -313,25 +313,44 @@ p.om-typewriter-text.term-typewriter::after {
   overflow: hidden;
   opacity: 0.4;
   mix-blend-mode: screen;
-  /* Faint glyphs behind the text (which spans about +/-25rem: the intro is
-     +/-21rem, the tech stack +/-25rem), ramping up just outside it to full
-     strength from +/-33rem. Horizontal only, with many stops, so the fade
-     has no visible edge or shape. */
-  --crt-fade: linear-gradient(
+  /* Faint glyphs only around the home content, full strength everywhere
+     else. Two soft fades are combined: a horizontal one (the content spans
+     about +/-26rem across) and a vertical one (it sits centred 2.6rem above
+     the middle of the screen and spans about +/-20.5rem). Mask layers add up,
+     so the glyphs are dimmed only where both fades are low; above and below
+     the content (tall/large screens) and to its sides the CRT is at full
+     strength, with no vertical stripe. Each fade bottoms out at 8%, so behind
+     the text the combined level is ~15%. Many stops keep the edges invisible. */
+  --crt-fade-x: linear-gradient(
     to right,
     #000 calc(50% - 33rem),
-    rgb(0 0 0 / 0.8) calc(50% - 30rem),
-    rgb(0 0 0 / 0.5) calc(50% - 27rem),
-    rgb(0 0 0 / 0.25) calc(50% - 24rem),
-    rgb(0 0 0 / 0.15) calc(50% - 21rem),
-    rgb(0 0 0 / 0.15) calc(50% + 21rem),
-    rgb(0 0 0 / 0.25) calc(50% + 24rem),
-    rgb(0 0 0 / 0.5) calc(50% + 27rem),
-    rgb(0 0 0 / 0.8) calc(50% + 30rem),
+    rgb(0 0 0 / 0.78) calc(50% - 30rem),
+    rgb(0 0 0 / 0.46) calc(50% - 27rem),
+    rgb(0 0 0 / 0.19) calc(50% - 24rem),
+    rgb(0 0 0 / 0.08) calc(50% - 21rem),
+    rgb(0 0 0 / 0.08) calc(50% + 21rem),
+    rgb(0 0 0 / 0.19) calc(50% + 24rem),
+    rgb(0 0 0 / 0.46) calc(50% + 27rem),
+    rgb(0 0 0 / 0.78) calc(50% + 30rem),
     #000 calc(50% + 33rem)
   );
-  -webkit-mask-image: var(--crt-fade);
-  mask-image: var(--crt-fade);
+  --crt-fade-y: linear-gradient(
+    to bottom,
+    #000 calc(50% - 2.6rem - 30rem),
+    rgb(0 0 0 / 0.78) calc(50% - 2.6rem - 28rem),
+    rgb(0 0 0 / 0.46) calc(50% - 2.6rem - 26rem),
+    rgb(0 0 0 / 0.19) calc(50% - 2.6rem - 24rem),
+    rgb(0 0 0 / 0.08) calc(50% - 2.6rem - 22rem),
+    rgb(0 0 0 / 0.08) calc(50% - 2.6rem + 22rem),
+    rgb(0 0 0 / 0.19) calc(50% - 2.6rem + 24rem),
+    rgb(0 0 0 / 0.46) calc(50% - 2.6rem + 26rem),
+    rgb(0 0 0 / 0.78) calc(50% - 2.6rem + 28rem),
+    #000 calc(50% - 2.6rem + 30rem)
+  );
+  -webkit-mask-image: var(--crt-fade-x), var(--crt-fade-y);
+  -webkit-mask-composite: source-over;
+  mask-image: var(--crt-fade-x), var(--crt-fade-y);
+  mask-composite: add;
 }
 
 
