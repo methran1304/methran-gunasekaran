@@ -1,17 +1,10 @@
 <nav class="w-full bg-background">
   <div class="app-container">
     
-    <div class="flex items-center justify-between gap-3 h-16">
-      <div class="flex items-baseline gap-2.5 min-w-0">
-        <a [routerLink]="['/']" class="font-semibold hover:text-accent transition-colors text-2xl -tracking-tight shrink-0">
-          Methran G.
-        </a>
-        <!-- where you are, like a shell prompt's working directory; hidden on
-             the narrowest phones, where it would only fit cut off -->
-        @if (path()) {
-          <span class="hidden min-[360px]:block text-sm sm:text-base text-secondary truncate" aria-hidden="true">{{ path() }}</span>
-        }
-      </div>
+    <div class="flex items-center justify-between h-16">
+      <a [routerLink]="['/']" class="font-semibold hover:text-accent transition-colors text-2xl -tracking-tight">
+        Methran G.
+      </a>
 
       <div class="flex items-center gap-4">
         <ul class="hidden md:flex items-center gap-8 ms-2 text-lg">
