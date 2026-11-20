@@ -1,8 +1,9 @@
-/* nav links: lowercase, regular weight and grey so the wordmark leads; the
-   current page is white, hover is green. (Unlayered, so these beat the
-   .link-chevron component's font-medium and text-primary.) */
+/* nav links: lowercase, medium weight and grey so the wordmark (800) leads
+   while the links still read clearly on dark; the current page is white,
+   hover is green. (Unlayered, so these beat the .link-chevron component's
+   text-primary.) */
 .nav-link {
-  font-weight: 400;
+  font-weight: 500;
   text-transform: lowercase;
   color: var(--color-secondary);
   transition: color 150ms ease-out;
