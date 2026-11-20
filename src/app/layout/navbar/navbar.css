@@ -1,0 +1,23 @@
+/* nav links: lowercase, regular weight and grey so the wordmark leads; the
+   current page is white, hover is green. (Unlayered, so these beat the
+   .link-chevron component's font-medium and text-primary.) */
+.nav-link {
+  font-weight: 400;
+  text-transform: lowercase;
+  color: var(--color-secondary);
+  transition: color 150ms ease-out;
+}
+.nav-link:hover {
+  color: var(--color-accent);
+}
+.nav-link.active {
+  color: var(--color-primary);
+}
+
+/* the footer's green "›" marker (.link-chevron) stays shown on the current
+   page, like the selection pointer in a terminal menu; hovering another link
+   slides its marker in, as in the footer */
+.nav-link.link-chevron.active::before {
+  opacity: 1;
+  transform: translate(0, -50%);
+}

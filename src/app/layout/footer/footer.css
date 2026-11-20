@@ -1,0 +1,11 @@
+/* footer links as words, styled like the nav links: regular weight and grey,
+   green on hover with the "›" marker (.link-chevron). Unlayered, so these
+   beat the component's font-medium and text-primary. */
+.foot-link {
+  font-weight: 400;
+  color: var(--color-secondary);
+  transition: color 150ms ease-out;
+}
+.foot-link:hover {
+  color: var(--color-accent);
+}

@@ -2,8 +2,9 @@
   <div class="app-container">
     
     <div class="flex items-center justify-between h-16">
-      <a [routerLink]="['/']" class="font-semibold hover:text-accent transition-colors text-2xl -tracking-tight">
-        Methran G.
+      <!-- wordmark: bold name, green dot, light grey "dev" -->
+      <a [routerLink]="['/']" class="group text-2xl -tracking-tight">
+        <span class="font-extrabold group-hover:text-accent transition-colors">methran</span><span class="font-extrabold text-accent">.</span><span class="font-normal text-secondary">dev</span>
       </a>
 
       <div class="flex items-center gap-4">
@@ -13,7 +14,7 @@
               <a
                 [routerLink]="item.href"
                 routerLinkActive="active"
-                class="font-semibold link-underline"
+                class="nav-link link-chevron"
                 >{{ item.label }}</a
               >
             </li>
@@ -44,15 +45,17 @@
 
   <!-- Mobile dropdown -->
   @if (menuOpen) {
-    <div class="md:hidden border-t border-borders bg-background/95">
+    <div class="md:hidden border-t border-borders bg-background">
       <div class="app-container py-3">
-        <ul class="flex flex-col gap-2">
+        <!-- ps-4 leaves room for the › pointer -->
+        <ul class="flex flex-col gap-2 ps-4">
           @for (item of navItems; track item.href) {
             <li>
               <a
                 [routerLink]="item.href"
+                routerLinkActive="active"
                 (click)="closeMenu()"
-                class="font-semibold block py-2"
+                class="nav-link link-chevron inline-block py-2"
                 >{{ item.label }}</a
               >
             </li>
