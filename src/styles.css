@@ -303,43 +303,36 @@ p.om-typewriter-text.term-typewriter::after {
   opacity: 0.4;
   mix-blend-mode: screen;
   /* Faint glyphs only around the home content, full strength everywhere
-     else. Two soft fades are combined: a horizontal one (the content spans
-     about +/-26rem across) and a vertical one (the nav and footer are the same
-     height, so it sits centred on the screen and spans about +/-20.5rem). Mask layers add up,
-     so the glyphs are dimmed only where both fades are low; above and below
-     the content (tall/large screens) and to its sides the CRT is at full
-     strength, with no vertical stripe. Each fade bottoms out at 8%, so behind
-     the text the combined level is ~15%. Many stops keep the edges invisible. */
-  --crt-fade-x: linear-gradient(
-    to right,
-    #000 calc(50% - 33rem),
-    rgb(0 0 0 / 0.78) calc(50% - 30rem),
-    rgb(0 0 0 / 0.46) calc(50% - 27rem),
-    rgb(0 0 0 / 0.19) calc(50% - 24rem),
-    rgb(0 0 0 / 0.08) calc(50% - 21rem),
-    rgb(0 0 0 / 0.08) calc(50% + 21rem),
-    rgb(0 0 0 / 0.19) calc(50% + 24rem),
-    rgb(0 0 0 / 0.46) calc(50% + 27rem),
-    rgb(0 0 0 / 0.78) calc(50% + 30rem),
-    #000 calc(50% + 33rem)
+     else. One elliptical fade centred on the content (the nav and footer are
+     the same height, so that is the middle of the screen): no corners, so no
+     box or band shape. The CRT sits at 14% out to 36% of the radius (behind
+     the text, which reaches about +/-21rem across and +/-20rem down, where it
+     is still ~16%), then eases back to full strength along a smootherstep
+     curve over the rest, so the fade is long and has no visible edge. Beyond
+     the ellipse (large screens) the CRT is at full strength. */
+  --crt-fade: radial-gradient(
+    ellipse 56rem 46rem at 50% 50%,
+    rgb(0 0 0 / 0.14) 0%,
+    rgb(0 0 0 / 0.14) 36%,
+    rgb(0 0 0 / 0.142) 40.0%,
+    rgb(0 0 0 / 0.154) 44.0%,
+    rgb(0 0 0 / 0.182) 48.0%,
+    rgb(0 0 0 / 0.229) 52.0%,
+    rgb(0 0 0 / 0.295) 56.0%,
+    rgb(0 0 0 / 0.377) 60.0%,
+    rgb(0 0 0 / 0.470) 64.0%,
+    rgb(0 0 0 / 0.570) 68.0%,
+    rgb(0 0 0 / 0.670) 72.0%,
+    rgb(0 0 0 / 0.763) 76.0%,
+    rgb(0 0 0 / 0.845) 80.0%,
+    rgb(0 0 0 / 0.911) 84.0%,
+    rgb(0 0 0 / 0.958) 88.0%,
+    rgb(0 0 0 / 0.986) 92.0%,
+    rgb(0 0 0 / 0.998) 96.0%,
+    #000 100.0%
   );
-  --crt-fade-y: linear-gradient(
-    to bottom,
-    #000 calc(50% - 30rem),
-    rgb(0 0 0 / 0.78) calc(50% - 28rem),
-    rgb(0 0 0 / 0.46) calc(50% - 26rem),
-    rgb(0 0 0 / 0.19) calc(50% - 24rem),
-    rgb(0 0 0 / 0.08) calc(50% - 22rem),
-    rgb(0 0 0 / 0.08) calc(50% + 22rem),
-    rgb(0 0 0 / 0.19) calc(50% + 24rem),
-    rgb(0 0 0 / 0.46) calc(50% + 26rem),
-    rgb(0 0 0 / 0.78) calc(50% + 28rem),
-    #000 calc(50% + 30rem)
-  );
-  -webkit-mask-image: var(--crt-fade-x), var(--crt-fade-y);
-  -webkit-mask-composite: source-over;
-  mask-image: var(--crt-fade-x), var(--crt-fade-y);
-  mask-composite: add;
+  -webkit-mask-image: var(--crt-fade);
+  mask-image: var(--crt-fade);
 }
 
 
