@@ -285,19 +285,61 @@ p.om-typewriter-text.term-typewriter::after {
    black (dark) / inverted white (light) disappears instead of tinting. */
 .crt-backdrop {
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  /* the large viewport height doesn't change while a phone's address bar
+     slides in and out, so scrolling no longer resizes (and clears) the
+     WebGL canvas, which made it flicker */
+  height: 100vh;
+  height: 100lvh;
   /* the home wrapper's space-y-8 gives every child a 2rem bottom margin,
-     which would shrink this inset-0 box and leave an empty strip */
+     which would shrink this box and leave an empty strip */
   margin: 0;
   z-index: -1;
   pointer-events: none;
   overflow: hidden;
   opacity: 0.4;
   mix-blend-mode: screen;
-  /* calmer behind the centred text, full strength towards the edges */
-  -webkit-mask-image: radial-gradient(ellipse 55% 50% at 50% 42%, rgb(0 0 0 / 0.3) 0%, rgb(0 0 0 / 0.5) 55%, #000 100%);
-  mask-image: radial-gradient(ellipse 55% 50% at 50% 42%, rgb(0 0 0 / 0.3) 0%, rgb(0 0 0 / 0.5) 55%, #000 100%);
+  /* Nearly no glyphs behind the content column, easing smoothly up to full
+     strength towards the sides over ~16rem. Horizontal only and with many
+     stops, so there is no visible edge or shape to the fade. */
+  -webkit-mask-image: linear-gradient(
+    to right,
+    #000 calc(50% - 46rem),
+    rgb(0 0 0 / 0.9) calc(50% - 42rem),
+    rgb(0 0 0 / 0.7) calc(50% - 38rem),
+    rgb(0 0 0 / 0.45) calc(50% - 34rem),
+    rgb(0 0 0 / 0.25) calc(50% - 31rem),
+    rgb(0 0 0 / 0.12) calc(50% - 28rem),
+    rgb(0 0 0 / 0.08) calc(50% - 24rem),
+    rgb(0 0 0 / 0.08) calc(50% + 24rem),
+    rgb(0 0 0 / 0.12) calc(50% + 28rem),
+    rgb(0 0 0 / 0.25) calc(50% + 31rem),
+    rgb(0 0 0 / 0.45) calc(50% + 34rem),
+    rgb(0 0 0 / 0.7) calc(50% + 38rem),
+    rgb(0 0 0 / 0.9) calc(50% + 42rem),
+    #000 calc(50% + 46rem)
+  );
+  mask-image: linear-gradient(
+    to right,
+    #000 calc(50% - 46rem),
+    rgb(0 0 0 / 0.9) calc(50% - 42rem),
+    rgb(0 0 0 / 0.7) calc(50% - 38rem),
+    rgb(0 0 0 / 0.45) calc(50% - 34rem),
+    rgb(0 0 0 / 0.25) calc(50% - 31rem),
+    rgb(0 0 0 / 0.12) calc(50% - 28rem),
+    rgb(0 0 0 / 0.08) calc(50% - 24rem),
+    rgb(0 0 0 / 0.08) calc(50% + 24rem),
+    rgb(0 0 0 / 0.12) calc(50% + 28rem),
+    rgb(0 0 0 / 0.25) calc(50% + 31rem),
+    rgb(0 0 0 / 0.45) calc(50% + 34rem),
+    rgb(0 0 0 / 0.7) calc(50% + 38rem),
+    rgb(0 0 0 / 0.9) calc(50% + 42rem),
+    #000 calc(50% + 46rem)
+  );
 }
+
 
 /* fills the backdrop exactly; HomeComponent sizes the glyph grid from the
    viewport so cells keep their proportions on any screen shape */
@@ -306,27 +348,24 @@ p.om-typewriter-text.term-typewriter::after {
   inset: 0;
 }
 
-/* on phones nearly the whole screen is text, so the calm centre would hide
-   the field almost entirely; use a flatter fade there */
-@media (max-width: 639px) {
-  .crt-backdrop {
-    -webkit-mask-image: linear-gradient(rgb(0 0 0 / 0.6), #000);
-    mask-image: linear-gradient(rgb(0 0 0 / 0.6), #000);
-  }
-}
-
 /* light theme: invert to a white field, then multiply so white drops out */
 :root.light .crt-backdrop {
   filter: invert(1);
   mix-blend-mode: multiply;
   opacity: 0.55;
 }
+/* phones and small tablets are almost all text: a uniform low level instead
+   (no edge to notice), faint enough that text reads cleanly over it */
+@media (max-width: 767px) {
+  .crt-backdrop {
+    -webkit-mask-image: none;
+    mask-image: none;
+    opacity: 0.14;
+  }
 
-/* a soft background-coloured halo keeps text crisp over the glyph field */
-.crt-legible {
-  text-shadow:
-    0 0 4px var(--color-background),
-    0 0 10px var(--color-background);
+  :root.light .crt-backdrop {
+    opacity: 0.18;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

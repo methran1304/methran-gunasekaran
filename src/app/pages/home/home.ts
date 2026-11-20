@@ -51,11 +51,14 @@ export class HomeComponent {
   // CRT glyph backdrop: skipped for reduced-motion users and without WebGL
   readonly showCrt = HomeComponent.canShowCrt();
 
+  // calm shader settings: slow drift, very little glitch, no flicker
+  readonly crt = { timeScale: 0.2, glitch: 0.1, flicker: 0, scanline: 0.25 };
+
   // The shader draws 45 x gridMul glyph columns/rows (at scale 3) across the
   // canvas whatever its shape. Size the grid from the viewport so cells stay
   // ~16.8 x 19.1 CSS px (the laptop look; 1512x860 gives the original [2, 1])
   // on any screen, instead of squeezing them on narrow ones.
-  readonly crtGridMul = signal<[number, number]>(HomeComponent.gridMulFor());
+  readonly crtGridMul = signal<[number, number]>(this.gridMulFor());
 
   readonly crtDpr = HomeComponent.crtDprFor();
 
@@ -72,16 +75,42 @@ export class HomeComponent {
       .subscribe((theme) => this.crtTint.set(this.tintFor(theme)));
 
     if (typeof window !== 'undefined') {
+      // Rebuild the grid only when the CRT's real size changes. The grid uses
+      // the large viewport height (100lvh), which stays put while a phone's
+      // address bar slides in and out on scroll, so scrolling no longer
+      // re-lays the glyphs out (that, plus canvas resizes, was the flicker).
       fromEvent(window, 'resize')
         .pipe(debounceTime(150), takeUntilDestroyed(this._destroyRef))
-        .subscribe(() => this.crtGridMul.set(HomeComponent.gridMulFor()));
+        .subscribe(() => {
+          const next = this.gridMulFor();
+          const [x, y] = this.crtGridMul();
+          if (Math.abs(next[0] - x) > 0.001 || Math.abs(next[1] - y) > 0.001) {
+            this.crtGridMul.set(next);
+          }
+        });
     }
   }
 
-  private static gridMulFor(): [number, number] {
+  private gridMulFor(): [number, number] {
     if (typeof window === 'undefined') return [2, 1];
-    return [window.innerWidth / 756, window.innerHeight / 860];
+    return [
+      window.innerWidth / 756,
+      HomeComponent.largeViewportHeight() / 860,
+    ];
   }
+
+  // height of 100lvh (the viewport with the mobile address bar hidden);
+  // falls back to innerHeight where lvh isn't supported
+  private static largeViewportHeight(): number {
+    const probe = document.createElement('div');
+    probe.style.cssText =
+      'position:fixed;top:0;width:0;height:100lvh;visibility:hidden;pointer-events:none';
+    document.body.appendChild(probe);
+    const height = probe.offsetHeight || window.innerHeight;
+    probe.remove();
+    return height;
+  }
+
 
   // Render above 1x for sharper glyphs, up to the screen's pixel density
   // (capped at 2x), within a per-frame budget of ~3 MP. On a 14" M-series
